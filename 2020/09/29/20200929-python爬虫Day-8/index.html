@@ -1,0 +1,164 @@
+<!DOCTYPE html><html lang="zh-Hans" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Python爬虫Day_8 | WineMonk</title><meta name="description" content="Python爬虫Day_8CSS选择器 根据标签的名字选择，示例代码如下： 123p&amp;#123;    background-color:pink;&amp;#125;  根据类名选择，name要在类的前面加一个.，示例代码如下： 123.line&amp;#123;    background-color:pink;&amp;#125;  根据id名字选择，那么要在id的前面加一个#号，示例代码如下： 123#box&amp;"><meta name="keywords" content="python爬虫"><meta name="author" content="shaoshao,shaozhiyuan59@163.com"><meta name="copyright" content="shaoshao"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="http://img.blts.xyz/shaoshao_head_portrait.jpg"><link rel="canonical" href="http://blts.xyz/2020/09/29/20200929-python%E7%88%AC%E8%99%ABDay-8/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="Python爬虫Day_8"><meta property="og:url" content="http://blts.xyz/2020/09/29/20200929-python%E7%88%AC%E8%99%ABDay-8/"><meta property="og:site_name" content="WineMonk"><meta property="og:description" content="Python爬虫Day_8CSS选择器 根据标签的名字选择，示例代码如下： 123p&amp;#123;    background-color:pink;&amp;#125;  根据类名选择，name要在类的前面加一个.，示例代码如下： 123.line&amp;#123;    background-color:pink;&amp;#125;  根据id名字选择，那么要在id的前面加一个#号，示例代码如下： 123#box&amp;"><meta property="og:image" content="http://img.blts.xyz/blts_article_picture_FLL_02.jpg"><meta property="article:published_time" content="2020-09-29T08:14:56.000Z"><meta property="article:modified_time" content="2020-09-29T08:19:32.596Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="next" title="30个你必须记住的CSS选择符" href="http://blts.xyz/2020/09/29/20200929-30%E4%B8%AA%E4%BD%A0%E5%BF%85%E9%A1%BB%E8%AE%B0%E4%BD%8F%E7%9A%84CSS%E9%80%89%E6%8B%A9%E7%AC%A6/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: {"languages":{"author":"作者: shaoshao","link":"链接: ","source":"来源: WineMonk","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  ClickShowText: {"text":"茶飘香,酒罢去,聚朋友,再回楼","fontSize":"15px"},
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true
+  }</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.1"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="http://img.blts.xyz/shaoshao_head_portrait.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">24</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">12</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Python爬虫Day-8"><span class="toc-number">1.</span> <span class="toc-text">Python爬虫Day_8</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS选择器"><span class="toc-number">1.0.1.</span> <span class="toc-text">CSS选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BeautifulSoup中使用css选择器："><span class="toc-number">1.0.2.</span> <span class="toc-text">BeautifulSoup中使用css选择器：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见的四中对象："><span class="toc-number">1.0.3.</span> <span class="toc-text">常见的四中对象：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#contents和children："><span class="toc-number">1.0.4.</span> <span class="toc-text">contents和children：</span></a></li></ol></li></ol></li></ol></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(http://img.blts.xyz/blts_article_picture_FLL_02.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">WineMonk</a></span><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">Python爬虫Day_8</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2020-09-29 16:14:56"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2020-09-29</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-09-29 16:19:32"><i class="fas fa-history fa-fw"></i> 更新于 2020-09-29</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fas fa-inbox fa-fw post-meta__icon"></i><a class="post-meta__categories" href="/categories/Python/">Python</a></span></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta__icon"></i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="Python爬虫Day-8"><a href="#Python爬虫Day-8" class="headerlink" title="Python爬虫Day_8"></a>Python爬虫Day_8</h1><h3 id="CSS选择器"><a href="#CSS选择器" class="headerlink" title="CSS选择器"></a>CSS选择器</h3><ol>
+<li><p>根据标签的名字选择，示例代码如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span>&#123;</span><br><span class="line">    <span class="attribute">background-color</span>:pink;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>根据类名选择，name要在类的前面加一个<code>.</code>，示例代码如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.line</span>&#123;</span><br><span class="line">    <span class="attribute">background-color</span>:pink;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>根据<code>id</code>名字选择，那么要在<code>id</code>的前面加一个<code>#</code>号，示例代码如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#box</span>&#123;</span><br><span class="line">    <span class="attribute">background-color</span>:pink;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查找子孙元素，要在子孙元素中间有一个空格，示例代码如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#box</span> <span class="selector-tag">p</span>&#123;</span><br><span class="line">    <span class="attribute">background-color</span>:pink;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查找直接子元素，要在父子元素之间加一个<code>&gt;</code>，示例代码如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#box</span> &gt; <span class="selector-tag">p</span>&#123;</span><br><span class="line">    <span class="attribute">background-color</span>:pink;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>根据属性的名字进行查找，应该先写标签名字，然后再在中括号中写属性的值，示例代码如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">input</span><span class="selector-attr">[name=<span class="string">'username'</span>]</span>&#123;</span><br><span class="line">    <span class="attribute">background-color</span>:pink;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在根据类名或者<code>id</code>进行查找的时候，如果还要根据标签名进行过滤，可以在类的前面或者<code>id</code>的前面加上标签名字，示例代码如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span><span class="selector-id">#line</span>&#123;</span><br><span class="line">    <span class="attribute">background-color</span>:pink;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span><span class="selector-class">.line</span>&#123;</span><br><span class="line">    <span class="attribute">background-color</span>:pink;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="BeautifulSoup中使用css选择器："><a href="#BeautifulSoup中使用css选择器：" class="headerlink" title="BeautifulSoup中使用css选择器："></a>BeautifulSoup中使用css选择器：</h3><p>在<code>BeautifulSoup</code>中，要使用css选择器，那么应该使用<code>Soup.select()</code>方法，应该传递一个css选择器的字符串给<code>select()</code>方法。</p>
+<h3 id="常见的四中对象："><a href="#常见的四中对象：" class="headerlink" title="常见的四中对象："></a>常见的四中对象：</h3><ol>
+<li>Tag：BeautifulSoup中所有的标签都是Tag类型，并且BeautifulSoup的对象其实本质上也是一个Tag类型。所以其实一些方法如find、find_all并不是BeautifulSoup的，而是Tag的。</li>
+<li>NavigableString：继承自python中的str，用起来就跟使用python的str是一样的。</li>
+<li>BeautifulSoup：继承自Tag。用来生成BeautifulSoup树的。对于一些查找方法，比如find，select这些，其实还是Tag的。</li>
+<li>Comment：这个也没什么好说的，就是继承自NavigableString。</li>
+</ol>
+<h3 id="contents和children："><a href="#contents和children：" class="headerlink" title="contents和children："></a>contents和children：</h3><p>返回某个标签下的直接子元素，其中也包括字符串。他们两的区别是：contents返回来的是一个列表，children返回的是一个迭代器。</p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:shaozhiyuan59@163.com">shaoshao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://blts.xyz/2020/09/29/20200929-python%E7%88%AC%E8%99%ABDay-8/">http://blts.xyz/2020/09/29/20200929-python%E7%88%AC%E8%99%ABDay-8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://blts.xyz" target="_blank">WineMonk</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/python%E7%88%AC%E8%99%AB/">python爬虫</a></div><div class="post_share"><div class="social-share" data-image="http://img.blts.xyz/blts_article_picture_FLL_02.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><button class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="post-qr-code__img" src="http://img.blts.xyz/WeChat_collectioncode.jpg" alt="WeChat" onclick="window.open('http://img.blts.xyz/WeChat_collectioncode.jpg')"/><div class="post-qr-code__desc">WeChat</div></li><li class="reward-item"><img class="post-qr-code__img" src="http://img.blts.xyz/Alipay_collectioncode.jpg" alt="Alipay" onclick="window.open('http://img.blts.xyz/Alipay_collectioncode.jpg')"/><div class="post-qr-code__desc">Alipay</div></li></ul></div></button></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2020/09/29/20200929-30%E4%B8%AA%E4%BD%A0%E5%BF%85%E9%A1%BB%E8%AE%B0%E4%BD%8F%E7%9A%84CSS%E9%80%89%E6%8B%A9%E7%AC%A6/"><img class="next-cover" data-src="http://img.blts.xyz/blts_article_picture_FLL_01.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">30个你必须记住的CSS选择符</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2020/09/24/20200924-Python爬取拉勾网招聘信息/" title="Python爬取拉勾网招聘信息实验"><img class="relatedPosts_cover" data-src="http://img.blts.xyz/blts_blog_2020_09_24_00.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-24</div><div class="relatedPosts_title">Python爬取拉勾网招聘信息实验</div></div></a></div><div class="relatedPosts_item"><a href="/2020/09/28/20200928-python爬虫Day-7/" title="Python爬虫Day_7"><img class="relatedPosts_cover" data-src="http://img.blts.xyz/blts_blog_2020_09_28_00.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-28</div><div class="relatedPosts_title">Python爬虫Day_7</div></div></a></div><div class="relatedPosts_item"><a href="/2020/09/25/20200925-python爬虫Day-4/" title="Python爬虫Day_4"><img class="relatedPosts_cover" data-src="http://img.blts.xyz/blts_blog_2020_09_25_00.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-25</div><div class="relatedPosts_title">Python爬虫Day_4</div></div></a></div></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var requestSetting = function (from,set) {
+  var from = from
+  var setting = set.split(',').filter(function(item){
+  return from.indexOf(item) > -1
+  });
+  setting = setting.length == 0 ? from :setting;
+  return setting
+}
+
+var guestInfo = requestSetting(['nick','mail','link'],'nick,mail,link')
+var requiredFields = requestSetting(['nick','mail'],'nick,mail')
+
+window.valine = new Valine({
+  el:'#vcomment',
+  appId: 'YkohuqWa4JwSSqDTHWivYbn6-gzGzoHsz',
+  appKey: '8t8TKj62a5NdoOyBOrzmzQm2',
+  placeholder: 'Please leave your footprints',
+  avatar: 'monsterid',
+  meta: guestInfo,
+  pageSize: '10',
+  lang: 'zh-CN',
+  recordIP: true,
+  serverURLs: '',
+  emojiCDN: '',
+  emojiMaps: "",
+  enableQQ: false,
+  requiredFields: requiredFields
+});</script></div></article></main><footer id="footer" style="background-image: url(http://img.blts.xyz/blts_article_picture_FLL_02.jpg)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2020 By shaoshao</div><div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div><div class="icp"><a href="http://www.beianbeian.com/beianxinxi/784cac7d16aa5ee4610d25ca2b932c03.html" target="_blank" rel="noopener"><img class="icp-icon" src="/img/icp.png"/><span>冀ICP备20003018号-1</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><button id="readmode" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" title="缩小字体"><i class="fas fa-minus"></i></button><button class="translate_chn_to_cht" id="translateLink" title="简繁转换">繁</button><button id="darkmode" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fas fa-comments"></i></a><button class="close" id="mobile-toc-button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script id="ribbon_piao" mobile="false" src="/js/third-party/piao.js"></script><script src="/js/third-party/activate-power-mode.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="/js/third-party/ClickShowText.js"></script><script>var endLoading = function () {
+  document.body.style.overflow = 'auto';
+  document.getElementById('loading-box').classList.add("loaded")
+}
+window.addEventListener('load',endLoading)</script></body></html>
