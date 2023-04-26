@@ -1,32 +1,277 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>国家标准比例尺分幅图幅编号 | WineMonk</title><meta name="keywords" content="GIS"><meta name="author" content="shaozhy,1361151272@qq.com"><meta name="copyright" content="shaozhy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="我国基本比例尺地形图的分幅编号，有新旧两种。均是在国际规定的1:100万地形图基础上，按经纬度进行分幅和编号的。 1 旧图幅1:100万地图的分幅编号：每幅1:100万地图纬差4°经差6°。从地球赤道起，向两极每纬度4°为一行，依次以字母A，B，C，…，V表示；从西经180°起，向东每6°为一列，依次以数字l，2，3，…，60表示。每幅图的编号由该图幅所在的行号(字符码)和列号(数字码)组成，列号">
+<meta property="og:type" content="article">
+<meta property="og:title" content="国家标准比例尺分幅图幅编号">
+<meta property="og:url" content="https://shaoshao.net.cn/2021/08/25/20210825222536000/index.html">
+<meta property="og:site_name" content="WineMonk">
+<meta property="og:description" content="我国基本比例尺地形图的分幅编号，有新旧两种。均是在国际规定的1:100万地形图基础上，按经纬度进行分幅和编号的。 1 旧图幅1:100万地图的分幅编号：每幅1:100万地图纬差4°经差6°。从地球赤道起，向两极每纬度4°为一行，依次以字母A，B，C，…，V表示；从西经180°起，向东每6°为一列，依次以数字l，2，3，…，60表示。每幅图的编号由该图幅所在的行号(字符码)和列号(数字码)组成，列号">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://shaoshao.net.cn/images/blog/cover/current/post_05.jpg">
+<meta property="article:published_time" content="2021-08-25T14:25:36.000Z">
+<meta property="article:modified_time" content="2023-04-14T01:28:34.000Z">
+<meta property="article:author" content="shaozhy">
+<meta property="article:tag" content="GIS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://shaoshao.net.cn/images/blog/cover/current/post_05.jpg"><link rel="shortcut icon" href="/cover/head_portrait.jpg"><link rel="canonical" href="https://shaoshao.net.cn/2021/08/25/20210825222536000/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '国家标准比例尺分幅图幅编号',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-14 09:28:34'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
-block content
-  #post
-    if top_img === false
-      include includes/header/post-info.pug
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
-    article#article-container.post-content!=page.content
-    include includes/post/post-copyright.pug
-    .tag_share
-      if (theme.post_meta.post.tags)
-        .post-meta__tag-list
-          each item, index in page.tags.data
-            a(href=url_for(item.path)).post-meta__tags #[=item.name]
-      include includes/third-party/share/index.pug
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
         
-    if theme.reward.enable && theme.reward.QR_code
-      !=partial('includes/post/reward', {}, {cache: true})
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.1.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://shaoshao.net.cn/images/blog/cover/headportrait/shsh_cn.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/discover/archives/"><div class="headline">文章</div><div class="length-num">154</div></a></div><div class="data-item"><a href="/discover/tags/"><div class="headline">标签</div><div class="length-num">93</div></a></div><div class="data-item"><a href="/discover/categories/"><div class="headline">分类</div><div class="length-num">77</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 发现</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/discover/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/discover/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/discover/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/discover/codingStandards/"><i class="fa-fw fas fa-code"></i><span> 军规</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/photo/"><i class="fa-fw fas fa-camera"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/guestbook/"><i class="fa-fw fa fa-commenting"></i><span> 留言</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://shaoshao.net.cn/images/blog/cover/current/post_05.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">WineMonk</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 发现</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/discover/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/discover/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/discover/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/discover/codingStandards/"><i class="fa-fw fas fa-code"></i><span> 军规</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/photo/"><i class="fa-fw fas fa-camera"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/guestbook/"><i class="fa-fw fa fa-commenting"></i><span> 留言</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">国家标准比例尺分幅图幅编号</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-08-25T14:25:36.000Z" title="发表于 2021-08-25 22:25:36">2021-08-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-14T01:28:34.000Z" title="更新于 2023-04-14 09:28:34">2023-04-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/discover/categories/GIS%E7%9B%B8%E5%85%B3/">GIS相关</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/discover/categories/GIS%E7%9B%B8%E5%85%B3/GIS/">GIS</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="国家标准比例尺分幅图幅编号"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>我国基本比例尺地形图的分幅编号，有新旧两种。均是在国际规定的1:100万地形图基础上，按经纬度进行分幅和编号的。</p>
+<h2 id="1-旧图幅"><a href="#1-旧图幅" class="headerlink" title="1 旧图幅"></a>1 旧图幅</h2><p>1:100万地图的分幅编号：每幅1:100万地图纬差4°经差6°。从地球赤道起，向两极每纬度4°为一行，依次以字母A，B，C，…，V表示；从西经180°起，向东每6°为一列，依次以数字l，2，3，…，60表示。每幅图的编号由该图幅所在的行号(字符码)和列号(数字码)组成，列号在前，行号在后，二者之间划一短线。如北京在1:100万图上处于第J列第50行，故编号为J-50。</p>
+<p><img src="https://shaoshao.net.cn/images/blog/post/20210825221624903.jpg" alt="20210825221624903"></p>
+<p>1:50万、1:20万、1:10万地形图分幅编号（旧图幅号没有1:25万）：在1:100万图幅基础上，按一定经差和纬差进行划分，并分别在1:100万图幅后加上各自的代号。</p>
+<p>1：50万：1：100万地形图一分为四，用A、B、C、D表示，即经差3°，纬差2°</p>
+<p>北京某地：北纬39º54’30”, 东经116º28’25”。1:50万图幅编号：J-50-A</p>
+<p><img src="https://shaoshao.net.cn/images/blog/post/20210825221624918.jpg" alt="20210825221624918"></p>
+<p>1:20万：一幅1：100万地形图分为36幅，用[1]……[36]表示，即经差1°，纬差40′<br>北京某地：北纬39º54’30”, 东经116º28’25”。1:20万图幅编号：J-50-[3]</p>
+<p><img src="https://shaoshao.net.cn/images/blog/post/20210825221624933.jpg" alt="20210825221624933"></p>
+<p>1:10万：一幅1：100万地形图分为144幅，用1，2，……，144表示，即经差30′，纬差20′</p>
+<p>北京某地：北纬39º54’30”, 东经116º28’25”。1:10万图幅编号：J-50-5</p>
+<p><img src="https://shaoshao.net.cn/images/blog/post/20210825221624949.jpg" alt="20210825221624949"></p>
+<p>1:5万、1:2.5万、1:1万地形图分幅编号：在1:10万图幅基础上，按一定经差和纬差进行划分，并分别在1：10万图幅后加上各自的代号。</p>
+<p>1:5万：一幅1：10万地形图分为4幅，用A，B，C，D表示，即经差15′，纬差10′</p>
+<p>北京某地：北纬39º54’30”, 东经116º28’25”。1:5万图幅编号：J-50-5-B</p>
+<p><img src="https://shaoshao.net.cn/images/blog/post/20210825221624965.jpg" alt="20210825221624965"></p>
+<p>1:2.5万：一幅1：5万地形图分为4幅，用1，2，3，4表示，经差7′30″，纬差5′。图幅编号：在1：5万编号后加上自己的序号。</p>
+<p>北京某地：北纬39º54’30”, 东经116º28’25”。1:2.5万图幅编号：J-50-5-B-4</p>
+<p><img src="https://shaoshao.net.cn/images/blog/post/20210825221624996.jpg" alt="20210825221624996"></p>
+<p>1:1万：一幅1：10万地形图分为8行、8列共64幅图，用（1），……，（64）表示，经差3′45″，纬差2′30″。图幅编号：在1：10万编号后加上各自的代号。<br>北京某地：北纬39º54’30”, 东经116º28’25”。1:1万图幅编号：J-50-5-（24）</p>
+<p><img src="https://shaoshao.net.cn/images/blog/post/20210825221625012.jpg" alt="20210825221625012"></p>
+<p>1：5000比例尺地形图：在1：1万的基础上进行，一幅1：1万地形图分为4幅，用a,b,c,d表示，经差1′52.5″，纬差1′15″。图幅编号：在1：1万编号后加上各自的代号。<br>北京某地：北纬39º54’30”, 东经116º28’25”。1:5000图幅编号：J-50-5-（24）-b</p>
+<p><img src="https://shaoshao.net.cn/images/blog/post/20210825221625027.jpg" alt="20210825221625027"></p>
+<h2 id="2-新图幅"><a href="#2-新图幅" class="headerlink" title="2 新图幅"></a>2 新图幅</h2><p>1991年制订了新的《国家基本比例尺地形图分幅和编号》（GB&#x2F;T 13989-92 ）的国家标准，并给出了不同标准比例尺地形图的编给规范及图式。新测和更新的地图，照此标准进行分幅和编号。</p>
+<p>我国基本比例尺的地形图包括1:5000、1:1万、1:2.5万、1:5万、1:10万、1:25万、1:50万、1:100万共8种不同比例尺。基本比例尺地图以1:100万地图为基础，按规定的经差和纬差采用逐次加密划分方法划分图幅。不同比例尺的图幅将1:100万的图幅划分成若干行和列，使相邻比例尺地图的经纬差、行列数和图幅数成简单的倍数。（注：1:20万图幅不是基本比例尺图幅）<br>1:100万地形图的分幅仍按国际标准进行。每幅1:100万地图的编号由该图幅所在的行号(字符码)和列号(数字码)组成，如北京所在的1:100万地图的图幅编号为J50。</p>
+<p><img src="https://shaoshao.net.cn/images/blog/post/20210825221625043.jpg" alt="20210825221625043"></p>
+<p>1:50万-1:5000地图的编号以1:100万地图编号为基础，按行列编号方法，即将1:100万地形图按所含各比例尺地形图的经差和纬差划分成若干行和列，横行从上到下、纵列从左到右按顺序分别用阿拉伯数字(数字码)编号，这样便于计算机运算处理。表示图幅编号的行、列代码均采用3位数字表示，不足3位时前面补0，取行号在前、列号在后的排列形式标记，加在1:100万图幅的图号之后。每幅图的编号是由该图幅所在的1:100万地图编号、比例尺代码以及各自图幅所在的行号和列号的数字码组成。</p>
+<p>例如，北京某地：北纬39º54’30”, 东经116º28’25”。1:5万的图幅号为J50E001010。其中第1位字母“J”是1:100万图幅行号，第2、3位数字“50”是1:100万图幅的列号，第4位字母“E”是1:5万的比例尺的代号，第5、6、7位“001”是行号，第8、9、10位“010”为列号。</p>
+<p><img src="https://shaoshao.net.cn/images/blog/post/20210825221625058.jpg" alt="20210825221625058"></p>
+<p>各比例尺国幅号关系如下:</p>
+<p><img src="https://shaoshao.net.cn/images/blog/post/20210825221625074.jpg" alt="20210825221625074"></p>
+<p>新图幅号的计算也相对简单。<br>下列以北京某地（坐标：北纬39º54’30”, 东经116º28’25”。）为例 ，简单的介绍计算过程如下：</p>
+<p>计算1:100万图幅的行号和列号</p>
+<p>1:100行号 &#x3D; [纬度&#x2F;4] +1    []表示取模,1为A，2为B……</p>
+<p>1:100列号 &#x3D; [经度&#x2F;6]+31    []表示取模</p>
+<p>例：坐标：北纬39º54’30”, 东经116º28’25”</p>
+<p>1:100行号&#x3D;[39º54’30”&#x2F;4º]+1&#x3D;9+1&#x3D;10&#x3D;J</p>
+<p>1:100列号 &#x3D; [116º28’25”&#x2F;6º]+31 &#x3D;19+31&#x3D;50</p>
+<p>根据计算图幅的比例，查出比例尺代号</p>
+<p>以1:5万为列，比例尺代码为“E”</p>
+<p>根据比例尺记算图幅行号和列号。</p>
+<p>根据比例尺，查经差和纬差（见上文新图幅号各分幅号关系表）。</p>
+<p>1:5万图幅，经差为：15’，纬差为：10’</p>
+<p>计算公式：</p>
+<p>行号 &#x3D; 4º&#x2F;纬差 - [（纬度&#x2F;4º）&#x2F;纬差]    []为取整，（）为取余</p>
+<p>列号 &#x3D; [（经度&#x2F;4º）&#x2F;经差]+1       []为取整，（）为取余</p>
+<p>例：</p>
+<p>行号 &#x3D; 4º&#x2F;10’ - [（39º54’30”&#x2F;4º）&#x2F;10’]&#x3D;24-[3º54’30”&#x2F;10’]&#x3D;24-23&#x3D;1</p>
+<p>列号 &#x3D; [（116º28’25”&#x2F;6º）&#x2F;15’]+1 &#x3D;[2º28’25”&#x2F;15’]+1&#x3D;9+1&#x3D;10</p>
+<h2 id="2-代码实现经纬度与新图幅编号转换"><a href="#2-代码实现经纬度与新图幅编号转换" class="headerlink" title="2 代码实现经纬度与新图幅编号转换"></a>2 代码实现经纬度与新图幅编号转换</h2><h3 id="SheetDesignationUtils类"><a href="#SheetDesignationUtils类" class="headerlink" title="SheetDesignationUtils类"></a>SheetDesignationUtils类</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Linq;</span><br><span class="line"></span><br><span class="line">namespace SheetDesignationUtils</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">/// &lt;summary&gt;</span></span><br><span class="line">    <span class="comment">/// 坐标图幅号转换类</span></span><br><span class="line">    <span class="comment">/// &lt;/summary&gt;</span></span><br><span class="line">    public <span class="class"><span class="keyword">class</span> <span class="title">CoordToSheetNo</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        private <span class="type">static</span> <span class="type">char</span>[] LatCharArray = &#123;<span class="string">&#x27;A&#x27;</span>,<span class="string">&#x27;B&#x27;</span>,<span class="string">&#x27;C&#x27;</span>,<span class="string">&#x27;D&#x27;</span>,<span class="string">&#x27;E&#x27;</span>,<span class="string">&#x27;F&#x27;</span>,<span class="string">&#x27;G&#x27;</span>,<span class="string">&#x27;H&#x27;</span>,<span class="string">&#x27;I&#x27;</span>,<span class="string">&#x27;J&#x27;</span>,<span class="string">&#x27;K&#x27;</span></span><br><span class="line">                                            ,<span class="string">&#x27;L&#x27;</span>,<span class="string">&#x27;M&#x27;</span>,<span class="string">&#x27;N&#x27;</span>,<span class="string">&#x27;O&#x27;</span>,<span class="string">&#x27;P&#x27;</span>,<span class="string">&#x27;Q&#x27;</span>,<span class="string">&#x27;R&#x27;</span>,<span class="string">&#x27;S&#x27;</span>,<span class="string">&#x27;T&#x27;</span>,<span class="string">&#x27;U&#x27;</span>,<span class="string">&#x27;V&#x27;</span>&#125;;</span><br><span class="line">        private <span class="type">static</span> <span class="type">char</span>[] ScaleCharArray = &#123;<span class="string">&#x27;A&#x27;</span>,<span class="string">&#x27;B&#x27;</span>,<span class="string">&#x27;C&#x27;</span>,<span class="string">&#x27;R&#x27;</span>,<span class="string">&#x27;D&#x27;</span>,<span class="string">&#x27;E&#x27;</span>,<span class="string">&#x27;F&#x27;</span>,<span class="string">&#x27;G&#x27;</span>,<span class="string">&#x27;H&#x27;</span>&#125;;</span><br><span class="line">        private <span class="type">static</span> <span class="type">double</span>[] LatDArray = &#123; <span class="number">14400</span>, <span class="number">7200</span>, <span class="number">3600</span>, <span class="number">2400</span>, <span class="number">1200</span>, <span class="number">600</span>, <span class="number">300</span>, <span class="number">150</span>, <span class="number">75</span> &#125;;</span><br><span class="line">        private <span class="type">static</span> <span class="type">double</span>[] LonDArray = &#123; <span class="number">21600</span>, <span class="number">10800</span>, <span class="number">5400</span>, <span class="number">3600</span>, <span class="number">1800</span>, <span class="number">900</span>, <span class="number">450</span>, <span class="number">225</span>, <span class="number">112.5</span> &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/// &lt;summary&gt;</span></span><br><span class="line">        <span class="comment">/// 获取图幅编号</span></span><br><span class="line">        <span class="comment">/// &lt;/summary&gt;</span></span><br><span class="line">        <span class="comment">/// &lt;param name=&quot;lon&quot;&gt;经度/秒&lt;/param&gt;</span></span><br><span class="line">        <span class="comment">/// &lt;param name=&quot;lat&quot;&gt;纬度/秒&lt;/param&gt;</span></span><br><span class="line">        <span class="comment">/// &lt;param name=&quot;scale&quot;&gt;比例尺&lt;/param&gt;</span></span><br><span class="line">        <span class="comment">/// &lt;returns&gt;图幅号&lt;/returns&gt;</span></span><br><span class="line">        public <span class="type">static</span> <span class="built_in">string</span> <span class="title function_">GetSheetNo</span><span class="params">(<span class="type">int</span> lon, <span class="type">int</span> lat, SheetScale scale)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//*|*|**|*|***|***</span></span><br><span class="line">            <span class="keyword">if</span> (lat &lt; -(<span class="number">88</span> * <span class="number">60</span> * <span class="number">60</span>) || lat &gt; (<span class="number">88</span> * <span class="number">60</span> * <span class="number">60</span>))</span><br><span class="line">                throw new Exception(<span class="string">&quot;纬度不正确，请检查！&quot;</span>);</span><br><span class="line">            <span class="keyword">if</span> (lon &lt; <span class="number">0</span> || lon &gt; (<span class="number">180</span> * <span class="number">60</span> * <span class="number">60</span>))</span><br><span class="line">                throw new Exception(<span class="string">&quot;经度不正确，请检查！&quot;</span>);</span><br><span class="line">            <span class="built_in">string</span> numString = <span class="string">&quot;&quot;</span>;</span><br><span class="line">            numString += GetMillionRowID(lat, scale);</span><br><span class="line">            numString += GetMillionColumnID(lon);</span><br><span class="line">            <span class="keyword">if</span> (scale ==  SheetScale._1000000)</span><br><span class="line">                <span class="keyword">return</span> numString;</span><br><span class="line">            numString += GetScaleID(scale);</span><br><span class="line">            numString += GetRowID(lat, scale);</span><br><span class="line">            numString += GetColumnID(lon, scale);</span><br><span class="line">            <span class="keyword">return</span> numString;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public <span class="type">static</span> <span class="type">char</span> <span class="title function_">GetMillionRowID</span><span class="params">(<span class="type">int</span> lat, SheetScale scale)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> scaleIndex = Convert.ToInt32(scale);</span><br><span class="line">            <span class="type">int</span> a = lat / (<span class="number">4</span> * <span class="number">3600</span>);</span><br><span class="line">            <span class="keyword">return</span> LatCharArray[a];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public <span class="type">static</span> <span class="type">int</span> <span class="title function_">GetMillionColumnID</span><span class="params">(<span class="type">int</span> lon)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> b = lon / (<span class="number">6</span> * <span class="number">3600</span>) + <span class="number">31</span>;</span><br><span class="line">            <span class="keyword">return</span> b;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public <span class="type">static</span> <span class="type">char</span> <span class="title function_">GetScaleID</span><span class="params">(SheetScale scale)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> scaleIndex = Convert.ToInt32(scale);</span><br><span class="line">            <span class="type">char</span> scaleId = ScaleCharArray[scaleIndex];</span><br><span class="line">            <span class="keyword">return</span> scaleId;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public <span class="type">static</span> <span class="built_in">string</span> <span class="title function_">GetRowID</span><span class="params">(<span class="type">int</span> lat, SheetScale scale)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> scaleIndex = Convert.ToInt32(scale);</span><br><span class="line">            <span class="type">int</span> c = Convert.ToInt32(<span class="number">4</span> * <span class="number">3600</span> / LatDArray[scaleIndex]) -</span><br><span class="line">                Convert.ToInt32((lat % (<span class="number">4</span> * <span class="number">3600</span>)) / LatDArray[scaleIndex]);</span><br><span class="line">            <span class="keyword">return</span> c.ToString().PadRight(<span class="number">3</span>,<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public <span class="type">static</span> <span class="built_in">string</span> <span class="title function_">GetColumnID</span><span class="params">(<span class="type">int</span> lon, SheetScale scale)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> scaleIndex = Convert.ToInt32(scale);</span><br><span class="line">            <span class="type">int</span> d = Convert.ToInt32((lon % (<span class="number">6</span> * <span class="number">3600</span>)) / LonDArray[scaleIndex]) + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">return</span> d.ToString().PadRight(<span class="number">3</span>, <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/// &lt;summary&gt;</span></span><br><span class="line">        <span class="comment">/// 根据图幅号获取经纬度范围（北半球）</span></span><br><span class="line">        <span class="comment">/// &lt;/summary&gt;</span></span><br><span class="line">        <span class="comment">/// &lt;param name=&quot;frmNo&quot;&gt;图幅号&lt;/param&gt;</span></span><br><span class="line">        <span class="comment">/// &lt;returns&gt;图幅范围&lt;/returns&gt;</span></span><br><span class="line">        <span class="comment">/// &lt;exception cref=&quot;Exception&quot;&gt;图幅号错误异常&lt;/exception&gt;</span></span><br><span class="line">        public <span class="type">static</span> SheetArea <span class="title function_">GetSheetArea</span><span class="params">(<span class="built_in">string</span> frmNo)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (frmNo.Length != <span class="number">10</span>)</span><br><span class="line">                throw new Exception(<span class="string">&quot;图幅号错误，请输入标准十位图幅编号！&quot;</span>);</span><br><span class="line">            <span class="type">int</span> latMillionNum, lonMillionNum, latNum, lonNum, scaleNum;</span><br><span class="line">            <span class="type">char</span> latMillionChar, scaleChar;</span><br><span class="line"></span><br><span class="line">            latMillionChar = <span class="type">char</span>.Parse(frmNo.Substring(<span class="number">0</span>, <span class="number">1</span>));</span><br><span class="line">            latMillionNum = LatCharArray.ToList().IndexOf(latMillionChar);</span><br><span class="line">            <span class="keyword">if</span> (latMillionNum == <span class="number">-1</span>)</span><br><span class="line">                throw new Exception(<span class="string">&quot;图幅号错误，请检查百万比例尺纬度号！&quot;</span>);</span><br><span class="line"></span><br><span class="line">            scaleChar = <span class="type">char</span>.Parse(frmNo.Substring(<span class="number">3</span>, <span class="number">1</span>));</span><br><span class="line">            scaleNum = ScaleCharArray.ToList().IndexOf(scaleChar);</span><br><span class="line">            <span class="keyword">if</span> (scaleNum == <span class="number">-1</span>)</span><br><span class="line">                throw new Exception(<span class="string">&quot;图符号错误，请检查比例尺代号！&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (!<span class="type">int</span>.TryParse(frmNo.Substring(<span class="number">1</span>, <span class="number">2</span>), out lonMillionNum))</span><br><span class="line">                throw new Exception(<span class="string">&quot;图幅号错误，请检查百万比例尺经度号！&quot;</span>);</span><br><span class="line">            <span class="keyword">if</span> (!<span class="type">int</span>.TryParse(frmNo.Substring(<span class="number">4</span>, <span class="number">3</span>), out latNum))</span><br><span class="line">                throw new Exception(<span class="string">&quot;图幅号错误，请检查纬度号！&quot;</span>);</span><br><span class="line">            <span class="keyword">if</span> (!<span class="type">int</span>.TryParse(frmNo.Substring(<span class="number">7</span>, <span class="number">3</span>), out lonNum))</span><br><span class="line">                throw new Exception(<span class="string">&quot;图幅号错误，请检查经度号！&quot;</span>);</span><br><span class="line">            SheetArea sheetArea = new SheetArea();</span><br><span class="line">            sheetArea.LatMin = latMillionNum * <span class="number">4</span> * <span class="number">3600</span> + (<span class="number">4</span> * <span class="number">3600</span> / LatDArray[scaleNum] - latNum) * LatDArray[scaleNum];</span><br><span class="line">            sheetArea.LatMax = sheetArea.LatMin + LatDArray[scaleNum];</span><br><span class="line"></span><br><span class="line">            sheetArea.LonMax = (lonMillionNum - <span class="number">30</span> - <span class="number">1</span>) * <span class="number">6</span> * <span class="number">3600</span> + lonNum * LonDArray[scaleNum];</span><br><span class="line">            sheetArea.LonMin = sheetArea.LonMax - LonDArray[scaleNum];</span><br><span class="line">            <span class="keyword">return</span> sheetArea;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/// &lt;summary&gt;</span></span><br><span class="line">        <span class="comment">/// 根据经度获取6度分带</span></span><br><span class="line">        <span class="comment">/// &lt;/summary&gt;</span></span><br><span class="line">        <span class="comment">/// &lt;param name=&quot;centerLongitude&quot;&gt;&lt;/param&gt;</span></span><br><span class="line">        <span class="comment">/// &lt;returns&gt;2000国家大地坐标系6度分带带号名&lt;/returns&gt;</span></span><br><span class="line">        public <span class="type">static</span> <span class="built_in">string</span> <span class="title function_">GetChinaGeodeticCoordinateSystem2000_6DegreesZone</span><span class="params">(<span class="type">double</span> centerLongitude)</span></span><br><span class="line">        &#123;</span><br><span class="line">            centerLongitude = centerLongitude / <span class="number">3600</span>;</span><br><span class="line">            <span class="built_in">string</span> SpatialRefName = <span class="string">&quot;高斯大地坐标系_中国2000_&quot;</span>;</span><br><span class="line">            <span class="type">int</span> ZoneNum = Convert.ToInt32(Math.Round((centerLongitude + <span class="number">3</span>) / <span class="number">6</span>,<span class="number">0</span>));</span><br><span class="line">            SpatialRefName += ZoneNum + <span class="string">&quot;带6_北&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> SpatialRefName;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-    //- ad
-    if theme.ad && theme.ad.post
-      .ads-wrap!=theme.ad.post
+<h3 id="SheetArea类"><a href="#SheetArea类" class="headerlink" title="SheetArea类"></a>SheetArea类</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SheetArea</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">double</span> LonMin &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">double</span> LatMin &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">double</span> LonMax &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">double</span> LatMax &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SheetArea</span>()</span> &#123; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SheetArea</span>(<span class="params"><span class="built_in">double</span> lonMin, <span class="built_in">double</span> latMin, <span class="built_in">double</span> lonMax, <span class="built_in">double</span> latMax</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        LonMin = lonMin;</span><br><span class="line">        LatMin = latMin;</span><br><span class="line">        LonMax = lonMax;</span><br><span class="line">        LatMax = latMax;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    if theme.post_pagination
-      include includes/pagination.pug
-    if theme.related_post && theme.related_post.enable
-      != related_posts(page,site.posts)
 
-    if page.comments !== false && theme.comments && theme.comments.use
-      - var commentsJsLoad = true
-      !=partial('includes/third-party/comments/index', {}, {cache: true})
-      
+
+<h3 id="LonLatException类"><a href="#LonLatException类" class="headerlink" title="LonLatException类"></a>LonLatException类</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">LonLatException</span> :</span> Exception</span><br><span class="line">&#123;</span><br><span class="line">    public <span class="built_in">string</span> error;</span><br><span class="line">    private Exception exception;</span><br><span class="line">    public <span class="title function_">LonLatException</span><span class="params">()</span> &#123; &#125;</span><br><span class="line">    public <span class="title function_">LonLatException</span><span class="params">(<span class="built_in">string</span> msg)</span> : <span class="title function_">base</span><span class="params">(msg)</span></span><br><span class="line">    &#123;</span><br><span class="line">        this.error = msg;</span><br><span class="line">    &#125;</span><br><span class="line">    public <span class="title function_">LonLatException</span><span class="params">(<span class="built_in">string</span> msg, Exception exception)</span> : <span class="title function_">base</span><span class="params">(msg, exception)</span></span><br><span class="line">    &#123;</span><br><span class="line">        this.exception = exception;</span><br><span class="line">        error = msg;</span><br><span class="line">    &#125;</span><br><span class="line">    public <span class="built_in">string</span> <span class="title function_">GetError</span><span class="params">()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> error;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Scale枚举"><a href="#Scale枚举" class="headerlink" title="Scale枚举"></a>Scale枚举</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">enum</span> <span class="title">Scale</span> :</span> <span class="type">int</span></span><br><span class="line">&#123;</span><br><span class="line">    _1000000 = <span class="number">0</span>,</span><br><span class="line">    _500000=<span class="number">1</span>,</span><br><span class="line">    _250000=<span class="number">2</span>,</span><br><span class="line">    _200000=<span class="number">3</span>,</span><br><span class="line">    _100000=<span class="number">4</span>,</span><br><span class="line">    _50000=<span class="number">5</span>,</span><br><span class="line">    _25000=<span class="number">6</span>,</span><br><span class="line">    _10000=<span class="number">7</span>,</span><br><span class="line">    _5000=<span class="number">8</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>参考资料：</p>
+<p><a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/c26dccebf524ccbff12184c6.html?from=search">https://wenku.baidu.com/view/c26dccebf524ccbff12184c6.html?from=search</a><br>earch</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:1361151272@qq.com">shaozhy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://shaoshao.net.cn/2021/08/25/20210825222536000/">https://shaoshao.net.cn/2021/08/25/20210825222536000/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://shaoshao.net.cn" target="_blank">WineMonk</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/discover/tags/GIS/">GIS</a></div><div class="post_share"><div class="social-share" data-image="https://shaoshao.net.cn/images/blog/cover/current/post_05.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://shaoshao.net.cn/images/blog/cover/payqr/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="https://shaoshao.net.cn/images/blog/cover/payqr/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://shaoshao.net.cn/images/blog/cover/payqr/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="https://shaoshao.net.cn/images/blog/cover/payqr/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/08/25/20210825222613000/"><img class="prev-cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_04.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">MapGIS二次开发相关</div></div></a></div><div class="next-post pull-right"><a href="/2021/08/06/20210806142448000/"><img class="next-cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_02.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">MapGIS打开场景显示</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/08/06/20210806142448000/" title="MapGIS打开场景显示"><img class="cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_02.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-06</div><div class="title">MapGIS打开场景显示</div></div></a></div><div><a href="/2021/08/25/20210825222613000/" title="MapGIS二次开发相关"><img class="cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_04.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-25</div><div class="title">MapGIS二次开发相关</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%97%A7%E5%9B%BE%E5%B9%85"><span class="toc-number">1.</span> <span class="toc-text">1 旧图幅</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%96%B0%E5%9B%BE%E5%B9%85"><span class="toc-number">2.</span> <span class="toc-text">2 新图幅</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E7%BB%8F%E7%BA%AC%E5%BA%A6%E4%B8%8E%E6%96%B0%E5%9B%BE%E5%B9%85%E7%BC%96%E5%8F%B7%E8%BD%AC%E6%8D%A2"><span class="toc-number">3.</span> <span class="toc-text">2 代码实现经纬度与新图幅编号转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SheetDesignationUtils%E7%B1%BB"><span class="toc-number">3.1.</span> <span class="toc-text">SheetDesignationUtils类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SheetArea%E7%B1%BB"><span class="toc-number">3.2.</span> <span class="toc-text">SheetArea类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LonLatException%E7%B1%BB"><span class="toc-number">3.3.</span> <span class="toc-text">LonLatException类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Scale%E6%9E%9A%E4%B8%BE"><span class="toc-number">3.4.</span> <span class="toc-text">Scale枚举</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://shaoshao.net.cn/images/blog/cover/current/post_05.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By shaozhy</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/#/Integrated/index"><img class="icp-icon" src="/img/icp.png"><span>冀ICP备20003018号-2</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: 'd990e8cbbd1dabc9c98e',
+      clientSecret: '59676d5926f4df676ec1ba6b36395bf90a0aeb54',
+      repo: 'WineMonk.github.io',
+      owner: 'WineMonk',
+      admin: ['WineMonk'],
+      id: '50b16e6c89d31b3c32bc46dedc0d5230',
+      updateCountCallback: commentCount
+    },{"proxy":"https://vercel.prohibitorum.top/github_access_token"}))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js" data-mobile="false" data-text="茶飘香,酒罢去,聚朋友,再回楼" data-fontsize="15px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

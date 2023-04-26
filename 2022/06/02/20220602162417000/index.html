@@ -1,32 +1,270 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Spring Boot 注解大全 | WineMonk</title><meta name="keywords" content="Java,Spring,Spring Boot"><meta name="author" content="shaozhy,1361151272@qq.com"><meta name="copyright" content="shaozhy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1、@SpringBootApplication 一般不会主动去使用它，但是要知道它是一个组合注解，@Configuration  、@EnableAutoConfiguration 、@ComponentScan  注解的集合。 2、@Configuration  用@Conﬁguration注释类表明是一个配置类，允许在 Spring 上下文中注册额外的 bean 或导入其他配置类。 3、@E">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Boot 注解大全">
+<meta property="og:url" content="https://shaoshao.net.cn/2022/06/02/20220602162417000/index.html">
+<meta property="og:site_name" content="WineMonk">
+<meta property="og:description" content="1、@SpringBootApplication 一般不会主动去使用它，但是要知道它是一个组合注解，@Configuration  、@EnableAutoConfiguration 、@ComponentScan  注解的集合。 2、@Configuration  用@Conﬁguration注释类表明是一个配置类，允许在 Spring 上下文中注册额外的 bean 或导入其他配置类。 3、@E">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://shaoshao.net.cn/images/blog/cover/current/post_17.jpg">
+<meta property="article:published_time" content="2022-06-02T08:24:17.000Z">
+<meta property="article:modified_time" content="2023-04-14T01:28:34.000Z">
+<meta property="article:author" content="shaozhy">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Spring">
+<meta property="article:tag" content="Spring Boot">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://shaoshao.net.cn/images/blog/cover/current/post_17.jpg"><link rel="shortcut icon" href="/cover/head_portrait.jpg"><link rel="canonical" href="https://shaoshao.net.cn/2022/06/02/20220602162417000/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Spring Boot 注解大全',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-04-14 09:28:34'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
-block content
-  #post
-    if top_img === false
-      include includes/header/post-info.pug
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
-    article#article-container.post-content!=page.content
-    include includes/post/post-copyright.pug
-    .tag_share
-      if (theme.post_meta.post.tags)
-        .post-meta__tag-list
-          each item, index in page.tags.data
-            a(href=url_for(item.path)).post-meta__tags #[=item.name]
-      include includes/third-party/share/index.pug
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
         
-    if theme.reward.enable && theme.reward.QR_code
-      !=partial('includes/post/reward', {}, {cache: true})
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.1.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://shaoshao.net.cn/images/blog/cover/headportrait/shsh_cn.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/discover/archives/"><div class="headline">文章</div><div class="length-num">154</div></a></div><div class="data-item"><a href="/discover/tags/"><div class="headline">标签</div><div class="length-num">93</div></a></div><div class="data-item"><a href="/discover/categories/"><div class="headline">分类</div><div class="length-num">77</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 发现</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/discover/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/discover/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/discover/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/discover/codingStandards/"><i class="fa-fw fas fa-code"></i><span> 军规</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/photo/"><i class="fa-fw fas fa-camera"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/guestbook/"><i class="fa-fw fa fa-commenting"></i><span> 留言</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://shaoshao.net.cn/images/blog/cover/current/post_17.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">WineMonk</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 发现</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/discover/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/discover/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/discover/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/discover/codingStandards/"><i class="fa-fw fas fa-code"></i><span> 军规</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/photo/"><i class="fa-fw fas fa-camera"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/guestbook/"><i class="fa-fw fa fa-commenting"></i><span> 留言</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Spring Boot 注解大全</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-06-02T08:24:17.000Z" title="发表于 2022-06-02 16:24:17">2022-06-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-14T01:28:34.000Z" title="更新于 2023-04-14 09:28:34">2023-04-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/discover/categories/Java%E7%9B%B8%E5%85%B3/">Java相关</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/discover/categories/Java%E7%9B%B8%E5%85%B3/Spring-Boot/">Spring Boot</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Spring Boot 注解大全"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>1、@SpringBootApplication</p>
+<p>一般不会主动去使用它，但是要知道它是一个组合注解，@Configuration  、@EnableAutoConfiguration 、@ComponentScan  注解的集合。</p>
+<p>2、@Configuration </p>
+<p>用@Conﬁguration注释类表明是一个配置类，允许在 Spring 上下文中注册额外的 bean 或导入其他配置类。</p>
+<p>3、@EnableAutoConfiguration</p>
+<p>该注解就是用来开启自动配置的，自动配置原理 —&gt; <a href="https://shaoshao.net.cn/2022/02/28/202202281759-SpringBoot%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E5%8E%9F%E7%90%86/">【跳转】</a></p>
+<p>4、@ComponentScan</p>
+<p>@ComponentScan用于类或接口上主要是指定扫描路径，spring会把指定路径下带有指定注解的类自动装配到bean容器里。会被自动装配的注解包括@Controller、 @Service、@Component、@Repository等等。其作用等同于&lt;context:component-scan base-package&#x3D;”com.xxx.xxx” &#x2F;&gt;配置。</p>
+<p>5、@Autowired、@Qualifier</p>
+<p>@Autowired它可以对类成员变量、方法及构造函数进行标注，让 spring 完成 bean 自动装配的工作，默认是按照类去匹配，当有多个同一类型的Bean时，可以用@Qualifier(“name”)来指定。与@Autowired配合使用。</p>
+<p>6、@Component、@Respository、@Service、@Controller</p>
+<p>@Component ：通用的注解，可标注任意类为 Spring组件。如果一个 Bean 不知道属于哪个层，可以使用@Component 注解标注。<br>@Repository : 对应持久层即 Dao 层，主要用于数据库相关操作。<br>@Service : 对应服务层，主要涉及一些复杂的逻辑，需要用到 Dao 层。<br>@Controller : 对应 Spring MVC 控制层，主要用户接受用户请求并调用 Service 层返回数据给前端页面。</p>
+<p>7、@RequestMapping</p>
+<p>@RequestMapping是一个用来处理请求地址映射的注解，可用于类或方法上。用于类上，表示类中的所有响应请求的方法都是以该地址作为父路径。</p>
+<p>该注解中的属性释义：</p>
+<p>value：     指定请求的实际地址<br>method：  指定请求的method类型， GET、POST、PUT、DELETE等；<br>consumes： 指定处理请求的提交内容类型（Content-Type），例如application&#x2F;json, text&#x2F;html;<br>produces:    指定返回的内容类型，仅当request请求头中的(Accept)类型中包含该指定类型才返回；<br>params： 指定request中必须包含某些参数值是，才让该方法处理。<br>headers： 指定request中必须包含某些指定的header值，才能让该方法处理请求。</p>
+<p>8、@ResponseBody</p>
+<p>@ResponseBody注解既可以在方法上使用，也可以在类上使用，在类上使用表明该类中所有方法均返回JSON数据，也可以与@Controller注解合并为@RestController。它的作用是将controller的方法返回的对象通过适当的转换器转换为指定的格式之后，写入到response对象的body区，通常用来返回JSON数据或者是XML数据。<br>注意：在使用此注解之后不会再走视图处理器，而是直接将数据写入到输入流中，他的效果等同于通过response对象输出指定格式的数据。</p>
+<p>9、@GetMapping、@PutMapping、@PostMapping、@DeleteMapping</p>
+<p>也就是对应HTTP的请求方式，</p>
+<p>GET ：请求从服务器获取特定资源。举个例子：GET        &#x2F;users（获取所有学生）<br>POST ：在服务器上创建一个新的资源。举个例子：POST       &#x2F;users（创建学生）<br>PUT ：更新服务器上的资源（客户端提供更新后的整个资源）。举个例子：PUT       &#x2F;users&#x2F;12（更新编号为 12 的学生）<br>DELETE ：从服务器删除特定的资源。举个例子：DELETE      &#x2F;users&#x2F;12（删除编号为 12 的学生）</p>
+<p>以@DeleteMapping为例子来看一下</p>
+<p>@DeleteMapping(“&#x2F;users&#x2F;{userId}”)等价于@RequestMapping(value&#x3D;”&#x2F;users&#x2F;{userId}”,method&#x3D;RequestMethod.DELETE)</p>
+<p>10、@PathVariable</p>
+<p>@PathVariable就是用于获取路径参数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/getUserById/&#123;name&#125;&quot;)</span></span><br><span class="line"><span class="keyword">public</span> User <span class="title function_">getUser</span><span class="params">(<span class="meta">@PathVariable(&quot;name&quot;)</span> String name)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> userService.getUser(name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    //- ad
-    if theme.ad && theme.ad.post
-      .ads-wrap!=theme.ad.post
+<p>11、@RequestParam</p>
+<p>用于获取查询参数，</p>
+<p>语法：@RequestParam(value&#x3D;”参数名”,required&#x3D;”true&#x2F;false”,defaultValue&#x3D;””)</p>
+<p>value：参数名<br>required：是否包含该参数，默认为true，表示该请求路径中必须包含该参数，如果不包含就报错。<br>defaultValue：默认参数值，如果设置了该值，required&#x3D;true将失效，自动为false,如果没有传该参数，就使用默认值</p>
+<p>12、@RequestBody</p>
+<p>不要和@ResponseBody混淆了，@RequestBody主要用来接收前端传递给后端的json字符串中的数据的(请求体中的数据的),Content-Type 为 application&#x2F;json 格式；GET方式无请求体，所以使用@RequestBody接收数据时，前端不能使用GET方式提交数据，而是用POST方式进行提交。比如前端以post方式传json字符串，此时后端就可以使用@RequestBody来接收。</p>
+<p>13、@Value、@ConfigurationProperties</p>
+<p>详细请看 —&gt; <a href="https://shaoshao.net.cn/2022/02/11/202202111026-Spring-Boot-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">【Spring Boot 配置文件】</a></p>
+<p>14、@DateTimeFormat、@JsonFormat</p>
+<p>实体类User有个Date类型的属性birthday，然后用该实体类接收从前端传来的参数，我们会发现报了400异常。</p>
+<p><img src="https://shaoshao.net.cn/images/blog/post/20220602162417001.png" alt="20220602162417001"></p>
+<p><img src="https://shaoshao.net.cn/images/blog/post/20220602162417002.png" alt="20220602162417002"></p>
+<p><img src="https://shaoshao.net.cn/images/blog/post/20220602162417003.png" alt="20220602162417003"></p>
+<p>因为前端传去的是字符串类型，而实体类中是Date类型，那么此时就可以使用@DateTimeFormat，</p>
+<p><img src="https://shaoshao.net.cn/images/blog/post/20220602162417004.png" alt="20220602162417004"></p>
+<p><img src="https://shaoshao.net.cn/images/blog/post/20220602162417005.png" alt="20220602162417005"></p>
+<p>已经可以了，但是这种格式不是我们想要的，那么@JsonFormat登场了，timezone：是时间设置为东八区，避免时间在转换中有误差，</p>
+<p><img src="https://shaoshao.net.cn/images/blog/post/20220602162417006.png" alt="20220602162417006"></p>
+<p><img src="https://shaoshao.net.cn/images/blog/post/20220602162417007.png" alt="20220602162417007"></p>
+<p>可见：@DateTimeFormat是前台到后台的时间转换，而@JsonFormat是后台到前台的转换。</p>
+<p>15、@Import</p>
+<p>@Import只能用在类上 ，@Import通过快速导入的方式实现把实例加入spring的IOC容器中，</p>
+<p>用法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Import(&#123; 类名.class , 类名.class... &#125;)</span></span><br></pre></td></tr></table></figure>
 
-    if theme.post_pagination
-      include includes/pagination.pug
-    if theme.related_post && theme.related_post.enable
-      != related_posts(page,site.posts)
 
-    if page.comments !== false && theme.comments && theme.comments.use
-      - var commentsJsLoad = true
-      !=partial('includes/third-party/comments/index', {}, {cache: true})
-      
+<p>&#96;</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:1361151272@qq.com">shaozhy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://shaoshao.net.cn/2022/06/02/20220602162417000/">https://shaoshao.net.cn/2022/06/02/20220602162417000/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://shaoshao.net.cn" target="_blank">WineMonk</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/discover/tags/Java/">Java</a><a class="post-meta__tags" href="/discover/tags/Spring/">Spring</a><a class="post-meta__tags" href="/discover/tags/Spring-Boot/">Spring Boot</a></div><div class="post_share"><div class="social-share" data-image="https://shaoshao.net.cn/images/blog/cover/current/post_17.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://shaoshao.net.cn/images/blog/cover/payqr/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="https://shaoshao.net.cn/images/blog/cover/payqr/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://shaoshao.net.cn/images/blog/cover/payqr/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="https://shaoshao.net.cn/images/blog/cover/payqr/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/06/09/20220609150227000/"><img class="prev-cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_18.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">数据库根据已有表创建新表</div></div></a></div><div class="next-post pull-right"><a href="/2022/05/17/20220517114512000/"><img class="next-cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_16.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">C#生成XML的三种途径</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/02/28/20220228180011000/" title="SpringBoot自动配置原理"><img class="cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_19.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-28</div><div class="title">SpringBoot自动配置原理</div></div></a></div><div><a href="/2022/01/13/20220113135113000/" title="Spring"><img class="cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_18.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-13</div><div class="title">Spring</div></div></a></div><div><a href="/2022/01/13/20220113141338000/" title="Spring 依赖注入"><img class="cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_19.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-13</div><div class="title">Spring 依赖注入</div></div></a></div><div><a href="/2022/01/14/20220114095548000/" title="Spring AOP"><img class="cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_01.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-14</div><div class="title">Spring AOP</div></div></a></div><div><a href="/2022/01/13/20220113174148000/" title="Spring Bean 自动装配"><img class="cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_20.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-13</div><div class="title">Spring Bean 自动装配</div></div></a></div><div><a href="/2022/01/14/20220114104106000/" title="Spring AspectJ"><img class="cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_02.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-14</div><div class="title">Spring AspectJ</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://shaoshao.net.cn/images/blog/cover/headportrait/shsh_cn.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">shaozhy</div><div class="author-info__description">以感恩的心，开启每天的生活。</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/discover/archives/"><div class="headline">文章</div><div class="length-num">154</div></a></div><div class="card-info-data-item"><a href="/discover/tags/"><div class="headline">标签</div><div class="length-num">93</div></a></div><div class="card-info-data-item"><a href="/discover/categories/"><div class="headline">分类</div><div class="length-num">77</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="tencent://message/?uin=1361151272&amp;Site=WineMonk&amp;Menu=yes" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="mailto:shaozhiyuan59@163.com" target="_blank" title="Email"><i class="fa fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎光临~~~</div></div><div class="card-widget user-sidebarcomment" id="user-sidebarcomment"><div class="item-headline"><i class="fas fa-heartbeat"></i><span>最新评论</span></div><div class="item-content"><script type="text/javascript" src="/js/sidebarcomment.js"></script></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/04/14/20230414091241324/" title="WPF全局未处理异常捕获"><img src="https://shaoshao.net.cn/images/blog/cover/current/post_09.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="WPF全局未处理异常捕获"/></a><div class="content"><a class="title" href="/2023/04/14/20230414091241324/" title="WPF全局未处理异常捕获">WPF全局未处理异常捕获</a><time datetime="2023-04-14T01:12:48.000Z" title="发表于 2023-04-14 09:12:48">2023-04-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/04/07/20230407140759189/" title="C#开发工具类"><img src="https://shaoshao.net.cn/images/blog/cover/current/post_08.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C#开发工具类"/></a><div class="content"><a class="title" href="/2023/04/07/20230407140759189/" title="C#开发工具类">C#开发工具类</a><time datetime="2023-04-07T06:08:01.000Z" title="发表于 2023-04-07 14:08:01">2023-04-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/03/31/20230331135156000/" title="Windows访问网络共享失败解决办法"><img src="https://shaoshao.net.cn/images/blog/cover/current/post_07.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Windows访问网络共享失败解决办法"/></a><div class="content"><a class="title" href="/2023/03/31/20230331135156000/" title="Windows访问网络共享失败解决办法">Windows访问网络共享失败解决办法</a><time datetime="2023-03-31T05:51:56.000Z" title="发表于 2023-03-31 13:51:56">2023-03-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/03/14/20230314162225000/" title="C#实现程序卸载功能效果，删除程序自身"><img src="https://shaoshao.net.cn/images/blog/cover/current/post_06.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C#实现程序卸载功能效果，删除程序自身"/></a><div class="content"><a class="title" href="/2023/03/14/20230314162225000/" title="C#实现程序卸载功能效果，删除程序自身">C#实现程序卸载功能效果，删除程序自身</a><time datetime="2023-03-14T08:22:25.000Z" title="发表于 2023-03-14 16:22:25">2023-03-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/03/09/20230309174102000/" title="Windows注册表记录"><img src="https://shaoshao.net.cn/images/blog/cover/current/post_05.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Windows注册表记录"/></a><div class="content"><a class="title" href="/2023/03/09/20230309174102000/" title="Windows注册表记录">Windows注册表记录</a><time datetime="2023-03-09T09:41:02.000Z" title="发表于 2023-03-09 17:41:02">2023-03-09</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://shaoshao.net.cn/images/blog/cover/current/post_17.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By shaozhy</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/#/Integrated/index"><img class="icp-icon" src="/img/icp.png"><span>冀ICP备20003018号-2</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: 'd990e8cbbd1dabc9c98e',
+      clientSecret: '59676d5926f4df676ec1ba6b36395bf90a0aeb54',
+      repo: 'WineMonk.github.io',
+      owner: 'WineMonk',
+      admin: ['WineMonk'],
+      id: '77c4ba0b29c02335833fe074f5e1ea71',
+      updateCountCallback: commentCount
+    },{"proxy":"https://vercel.prohibitorum.top/github_access_token"}))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js" data-mobile="false" data-text="茶飘香,酒罢去,聚朋友,再回楼" data-fontsize="15px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
