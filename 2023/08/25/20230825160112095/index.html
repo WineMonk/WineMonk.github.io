@@ -1,0 +1,501 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>ZhyForm：WPF台账自定义用户控件 | WineMonk</title><meta name="keywords" content="WPF,表单组件"><meta name="author" content="shaozhy,1361151272@qq.com"><meta name="copyright" content="shaozhy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="ZhyFormZDataGrid：WPF台账用户控件，支持CheckBox、ListBox、TextBox样式信息显示，支持操作列、顶部控制项自定义功能按钮，支持信息查询功能；  GitHub仓库地址 代码示例Xaml： 123456789101112131415&lt;Window    x:Class&#x3D;&quot;zhy.common.datagrid.core.test.MainWindow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ZhyForm：WPF台账自定义用户控件">
+<meta property="og:url" content="https://shaoshao.net.cn/2023/08/25/20230825160112095/index.html">
+<meta property="og:site_name" content="WineMonk">
+<meta property="og:description" content="ZhyFormZDataGrid：WPF台账用户控件，支持CheckBox、ListBox、TextBox样式信息显示，支持操作列、顶部控制项自定义功能按钮，支持信息查询功能；  GitHub仓库地址 代码示例Xaml： 123456789101112131415&lt;Window    x:Class&#x3D;&quot;zhy.common.datagrid.core.test.MainWindow">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://shaoshao.net.cn/images/blog/cover/current/post_13.jpg">
+<meta property="article:published_time" content="2023-08-25T12:01:17.000Z">
+<meta property="article:modified_time" content="2023-08-25T08:06:31.685Z">
+<meta property="article:author" content="shaozhy">
+<meta property="article:tag" content="WPF">
+<meta property="article:tag" content="表单组件">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://shaoshao.net.cn/images/blog/cover/current/post_13.jpg"><link rel="shortcut icon" href="/cover/head_portrait.jpg"><link rel="canonical" href="https://shaoshao.net.cn/2023/08/25/20230825160112095/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ZhyForm：WPF台账自定义用户控件',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-08-25 16:06:31'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.1.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://shaoshao.net.cn/images/blog/cover/headportrait/shsh_cn.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/discover/archives/"><div class="headline">文章</div><div class="length-num">158</div></a></div><div class="data-item"><a href="/discover/tags/"><div class="headline">标签</div><div class="length-num">96</div></a></div><div class="data-item"><a href="/discover/categories/"><div class="headline">分类</div><div class="length-num">78</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 发现</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/discover/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/discover/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/discover/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/discover/codingStandards/"><i class="fa-fw fas fa-code"></i><span> 军规</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/photo/"><i class="fa-fw fas fa-camera"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/guestbook/"><i class="fa-fw fa fa-commenting"></i><span> 留言</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://shaoshao.net.cn/images/blog/cover/current/post_13.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">WineMonk</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 发现</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/discover/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/discover/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/discover/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/discover/codingStandards/"><i class="fa-fw fas fa-code"></i><span> 军规</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/photo/"><i class="fa-fw fas fa-camera"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/guestbook/"><i class="fa-fw fa fa-commenting"></i><span> 留言</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">ZhyForm：WPF台账自定义用户控件</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-08-25T12:01:17.000Z" title="发表于 2023-08-25 20:01:17">2023-08-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-08-25T08:06:31.685Z" title="更新于 2023-08-25 16:06:31">2023-08-25</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/discover/categories/C-%E7%9B%B8%E5%85%B3/">C#相关</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/discover/categories/C-%E7%9B%B8%E5%85%B3/WPF/">WPF</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="ZhyForm：WPF台账自定义用户控件"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="ZhyForm"><a href="#ZhyForm" class="headerlink" title="ZhyForm"></a>ZhyForm</h1><p><a target="_blank" rel="noopener" href="https://github.com/WineMonk/ZhyForm/tree/master/zhy.common.datagrid.core">ZDataGrid</a>：WPF台账用户控件，支持CheckBox、ListBox、TextBox样式信息显示，支持操作列、顶部控制项自定义功能按钮，支持信息查询功能；</p>
+<p><img src="https://raw.githubusercontent.com/WineMonk/images/master/blog/post/202308251459220.png" alt="ZDataGrid"></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/WineMonk/ZhyForm/tree/master/zhy.common.datagrid.core">GitHub仓库地址</a></p>
+<h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><p>Xaml：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;Window</span><br><span class="line">    x:Class=&quot;zhy.common.datagrid.core.test.MainWindow&quot;</span><br><span class="line">    xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;</span><br><span class="line">    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;</span><br><span class="line">    xmlns:d=&quot;http://schemas.microsoft.com/expression/blend/2008&quot;</span><br><span class="line">    xmlns:lib=&quot;clr-namespace:zhy.common.datagrid.core.view;assembly=zhy.common.datagrid.core&quot;</span><br><span class="line">    xmlns:local=&quot;clr-namespace:zhy.common.datagrid.core.test&quot;</span><br><span class="line">    xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot;</span><br><span class="line">    Width=&quot;800&quot;</span><br><span class="line">    Height=&quot;450&quot;</span><br><span class="line">    mc:Ignorable=&quot;d&quot;&gt;</span><br><span class="line">    &lt;Grid x:Name=&quot;grid&quot;&gt;</span><br><span class="line">        &lt;lib:ZDataGrid ItemsSource=&quot;&#123;Binding TestItems&#125;&quot; /&gt;</span><br><span class="line">    &lt;/Grid&gt;</span><br><span class="line">&lt;/Window&gt;</span><br></pre></td></tr></table></figure>
+
+<p>MainWindow.cs:</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">partial</span> <span class="keyword">class</span> <span class="title">MainWindow</span> : <span class="title">Window</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MainWindow</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        InitializeComponent();</span><br><span class="line">        <span class="keyword">this</span>.DataContext = <span class="keyword">new</span> MainWindowViewModel();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>MainWindowViewModel.cs:</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MainWindowViewModel</span>:<span class="title">ObservableObject</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MainWindowViewModel</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        _testItems = <span class="keyword">new</span> ObservableCollection&lt;TestItem&gt;()</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">new</span> TestItem()&#123; IsChecked = <span class="literal">true</span>, Text = <span class="string">&quot;测试文本1&quot;</span>, ComboList = <span class="keyword">new</span> List&lt;<span class="built_in">string</span>&gt;()&#123; <span class="string">&quot;选项1&quot;</span>,<span class="string">&quot;选项2&quot;</span> &#125;, Combo = <span class="string">&quot;选项1&quot;</span> ,SelectText = <span class="string">&quot;asd&quot;</span>&#125;,</span><br><span class="line">            <span class="keyword">new</span> TestItem()&#123; IsChecked = <span class="literal">false</span>, Text = <span class="string">&quot;测试文本2&quot;</span>, ComboList = <span class="keyword">new</span> List&lt;<span class="built_in">string</span>&gt;()&#123; <span class="string">&quot;选项1&quot;</span>,<span class="string">&quot;选项2&quot;</span>,<span class="string">&quot;选项3&quot;</span> &#125;, Combo = <span class="string">&quot;选项2&quot;</span> &#125;,</span><br><span class="line">            <span class="keyword">new</span> TestItem()&#123; IsChecked = <span class="literal">true</span>, Text = <span class="string">&quot;测试文本3&quot;</span>, ComboList = <span class="keyword">new</span> List&lt;<span class="built_in">string</span>&gt;()&#123; <span class="string">&quot;选项1&quot;</span>,<span class="string">&quot;选项2&quot;</span> &#125;, Combo = <span class="string">&quot;选项1&quot;</span> &#125;,</span><br><span class="line">            <span class="keyword">new</span> TestItem()&#123; IsChecked = <span class="literal">false</span>, Text = <span class="string">&quot;测试文本4&quot;</span>, ComboList = <span class="keyword">new</span> List&lt;<span class="built_in">string</span>&gt;()&#123; <span class="string">&quot;选项1&quot;</span>,<span class="string">&quot;选项2&quot;</span> &#125;, Combo = <span class="string">&quot;选项2&quot;</span> &#125;,</span><br><span class="line">        &#125;;</span><br><span class="line">        TestItem testItem = <span class="keyword">new</span> TestItem() &#123; IsChecked = <span class="literal">false</span>, Text = <span class="string">&quot;测试文本4&quot;</span>, SelectMember = <span class="keyword">new</span> TestSearchMemberItem(<span class="string">&quot;小度&quot;</span>, <span class="number">55</span>), ComboList = <span class="keyword">new</span> List&lt;<span class="built_in">string</span>&gt;() &#123; <span class="string">&quot;选项1&quot;</span>, <span class="string">&quot;选项2&quot;</span> &#125;, Combo = <span class="string">&quot;选项2&quot;</span>, Members = <span class="keyword">new</span> List&lt;TestSearchMemberItem&gt; &#123; <span class="keyword">new</span> TestSearchMemberItem(<span class="string">&quot;小微&quot;</span>, <span class="number">11</span>), <span class="keyword">new</span> TestSearchMemberItem(<span class="string">&quot;小谷&quot;</span>, <span class="number">22</span>) &#125; &#125;;</span><br><span class="line">        testItem.Member = testItem.Members[<span class="number">1</span>];</span><br><span class="line">        _testItems.Add(testItem);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> IList _testItems;</span><br><span class="line">    <span class="keyword">public</span> IList TestItems</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">get</span> &#123; <span class="keyword">return</span> _testItems; &#125;</span><br><span class="line">        <span class="keyword">set</span> &#123; _testItems = <span class="keyword">value</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>TestItem.cs:</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">TestItem</span> : <span class="title">ObservableObject</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">bool</span> _isChecked;</span><br><span class="line">    [<span class="meta">ZCheckDataColumn(header: <span class="string">&quot;选 择&quot;</span>, width: 30, index: 0,</span></span><br><span class="line"><span class="meta">                      dataGridLengthUnitType: DataGridLengthUnitType.Auto)</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">bool</span> IsChecked</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">get</span> &#123; <span class="keyword">return</span> _isChecked; &#125;</span><br><span class="line">        <span class="keyword">set</span> &#123; SetProperty(<span class="keyword">ref</span> _isChecked, <span class="keyword">value</span>); &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">string</span> _text;</span><br><span class="line">    [<span class="meta">ZTextDataColumn(header: <span class="string">&quot;文 本&quot;</span>,index:3, isReadOnly: true,</span></span><br><span class="line"><span class="meta">                     width: 1, dataGridLengthUnitType: DataGridLengthUnitType.Auto)</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Text</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">get</span> &#123; <span class="keyword">return</span> _text; &#125;</span><br><span class="line">        <span class="keyword">set</span>&#123; SetProperty(<span class="keyword">ref</span> _text, <span class="keyword">value</span>); &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> TestSearchMemberItem _member;</span><br><span class="line">    <span class="keyword">public</span> TestSearchMemberItem Member</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">get</span> &#123; <span class="keyword">return</span> _member; &#125;</span><br><span class="line">        <span class="keyword">set</span> &#123; SetProperty(<span class="keyword">ref</span> _member, <span class="keyword">value</span>); &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> List&lt;TestSearchMemberItem&gt; _members = <span class="keyword">new</span> List&lt;TestSearchMemberItem&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">new</span> TestSearchMemberItem(<span class="string">&quot;小亚&quot;</span>,<span class="number">1</span>),</span><br><span class="line">        <span class="keyword">new</span> TestSearchMemberItem(<span class="string">&quot;小苹&quot;</span>,<span class="number">2</span>),</span><br><span class="line">        <span class="keyword">new</span> TestSearchMemberItem(<span class="string">&quot;小米&quot;</span>,<span class="number">3</span>),</span><br><span class="line">        <span class="keyword">new</span> TestSearchMemberItem(<span class="string">&quot;小腾&quot;</span>,<span class="number">4</span>),</span><br><span class="line">        <span class="keyword">new</span> TestSearchMemberItem(<span class="string">&quot;小易&quot;</span>,<span class="number">5</span>),</span><br><span class="line">        <span class="keyword">new</span> TestSearchMemberItem(<span class="string">&quot;小奇&quot;</span>,<span class="number">6</span>)</span><br><span class="line">    &#125;;</span><br><span class="line">    [<span class="meta">ZComboDataColumn(header: <span class="string">&quot;成员&quot;</span>, targetProperty:nameof(Member), </span></span><br><span class="line"><span class="meta">                      displayMemberPath:<span class="string">&quot;Name&quot;</span>,isSearchProperty:true,</span></span><br><span class="line"><span class="meta">                      dataGridLengthUnitType: DataGridLengthUnitType.Auto)</span>]</span><br><span class="line">    <span class="keyword">public</span> List&lt;TestSearchMemberItem&gt; Members</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">get</span> &#123; <span class="keyword">return</span> _members; &#125;</span><br><span class="line">        <span class="keyword">set</span> &#123; SetProperty(<span class="keyword">ref</span> _members, <span class="keyword">value</span>); &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">string</span> _combo;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Combo</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">get</span> &#123; <span class="keyword">return</span> _combo; &#125;</span><br><span class="line">        <span class="keyword">set</span> &#123; SetProperty(<span class="keyword">ref</span> _combo, <span class="keyword">value</span>); &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> List&lt;<span class="built_in">string</span>&gt; _comboList;</span><br><span class="line">    [<span class="meta">ZComboDataColumn(header: <span class="string">&quot;选 项&quot;</span>,index:2, targetProperty: nameof(Combo),</span></span><br><span class="line"><span class="meta">                      width: 1, dataGridLengthUnitType: DataGridLengthUnitType.Auto)</span>]</span><br><span class="line">    <span class="keyword">public</span> List&lt;<span class="built_in">string</span>&gt; ComboList</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">get</span> &#123; <span class="keyword">return</span> _comboList; &#125;</span><br><span class="line">        <span class="keyword">set</span> &#123; SetProperty(<span class="keyword">ref</span> _comboList, <span class="keyword">value</span>); &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">string</span> _selectText;</span><br><span class="line">    [<span class="meta">ZButtonDataColumn(header: <span class="string">&quot;路 径&quot;</span>, buttonContent: <span class="string">&quot;选 择&quot;</span>, buttonStyle: ButtonStyle.SuccessButton,</span></span><br><span class="line"><span class="meta">                       isSearchProperty: true, isReadOnly: true, relayCommandName: nameof(CommandOper))</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> SelectText</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">get</span> &#123; <span class="keyword">return</span> _selectText; &#125;</span><br><span class="line">        <span class="keyword">set</span> &#123; SetProperty(<span class="keyword">ref</span> _selectText, <span class="keyword">value</span>); &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> RelayCommand&lt;TestItem&gt; CommandOper =&gt; <span class="keyword">new</span> RelayCommand&lt;TestItem&gt;(Oper);</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Oper</span>(<span class="params">TestItem testItem</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        OpenFileDialog fileDialog = <span class="keyword">new</span> OpenFileDialog();</span><br><span class="line">        <span class="built_in">bool</span>? dr = fileDialog.ShowDialog();</span><br><span class="line">        <span class="keyword">if</span> (!(<span class="built_in">bool</span>)dr)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        testItem.SelectText = fileDialog.FileName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    [<span class="meta">ZOperateColumnButton(content: <span class="string">&quot;删 除&quot;</span>,index:1, buttonStyle: ButtonStyle.ErrorButton)</span>]</span><br><span class="line">    <span class="keyword">public</span> RelayCommand&lt;<span class="built_in">object</span>[]&gt; CommandOper2 =&gt; <span class="keyword">new</span> RelayCommand&lt;<span class="built_in">object</span>[]&gt;(Oper2);</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Oper2</span>(<span class="params"><span class="built_in">object</span>[] paras</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        IList testItems = paras[<span class="number">1</span>] <span class="keyword">as</span> IList;</span><br><span class="line">        TestItem testItem = paras[<span class="number">0</span>] <span class="keyword">as</span> TestItem;</span><br><span class="line">        testItems.Remove(testItem);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    [<span class="meta">ZOperateColumnButton(content: <span class="string">&quot;查 看&quot;</span>,index:0, buttonStyle: ButtonStyle.WarnButton)</span>]</span><br><span class="line">    <span class="keyword">public</span> RelayCommand&lt;<span class="built_in">object</span>[]&gt; CommandOper3 =&gt; <span class="keyword">new</span> RelayCommand&lt;<span class="built_in">object</span>[]&gt;(Oper3);</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Oper3</span>(<span class="params"><span class="built_in">object</span>[] paras</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        TestItem testItem = paras[<span class="number">0</span>] <span class="keyword">as</span> TestItem;</span><br><span class="line">        MessageBox.Show(testItem.Combo);</span><br><span class="line">        MessageBox.Show(testItem.Member?.Name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    [<span class="meta">ZOperateTopButton(content: <span class="string">&quot;添 加&quot;</span>,index:1, buttonStyle: ButtonStyle.InfoButton)</span>]</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Oper4</span>(<span class="params">IEnumerable items</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        IList&lt;TestItem&gt; testItems = items <span class="keyword">as</span> IList&lt;TestItem&gt;;</span><br><span class="line">        TestItem testItem = <span class="keyword">new</span> TestItem() &#123; IsChecked = <span class="literal">true</span>, Text = <span class="string">&quot;测试文本1&quot;</span>, ComboList = <span class="keyword">new</span> List&lt;<span class="built_in">string</span>&gt;() &#123; <span class="string">&quot;选项1&quot;</span>, <span class="string">&quot;选项2&quot;</span> &#125;, Combo = <span class="string">&quot;选项1&quot;</span>, SelectText = <span class="string">&quot;asd&quot;</span> &#125;;</span><br><span class="line">        testItems.Add(testItem);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    [<span class="meta">ZOperateTopButton(content: <span class="string">&quot;批量删除&quot;</span>,index:0, buttonStyle: ButtonStyle.ErrorButton)</span>]</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Oper5</span>(<span class="params">IEnumerable items</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        IList&lt;TestItem&gt; testItems = items <span class="keyword">as</span> IList&lt;TestItem&gt;;</span><br><span class="line">        List&lt;TestItem&gt; rmItems = <span class="keyword">new</span> List&lt;TestItem&gt;();</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="keyword">var</span> item <span class="keyword">in</span> testItems)</span><br><span class="line">            <span class="keyword">if</span>(item.IsChecked)</span><br><span class="line">                rmItems.Add(item);</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="keyword">var</span> item <span class="keyword">in</span> rmItems)</span><br><span class="line">            testItems.Remove(item);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> TestSearchMemberItem _selectMember;</span><br><span class="line">    [<span class="meta">ZButtonDataColumn(header: <span class="string">&quot;朋 友&quot;</span>, buttonContent: <span class="string">&quot;选 择&quot;</span>, displayMemberPath: <span class="string">&quot;Name&quot;</span>, isSearchProperty: true,</span></span><br><span class="line"><span class="meta">                       buttonStyle: ButtonStyle.InfoButton, isReadOnly: true, relayCommandName: nameof(CommandOper6))</span>]</span><br><span class="line">    <span class="keyword">public</span> TestSearchMemberItem SelectMember</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">get</span> &#123; <span class="keyword">return</span> _selectMember; &#125;</span><br><span class="line">        <span class="keyword">set</span> &#123; SetProperty(<span class="keyword">ref</span> _selectMember, <span class="keyword">value</span>); &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> RelayCommand&lt;TestItem&gt; CommandOper6 =&gt; <span class="keyword">new</span> RelayCommand&lt;TestItem&gt;(Oper6);</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Oper6</span>(<span class="params">TestItem objects</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">string</span>[] strings = &#123; <span class="string">&quot;小亚&quot;</span>, <span class="string">&quot;小苹&quot;</span>, <span class="string">&quot;小米&quot;</span>, <span class="string">&quot;小腾&quot;</span>, <span class="string">&quot;小易&quot;</span>, <span class="string">&quot;小奇&quot;</span> &#125;;</span><br><span class="line">        <span class="built_in">int</span> v = <span class="keyword">new</span> Random().Next(<span class="number">0</span>, strings.Length);</span><br><span class="line">        SelectMember = <span class="keyword">new</span> TestSearchMemberItem(strings[v], v);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">TestSearchMemberItem</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Name &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> Age &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TestSearchMemberItem</span>(<span class="params"><span class="built_in">string</span> name, <span class="built_in">int</span> age</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Name = name;</span><br><span class="line">        Age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="API-参考"><a href="#API-参考" class="headerlink" title="API 参考"></a>API 参考</h2><h3 id="ZDataColumnAttribute类"><a href="#ZDataColumnAttribute类" class="headerlink" title="ZDataColumnAttribute类"></a>ZDataColumnAttribute类</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">AttributeUsage(AttributeTargets.Property)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ZDataColumnAttribute</span>: <span class="title">Attribute</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h4><p>数据列特性基类。</p>
+<h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Index</td>
+<td>列索引。</td>
+</tr>
+<tr>
+<td>Header</td>
+<td>列标题。</td>
+</tr>
+<tr>
+<td>Width</td>
+<td>列宽。</td>
+</tr>
+<tr>
+<td>DataGridLengthUnitType</td>
+<td>列宽属性。</td>
+</tr>
+<tr>
+<td>IsReadOnly</td>
+<td>是否为只读。</td>
+</tr>
+<tr>
+<td>IsSearchProperty</td>
+<td>是包含在查询。</td>
+</tr>
+</tbody></table>
+<h3 id="ZTextDataColumnAttribute类"><a href="#ZTextDataColumnAttribute类" class="headerlink" title="ZTextDataColumnAttribute类"></a>ZTextDataColumnAttribute类</h3><h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">AttributeUsage(AttributeTargets.Property)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ZTextDataColumnAttribute</span> : <span class="title">ZDataColumnAttribute</span></span><br></pre></td></tr></table></figure>
+
+<p>继承 → <a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/dotnet/api/system.object?view=net-6.0">Object</a> → Attribute → ZDataColumnAttribute → ZTextDataColumnAttribute</p>
+<h4 id="注解-1"><a href="#注解-1" class="headerlink" title="注解"></a>注解</h4><p>文本输入数据列。</p>
+<h4 id="属性-1"><a href="#属性-1" class="headerlink" title="属性"></a>属性</h4><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Index</td>
+<td>列索引。（继承自ZDataColumnAttribute）</td>
+</tr>
+<tr>
+<td>Header</td>
+<td>列标题。（继承自ZDataColumnAttribute）</td>
+</tr>
+<tr>
+<td>Width</td>
+<td>列宽。（继承自ZDataColumnAttribute）</td>
+</tr>
+<tr>
+<td>DataGridLengthUnitType</td>
+<td>列宽属性。（继承自ZDataColumnAttribute）</td>
+</tr>
+<tr>
+<td>IsReadOnly</td>
+<td>是否为只读。（继承自ZDataColumnAttribute）</td>
+</tr>
+<tr>
+<td>IsSearchProperty</td>
+<td>是包含在查询。（继承自ZDataColumnAttribute）</td>
+</tr>
+</tbody></table>
+<h3 id="ZCheckDataColumnAttribute类"><a href="#ZCheckDataColumnAttribute类" class="headerlink" title="ZCheckDataColumnAttribute类"></a>ZCheckDataColumnAttribute类</h3><h4 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">AttributeUsage(AttributeTargets.Property)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ZCheckDataColumnAttribute</span> : <span class="title">ZDataColumnAttribute</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="注解-2"><a href="#注解-2" class="headerlink" title="注解"></a>注解</h4><p>勾选数据列。</p>
+<h4 id="属性-2"><a href="#属性-2" class="headerlink" title="属性"></a>属性</h4><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Index</td>
+<td>列索引。（继承自ZDataColumnAttribute）</td>
+</tr>
+<tr>
+<td>Header</td>
+<td>列标题。（继承自ZDataColumnAttribute）</td>
+</tr>
+<tr>
+<td>Width</td>
+<td>列宽。（继承自ZDataColumnAttribute）</td>
+</tr>
+<tr>
+<td>DataGridLengthUnitType</td>
+<td>列宽属性。（继承自ZDataColumnAttribute）</td>
+</tr>
+<tr>
+<td>IsReadOnly</td>
+<td>是否为只读。（继承自ZDataColumnAttribute）</td>
+</tr>
+<tr>
+<td>IsSearchProperty</td>
+<td>是包含在查询。（继承自ZDataColumnAttribute）</td>
+</tr>
+</tbody></table>
+<h3 id="ZComboDataColumnAttribute类"><a href="#ZComboDataColumnAttribute类" class="headerlink" title="ZComboDataColumnAttribute类"></a>ZComboDataColumnAttribute类</h3><h4 id="定义-3"><a href="#定义-3" class="headerlink" title="定义"></a>定义</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">AttributeUsage(AttributeTargets.Property)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ZComboDataColumnAttribute</span> : <span class="title">ZDataColumnAttribute</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="注解-3"><a href="#注解-3" class="headerlink" title="注解"></a>注解</h4><p>选项数据列。</p>
+<h4 id="属性-3"><a href="#属性-3" class="headerlink" title="属性"></a>属性</h4><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DisplayMemberPath</td>
+<td>选择项显示成员路径。</td>
+</tr>
+<tr>
+<td>TargetProperty</td>
+<td>选择项绑定目标属性。</td>
+</tr>
+<tr>
+<td>Index</td>
+<td>列索引。（继承自ZDataColumnAttribute）</td>
+</tr>
+<tr>
+<td>Header</td>
+<td>列标题。（继承自ZDataColumnAttribute）</td>
+</tr>
+<tr>
+<td>Width</td>
+<td>列宽。（继承自ZDataColumnAttribute）</td>
+</tr>
+<tr>
+<td>DataGridLengthUnitType</td>
+<td>列宽属性。（继承自ZDataColumnAttribute）</td>
+</tr>
+<tr>
+<td>IsReadOnly</td>
+<td>是否为只读。（继承自ZDataColumnAttribute）</td>
+</tr>
+<tr>
+<td>IsSearchProperty</td>
+<td>是包含在查询。（继承自ZDataColumnAttribute）</td>
+</tr>
+</tbody></table>
+<h3 id="ZButtonDataColumnAttribute类"><a href="#ZButtonDataColumnAttribute类" class="headerlink" title="ZButtonDataColumnAttribute类"></a>ZButtonDataColumnAttribute类</h3><h4 id="定义-4"><a href="#定义-4" class="headerlink" title="定义"></a>定义</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">AttributeUsage(AttributeTargets.Property)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ZButtonDataColumnAttribute</span> : <span class="title">ZDataColumnAttribute</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="注解-4"><a href="#注解-4" class="headerlink" title="注解"></a>注解</h4><p>按钮选择表单项。</p>
+<h4 id="属性-4"><a href="#属性-4" class="headerlink" title="属性"></a>属性</h4><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ButtonContent</td>
+<td>按钮内容。</td>
+</tr>
+<tr>
+<td>ButtonStyle</td>
+<td>按钮样式。</td>
+</tr>
+<tr>
+<td>DisplayMemberPath</td>
+<td>选择项显示成员路径。</td>
+</tr>
+<tr>
+<td>RealyCommandName</td>
+<td>接替指令属性名。</td>
+</tr>
+<tr>
+<td>Index</td>
+<td>列索引。（继承自ZDataColumnAttribute）</td>
+</tr>
+<tr>
+<td>Header</td>
+<td>列标题。（继承自ZDataColumnAttribute）</td>
+</tr>
+<tr>
+<td>Width</td>
+<td>列宽。（继承自ZDataColumnAttribute）</td>
+</tr>
+<tr>
+<td>DataGridLengthUnitType</td>
+<td>列宽属性。（继承自ZDataColumnAttribute）</td>
+</tr>
+<tr>
+<td>IsReadOnly</td>
+<td>是否为只读。（继承自ZDataColumnAttribute）</td>
+</tr>
+<tr>
+<td>IsSearchProperty</td>
+<td>是包含在查询。（继承自ZDataColumnAttribute）</td>
+</tr>
+</tbody></table>
+<h3 id="ZOperateButtonAttribute类"><a href="#ZOperateButtonAttribute类" class="headerlink" title="ZOperateButtonAttribute类"></a>ZOperateButtonAttribute类</h3><h4 id="定义-5"><a href="#定义-5" class="headerlink" title="定义"></a>定义</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">AttributeUsage(AttributeTargets.Property)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ZOperateButtonAttribute</span> : <span class="title">Attribute</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="注解-5"><a href="#注解-5" class="headerlink" title="注解"></a>注解</h4><p>操作按钮基类。</p>
+<h4 id="属性-5"><a href="#属性-5" class="headerlink" title="属性"></a>属性</h4><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ButtonStyle</td>
+<td>按钮样式。</td>
+</tr>
+<tr>
+<td>Content</td>
+<td>按钮内容。</td>
+</tr>
+<tr>
+<td>Index</td>
+<td>按钮索引。</td>
+</tr>
+</tbody></table>
+<h3 id="ZOperateColumnButtonAttribute类"><a href="#ZOperateColumnButtonAttribute类" class="headerlink" title="ZOperateColumnButtonAttribute类"></a>ZOperateColumnButtonAttribute类</h3><h4 id="定义-6"><a href="#定义-6" class="headerlink" title="定义"></a>定义</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">AttributeUsage(AttributeTargets.Property)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ZOperateColumnButtonAttribute</span> : <span class="title">ZOperateButtonAttribute</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="注解-6"><a href="#注解-6" class="headerlink" title="注解"></a>注解</h4><p>操作列按钮类。</p>
+<h4 id="属性-6"><a href="#属性-6" class="headerlink" title="属性"></a>属性</h4><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ButtonStyle</td>
+<td>按钮样式。（继承自ZOperateButtonAttribute）</td>
+</tr>
+<tr>
+<td>Content</td>
+<td>按钮内容。（继承自ZOperateButtonAttribute）</td>
+</tr>
+<tr>
+<td>Index</td>
+<td>按钮索引。（继承自ZOperateButtonAttribute）</td>
+</tr>
+</tbody></table>
+<h3 id="ZOperateTopButtonAttribute类"><a href="#ZOperateTopButtonAttribute类" class="headerlink" title="ZOperateTopButtonAttribute类"></a>ZOperateTopButtonAttribute类</h3><h4 id="定义-7"><a href="#定义-7" class="headerlink" title="定义"></a>定义</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">AttributeUsage(AttributeTargets.Method)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ZOperateTopButtonAttribute</span> : <span class="title">ZOperateButtonAttribute</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="注解-7"><a href="#注解-7" class="headerlink" title="注解"></a>注解</h4><p>顶部控制按钮类。</p>
+<h4 id="属性-7"><a href="#属性-7" class="headerlink" title="属性"></a>属性</h4><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ButtonStyle</td>
+<td>按钮样式。（继承自ZOperateButtonAttribute）</td>
+</tr>
+<tr>
+<td>Content</td>
+<td>按钮内容。（继承自ZOperateButtonAttribute）</td>
+</tr>
+<tr>
+<td>Index</td>
+<td>按钮索引。（继承自ZOperateButtonAttribute）</td>
+</tr>
+</tbody></table>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:1361151272@qq.com">shaozhy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://shaoshao.net.cn/2023/08/25/20230825160112095/">https://shaoshao.net.cn/2023/08/25/20230825160112095/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://shaoshao.net.cn" target="_blank">WineMonk</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/discover/tags/WPF/">WPF</a><a class="post-meta__tags" href="/discover/tags/%E8%A1%A8%E5%8D%95%E7%BB%84%E4%BB%B6/">表单组件</a></div><div class="post_share"><div class="social-share" data-image="https://shaoshao.net.cn/images/blog/cover/current/post_13.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://shaoshao.net.cn/images/blog/cover/payqr/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="https://shaoshao.net.cn/images/blog/cover/payqr/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://shaoshao.net.cn/images/blog/cover/payqr/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="https://shaoshao.net.cn/images/blog/cover/payqr/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/08/18/20230818142117587/"><img class="next-cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_12.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">ZhyForm：WPF表单组件</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/08/18/20230818142117587/" title="ZhyForm：WPF表单组件"><img class="cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_12.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-18</div><div class="title">ZhyForm：WPF表单组件</div></div></a></div><div><a href="/2023/01/06/20230106155206000/" title="WPF数据模板"><img class="cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_10.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-06</div><div class="title">WPF数据模板</div></div></a></div><div><a href="/2023/02/09/20230209153927000/" title="WPF获取UI控件线程"><img class="cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_20.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-09</div><div class="title">WPF获取UI控件线程</div></div></a></div><div><a href="/2023/04/14/20230414091241324/" title="WPF全局未处理异常捕获"><img class="cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_09.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-14</div><div class="title">WPF全局未处理异常捕获</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ZhyForm"><span class="toc-number">1.</span> <span class="toc-text">ZhyForm</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.1.</span> <span class="toc-text">代码示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#API-%E5%8F%82%E8%80%83"><span class="toc-number">1.2.</span> <span class="toc-text">API 参考</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ZDataColumnAttribute%E7%B1%BB"><span class="toc-number">1.2.1.</span> <span class="toc-text">ZDataColumnAttribute类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E8%A7%A3"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">注解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">属性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ZTextDataColumnAttribute%E7%B1%BB"><span class="toc-number">1.2.2.</span> <span class="toc-text">ZTextDataColumnAttribute类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-1"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E8%A7%A3-1"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">注解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7-1"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">属性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ZCheckDataColumnAttribute%E7%B1%BB"><span class="toc-number">1.2.3.</span> <span class="toc-text">ZCheckDataColumnAttribute类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-2"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E8%A7%A3-2"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">注解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7-2"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">属性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ZComboDataColumnAttribute%E7%B1%BB"><span class="toc-number">1.2.4.</span> <span class="toc-text">ZComboDataColumnAttribute类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-3"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E8%A7%A3-3"><span class="toc-number">1.2.4.2.</span> <span class="toc-text">注解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7-3"><span class="toc-number">1.2.4.3.</span> <span class="toc-text">属性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ZButtonDataColumnAttribute%E7%B1%BB"><span class="toc-number">1.2.5.</span> <span class="toc-text">ZButtonDataColumnAttribute类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-4"><span class="toc-number">1.2.5.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E8%A7%A3-4"><span class="toc-number">1.2.5.2.</span> <span class="toc-text">注解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7-4"><span class="toc-number">1.2.5.3.</span> <span class="toc-text">属性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ZOperateButtonAttribute%E7%B1%BB"><span class="toc-number">1.2.6.</span> <span class="toc-text">ZOperateButtonAttribute类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-5"><span class="toc-number">1.2.6.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E8%A7%A3-5"><span class="toc-number">1.2.6.2.</span> <span class="toc-text">注解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7-5"><span class="toc-number">1.2.6.3.</span> <span class="toc-text">属性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ZOperateColumnButtonAttribute%E7%B1%BB"><span class="toc-number">1.2.7.</span> <span class="toc-text">ZOperateColumnButtonAttribute类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-6"><span class="toc-number">1.2.7.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E8%A7%A3-6"><span class="toc-number">1.2.7.2.</span> <span class="toc-text">注解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7-6"><span class="toc-number">1.2.7.3.</span> <span class="toc-text">属性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ZOperateTopButtonAttribute%E7%B1%BB"><span class="toc-number">1.2.8.</span> <span class="toc-text">ZOperateTopButtonAttribute类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-7"><span class="toc-number">1.2.8.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E8%A7%A3-7"><span class="toc-number">1.2.8.2.</span> <span class="toc-text">注解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7-7"><span class="toc-number">1.2.8.3.</span> <span class="toc-text">属性</span></a></li></ol></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://shaoshao.net.cn/images/blog/cover/current/post_13.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By shaozhy</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><img class="icp-icon" src="/img/icp.png"><span>冀ICP备2023009991号-1</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: 'd990e8cbbd1dabc9c98e',
+      clientSecret: '59676d5926f4df676ec1ba6b36395bf90a0aeb54',
+      repo: 'WineMonk.github.io',
+      owner: 'WineMonk',
+      admin: ['WineMonk'],
+      id: '670afcd77bf19029b4e25fc99ceb0ca3',
+      updateCountCallback: commentCount
+    },{"proxy":"https://vercel.prohibitorum.top/github_access_token"}))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js" data-mobile="false" data-text="茶飘香,酒罢去,聚朋友,再回楼" data-fontsize="15px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
