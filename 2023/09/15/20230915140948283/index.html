@@ -1,0 +1,293 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>WMS，WFS，WMTS，TMS互联网地图服务 | WineMonk</title><meta name="keywords" content="GIS,WMS,WFS,WMTS,TMS"><meta name="author" content="shaozhy,1361151272@qq.com"><meta name="copyright" content="shaozhy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="WMS，WFS，WMTS，TMS互联网地图服务作为一个地图开发者，当然要对互联网地图服务有一个认识。 首先，要知道有这么一个联盟，叫OGC（Open Geospatial Consortium），这个联盟&#x2F;组织定义了很多关于互联网地图的规则。 然后，开发者，企业，组织机构依照这个规则进行地理信息系统的开发。 事实上互联网地图的数据源也就那么几个。换句话说，能作为地图数据源的数据格式有限。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WMS，WFS，WMTS，TMS互联网地图服务">
+<meta property="og:url" content="https://shaoshao.net.cn/2023/09/15/20230915140948283/index.html">
+<meta property="og:site_name" content="WineMonk">
+<meta property="og:description" content="WMS，WFS，WMTS，TMS互联网地图服务作为一个地图开发者，当然要对互联网地图服务有一个认识。 首先，要知道有这么一个联盟，叫OGC（Open Geospatial Consortium），这个联盟&#x2F;组织定义了很多关于互联网地图的规则。 然后，开发者，企业，组织机构依照这个规则进行地理信息系统的开发。 事实上互联网地图的数据源也就那么几个。换句话说，能作为地图数据源的数据格式有限。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://shaoshao.net.cn/images/blog/cover/current/post_16.jpg">
+<meta property="article:published_time" content="2023-09-15T06:09:52.000Z">
+<meta property="article:modified_time" content="2023-09-15T06:19:27.685Z">
+<meta property="article:author" content="shaozhy">
+<meta property="article:tag" content="GIS">
+<meta property="article:tag" content="WMS">
+<meta property="article:tag" content="WFS">
+<meta property="article:tag" content="WMTS">
+<meta property="article:tag" content="TMS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://shaoshao.net.cn/images/blog/cover/current/post_16.jpg"><link rel="shortcut icon" href="/cover/head_portrait.jpg"><link rel="canonical" href="https://shaoshao.net.cn/2023/09/15/20230915140948283/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'WMS，WFS，WMTS，TMS互联网地图服务',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-09-15 14:19:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.1.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://shaoshao.net.cn/images/blog/cover/headportrait/shsh_cn.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/discover/archives/"><div class="headline">文章</div><div class="length-num">161</div></a></div><div class="data-item"><a href="/discover/tags/"><div class="headline">标签</div><div class="length-num">102</div></a></div><div class="data-item"><a href="/discover/categories/"><div class="headline">分类</div><div class="length-num">79</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 发现</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/discover/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/discover/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/discover/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/discover/codingStandards/"><i class="fa-fw fas fa-code"></i><span> 军规</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/photo/"><i class="fa-fw fas fa-camera"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/guestbook/"><i class="fa-fw fa fa-commenting"></i><span> 留言</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://shaoshao.net.cn/images/blog/cover/current/post_16.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">WineMonk</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 发现</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/discover/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/discover/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/discover/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/discover/codingStandards/"><i class="fa-fw fas fa-code"></i><span> 军规</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/photo/"><i class="fa-fw fas fa-camera"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/guestbook/"><i class="fa-fw fa fa-commenting"></i><span> 留言</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">WMS，WFS，WMTS，TMS互联网地图服务</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-15T06:09:52.000Z" title="发表于 2023-09-15 14:09:52">2023-09-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-09-15T06:19:27.685Z" title="更新于 2023-09-15 14:19:27">2023-09-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/discover/categories/GIS%E7%9B%B8%E5%85%B3/">GIS相关</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/discover/categories/GIS%E7%9B%B8%E5%85%B3/GIS/">GIS</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="WMS，WFS，WMTS，TMS互联网地图服务"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="WMS，WFS，WMTS，TMS互联网地图服务"><a href="#WMS，WFS，WMTS，TMS互联网地图服务" class="headerlink" title="WMS，WFS，WMTS，TMS互联网地图服务"></a>WMS，WFS，WMTS，TMS互联网地图服务</h1><p>作为一个地图开发者，当然要对互联网地图服务有一个认识。</p>
+<p>首先，要知道有这么一个联盟，叫OGC（Open Geospatial Consortium），这个联盟&#x2F;组织定义了很多关于互联网地图的规则。</p>
+<p>然后，开发者，企业，组织机构依照这个规则进行地理信息系统的开发。</p>
+<p>事实上互联网地图的数据源也就那么几个。换句话说，能作为地图数据源的数据格式有限。那让我们先来介绍一下互联网地图的常用数据源，数据格式。</p>
+<p>\1. 一张图片是肯定可以作为地图数据源的。例如一张tiff格式的遥感影像，作为地图当然可以，另外，我们从arcgis中导出一张jpeg，png格式的地图，再通过网络发布出去当然也行。</p>
+<p>那么，第一种地图数据源我们暂且可以概括为image（图片）类型的。</p>
+<p>2 .矢量形式的，就像在arcgis里我们用编辑工具绘制的那种第五轮廓的多边形。还有一些不随放大程度改变而失真的SVG图形。这些都是矢量类型的。举个例子就是我们从arcgis中</p>
+<p>导出一个shapefile，shp文件，把它发布成互联网地图，也是可以的。这种类型我们归纳为vector（矢量）类型</p>
+<p>\3. 不知道各位是否思考过一个问题，就是图形数据在数据库中究竟是如何存储的，或者说，有没有字符文字能够描述一个图形。事实上有的，一个shape在数据库中实际上就是一张表</p>
+<p>每一个要素（feature）是表中的一行或者多行。shape的属性数据和普通的二维表一样存储，而几何图形信息被存放在一个叫geomtry的字段里。这个字段能够用文字描述图形形状信息。</p>
+<p>做过传统业务的同学可能非常清楚，数据库中的表通常都会被转化为json对象返回前端，例如一条数据：</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>sex</th>
+<th>year</th>
+<th>id</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>li</td>
+<td>male</td>
+<td>23</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<p>转化为json之后是这样的</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span>    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;li&quot;</span><span class="punctuation">,</span>    <span class="attr">&quot;sex&quot;</span><span class="punctuation">:</span><span class="string">&quot;male&quot;</span><span class="punctuation">,</span>    <span class="attr">&quot;year&quot;</span><span class="punctuation">:</span><span class="string">&quot;23&quot;</span><span class="punctuation">,</span>    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;1&quot;</span>  <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>同样的，一个shape再导入数据库之后一般是这样的：</p>
+<table>
+<thead>
+<tr>
+<th>gid</th>
+<th>shape_leng</th>
+<th>shape_area</th>
+<th>geom</th>
+<th>gname</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>125591.266163</td>
+<td>188363928.789</td>
+<td>0106000000001000000103000000</td>
+<td>保税区</td>
+</tr>
+</tbody></table>
+<p>那么他转化为json是这样的：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;Feature&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;indexmap_1984.32&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;geometry&quot;</span><span class="punctuation">:</span><span class="punctuation">&#123;</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;MultiPolygon&quot;</span><span class="punctuation">,</span><span class="attr">&quot;coordinates&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="number">122.5924457</span><span class="punctuation">,</span><span class="number">39.20893603</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="punctuation">[</span><span class="number">122.5924457</span><span class="punctuation">,</span><span class="number">39.20889616</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="punctuation">[</span><span class="number">122.59237779</span><span class="punctuation">,</span><span class="number">39.20895737</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="punctuation">[</span><span class="number">122.59235704</span><span class="punctuation">,</span><span class="number">39.2090558</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="punctuation">[</span><span class="number">122.59235704</span><span class="punctuation">,</span><span class="number">39.20916682</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="punctuation">[</span><span class="number">122.5923879</span><span class="punctuation">,</span><span class="number">39.20926604</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="punctuation">[</span><span class="number">122.59240432</span><span class="punctuation">,</span><span class="number">39.20930654</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="punctuation">[</span><span class="number">122.59244569</span><span class="punctuation">,</span><span class="number">39.20931714</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="punctuation">[</span><span class="number">122.5924814</span><span class="punctuation">,</span><span class="number">39.20930969</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="punctuation">[</span><span class="number">122.59257018</span><span class="punctuation">,</span><span class="number">39.20929116</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="punctuation">[</span><span class="number">122.59259042</span><span class="punctuation">,</span><span class="number">39.20921871</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="punctuation">[</span><span class="number">122.59253881</span><span class="punctuation">,</span><span class="number">39.2091195</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="punctuation">[</span><span class="number">122.59246644</span><span class="punctuation">,</span><span class="number">39.20902658</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="punctuation">[</span><span class="number">122.59245621</span><span class="punctuation">,</span><span class="number">39.20898192</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="punctuation">[</span><span class="number">122.5924457</span><span class="punctuation">,</span><span class="number">39.20893603</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span> <span class="attr">&quot;geometry_name&quot;</span><span class="punctuation">:</span><span class="string">&quot;geom&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;properties&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="attr">&quot;gid&quot;</span><span class="punctuation">:</span><span class="number">1</span><span class="punctuation">,</span><span class="attr">&quot;gname&quot;</span><span class="punctuation">:</span><span class="string">&quot;保税区&quot;</span><span class="punctuation">,</span><span class="attr">&quot;shape_leng&quot;</span><span class="punctuation">:</span><span class="number">0E-11</span><span class="punctuation">,</span><span class="attr">&quot;shape_le_1&quot;</span><span class="punctuation">:</span><span class="number">110.131221956</span><span class="punctuation">,</span><span class="attr">&quot;shape_le_2&quot;</span><span class="punctuation">:</span><span class="number">0.00105811399614</span><span class="punctuation">,</span><span class="attr">&quot;shape_area&quot;</span><span class="punctuation">:</span><span class="number">5.85151805058E-8</span> <span class="punctuation">&#125;</span> <span class="punctuation">&#125;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>ok，这个json有些复杂，不同于往常的json，通过对比我们可以发现，这种格式把数据库表里的图形字段geom里面的010600001…….转化成了</p>
+<p>“type”:”MultiPolygon”,”coordinates”:[[[[122.5924457,39.20893603]……..这个看起来像是很多个坐标啊，事实上对于多边形来讲，记录的就是每个顶点的坐标值。</p>
+<p>于是，我们就给他命名为GeoJSON（当然这名字不是我起的！），GeoJSON是互联网地理数据传输过程中重要的格式，大家必须掌握。</p>
+<p>GeoJSON的强大之处在于它可以作为一种数据格式媒介，和其它几种数据格式进行相互转化，就例如上文提到的可以和数据库表格做转化，他也可以直接和shape格式的文件做转化。非常方便。而且它保存的数据是完整的，数据体积也很小。 那我们暂且就把这一类的地理数据源就叫做GeoJSON类型吧。</p>
+<p>\4. 那既然提到了json，可别忘了xml啊，xml可是json 的老大哥啊，最早互联网数据传输的格式就是xml，后来人们觉得这种标记语言比较麻烦，数据量也大，才发明的json。于是地理学会的人们为了照顾一些</p>
+<p>互联网老年人，也在地理数据方面适配了xml类型的数据，叫做KML，GML，这两种都是用标记语言标记地理数据，如果有朋友喜欢用也是可以的。那么这种类型我们叫做KML，GML类型吧。</p>
+<p>综上所述，互联网地图的数据源类型，从大层面上来分就两种，一种是栅格，一种是矢量。栅格数据源一般就是image类型的图片，tiff格式的遥感影像等等。</p>
+<p>而矢量数据源的形式多种多样，有GeoJSON，KML，GML，shapefile，svg等等。</p>
+<p>在实际的互联网地图应用过程中，人们发现简单的图片和矢量图形不能够满足我们的需求，就比如我想从全世界的地图中找到我的家，如果只是一张图片的话，那这张图片得多大啊！分辨率得多高啊！服务器承受的了么，我打开浏览器得等多长时间能够看到地图？这些真的是实际产生的问题。于是OGC又想到了这样一个解决办法——切片（tile）。</p>
+<p>所谓切片，很简单，就是把我们原始的地图切成很多方片，就是拼图里面一格一格的那种图片，我们想看哪就加载哪，不想看就不加载。这样做的话就打打提高了加载效率。加快了浏览速度。并且现在很多地图服务器的切片是有缓存的，能保证下次请求更快捷。</p>
+<p>于是，无论是栅格数据也好，矢量数据也好，现在都能够实现这种切片原理了。</p>
+<p>对于栅格数据来讲，就是把一张image类型的图片切割成很多张正方形（一般是256x256像素）小图片。根据鼠标位置和滚轮放大级别确定加载哪一张小图片。这个之后我会详细讲解</p>
+<p>对于矢量数据来讲，被切割完的数据还是用GeoJSON格式来展现，只不过这时候的GeoJSON里面又多了许多关于切片和级别的描述字段。当然除了GeoJSON之外还有mapbox家提出的.mvt格式</p>
+<p>到目前为止，互联网地图的所有的数据源都介绍完了（当然有些不常用的就忽略掉了）</p>
+<p>那么，OGC这个组织呢，根据上面讲到过的数据源分别为他们设计了一些服务。</p>
+<p>第一种image类型的，图片格式的地图被封装成了叫做WMS的服务。意思是web map service，网络地图服务。这个最简单也最基础，就是把你的数据源想方设法转化成一张和你数据源长得一样的图片。</p>
+<p>供用户浏览，用户可以放大缩小这张图片，但是无论怎么放大缩小，它就只是一张图片。</p>
+<p>第二种矢量类型的数据源被封装成了WFS服务。意思是 web feature service 网络要素服务。意思是用户所看到的是要素。是矢量图形，而不是一张图片。那么与图片相比要素有什么好处呢？</p>
+<p>大致有这么两点：第一，矢量图形不会随着放大程度的改变而失真，图片做不到。第二，是两要素方便与交互和编辑，修改形状等，这一点图片也做不到。</p>
+<p>第三种是image进行切片后的服务，叫做WMTS，全称 web map tile service 网络地图切片服务。WMTS比WMS 好的地方就是它能够加快加载速度，提升加载效率。可是它同时也失去了灵活性，你看的每一个区域都是被提前划分好的，限制在固定条带内的。</p>
+<p>对于矢量切片，目前OGC没有提供这样的服务。但是像GeoServer等地图服务器提供了矢量切片的扩展，可以用工具对自己的矢量数据进行切片，然后导出GeoJSON格式的数据加载到地图中。</p>
+<p>另外，还值得一提的是，还有一个瓦片服务不是OGC提出的，但也被广大用户所使用，那就是TMS服务，tiled map service，瓦片地图服务。他和WMTS的主要区别在于，他的小切片地图是正方形的，而WMTS的切片可以是矩形的。另外就是他们的金字塔横纵坐标是相反的。</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/398998331">转载：几种互联网地图服务背后的解读（WMS，WFS，WMTS，TMS） - 知乎 (zhihu.com)</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:1361151272@qq.com">shaozhy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://shaoshao.net.cn/2023/09/15/20230915140948283/">https://shaoshao.net.cn/2023/09/15/20230915140948283/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://shaoshao.net.cn" target="_blank">WineMonk</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/discover/tags/GIS/">GIS</a><a class="post-meta__tags" href="/discover/tags/WMS/">WMS</a><a class="post-meta__tags" href="/discover/tags/WFS/">WFS</a><a class="post-meta__tags" href="/discover/tags/WMTS/">WMTS</a><a class="post-meta__tags" href="/discover/tags/TMS/">TMS</a></div><div class="post_share"><div class="social-share" data-image="https://shaoshao.net.cn/images/blog/cover/current/post_16.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://shaoshao.net.cn/images/blog/cover/payqr/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="https://shaoshao.net.cn/images/blog/cover/payqr/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://shaoshao.net.cn/images/blog/cover/payqr/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="https://shaoshao.net.cn/images/blog/cover/payqr/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/09/01/20230901145615956/"><img class="next-cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_15.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Sandcastle：.NET API文档构建器</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/08/25/20210825222536000/" title="国家标准比例尺分幅图幅编号"><img class="cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_05.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-25</div><div class="title">国家标准比例尺分幅图幅编号</div></div></a></div><div><a href="/2021/08/06/20210806142448000/" title="MapGIS打开场景显示"><img class="cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_02.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-06</div><div class="title">MapGIS打开场景显示</div></div></a></div><div><a href="/2021/08/25/20210825222613000/" title="MapGIS二次开发相关"><img class="cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_04.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-25</div><div class="title">MapGIS二次开发相关</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#WMS%EF%BC%8CWFS%EF%BC%8CWMTS%EF%BC%8CTMS%E4%BA%92%E8%81%94%E7%BD%91%E5%9C%B0%E5%9B%BE%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.</span> <span class="toc-text">WMS，WFS，WMTS，TMS互联网地图服务</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://shaoshao.net.cn/images/blog/cover/current/post_16.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By shaozhy</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><img class="icp-icon" src="/img/icp.png"><span>冀ICP备2023009991号-1</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: 'd990e8cbbd1dabc9c98e',
+      clientSecret: '59676d5926f4df676ec1ba6b36395bf90a0aeb54',
+      repo: 'WineMonk.github.io',
+      owner: 'WineMonk',
+      admin: ['WineMonk'],
+      id: '0ad2fdf6ce06778e364d59d50673e823',
+      updateCountCallback: commentCount
+    },{"proxy":"https://vercel.prohibitorum.top/github_access_token"}))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js" data-mobile="false" data-text="茶飘香,酒罢去,聚朋友,再回楼" data-fontsize="15px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
