@@ -1,0 +1,685 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>ArcGIS自定义Python工具箱 | WineMonk</title><meta name="keywords" content="Arcpy,ArcGIS,‘Python’"><meta name="author" content="shaozhy,1361151272@qq.com"><meta name="copyright" content="shaozhy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="ArcGIS 自定义 Python 工具箱Python 工具箱模板12345678910111213141516171819202122232425262728293031323334353637383940414243444546# -*- coding: utf-8 -*-import arcpyclass Toolbox(object):    def __init__(self):">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ArcGIS自定义Python工具箱">
+<meta property="og:url" content="https://shaoshao.net.cn/2023/11/02/20231102100955282/index.html">
+<meta property="og:site_name" content="WineMonk">
+<meta property="og:description" content="ArcGIS 自定义 Python 工具箱Python 工具箱模板12345678910111213141516171819202122232425262728293031323334353637383940414243444546# -*- coding: utf-8 -*-import arcpyclass Toolbox(object):    def __init__(self):">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://shaoshao.net.cn/images/blog/cover/current/post_02.jpg">
+<meta property="article:published_time" content="2023-11-02T02:09:57.000Z">
+<meta property="article:modified_time" content="2023-11-02T02:59:11.381Z">
+<meta property="article:author" content="shaozhy">
+<meta property="article:tag" content="Arcpy">
+<meta property="article:tag" content="ArcGIS">
+<meta property="article:tag" content="‘Python’">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://shaoshao.net.cn/images/blog/cover/current/post_02.jpg"><link rel="shortcut icon" href="/cover/head_portrait.jpg"><link rel="canonical" href="https://shaoshao.net.cn/2023/11/02/20231102100955282/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ArcGIS自定义Python工具箱',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-11-02 10:59:11'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.1.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://shaoshao.net.cn/images/blog/cover/headportrait/shsh_cn.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/discover/archives/"><div class="headline">文章</div><div class="length-num">167</div></a></div><div class="data-item"><a href="/discover/tags/"><div class="headline">标签</div><div class="length-num">106</div></a></div><div class="data-item"><a href="/discover/categories/"><div class="headline">分类</div><div class="length-num">79</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 发现</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/discover/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/discover/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/discover/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/discover/codingStandards/"><i class="fa-fw fas fa-code"></i><span> 军规</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/photo/"><i class="fa-fw fas fa-camera"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/guestbook/"><i class="fa-fw fa fa-commenting"></i><span> 留言</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://shaoshao.net.cn/images/blog/cover/current/post_02.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">WineMonk</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 发现</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/discover/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/discover/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/discover/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/discover/codingStandards/"><i class="fa-fw fas fa-code"></i><span> 军规</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/photo/"><i class="fa-fw fas fa-camera"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/guestbook/"><i class="fa-fw fa fa-commenting"></i><span> 留言</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">ArcGIS自定义Python工具箱</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-02T02:09:57.000Z" title="发表于 2023-11-02 10:09:57">2023-11-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-02T02:59:11.381Z" title="更新于 2023-11-02 10:59:11">2023-11-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/discover/categories/Python%E7%9B%B8%E5%85%B3/">Python相关</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/discover/categories/Python%E7%9B%B8%E5%85%B3/Arcpy/">Arcpy</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>17分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="ArcGIS自定义Python工具箱"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="ArcGIS-自定义-Python-工具箱"><a href="#ArcGIS-自定义-Python-工具箱" class="headerlink" title="ArcGIS 自定义 Python 工具箱"></a>ArcGIS 自定义 Python 工具箱</h1><h2 id="Python-工具箱模板"><a href="#Python-工具箱模板" class="headerlink" title="Python 工具箱模板"></a>Python 工具箱模板</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> arcpy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Toolbox</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="comment"># 定义工具箱(工具箱的名称是.pyt文件的名称)。</span></span><br><span class="line">        self.label = <span class="string">&quot;Toolbox&quot;</span></span><br><span class="line">        self.alias = <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 与此工具箱关联的工具类列表</span></span><br><span class="line">        self.tools = [Tool]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Tool</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="comment"># 定义工具(工具名称是类的名称)。</span></span><br><span class="line">        self.label = <span class="string">&quot;Tool&quot;</span></span><br><span class="line">        self.description = <span class="string">&quot;&quot;</span></span><br><span class="line">        self.canRunInBackground = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getParameterInfo</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="comment"># 定义参数定义</span></span><br><span class="line">        params = <span class="literal">None</span></span><br><span class="line">        <span class="keyword">return</span> params</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isLicensed</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="comment"># 设置是否允许工具执行。</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">updateParameters</span>(<span class="params">self, parameters</span>):</span><br><span class="line">        <span class="comment"># 在执行内部验证之前修改参数的值和属性。每当参数被更改时，就调用此方法。</span></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">updateMessages</span>(<span class="params">self, parameters</span>):</span><br><span class="line">        <span class="comment"># 修改由内部验证为每个工具参数创建的消息。此方法在内部验证后调用。</span></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">execute</span>(<span class="params">self, parameters, messages</span>):</span><br><span class="line">        <span class="comment"># 该工具的源代码。</span></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">postExecute</span>(<span class="params">self, parameters</span>):</span><br><span class="line">        <span class="comment"># 此方法在输出被处理并添加到显示之后发生。</span></span><br><span class="line">        <span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="编辑-Python-工具箱"><a href="#编辑-Python-工具箱" class="headerlink" title="编辑 Python 工具箱"></a>编辑 Python 工具箱</h2><p>​        刷新 Python 工具箱时，只刷新 Python 工具箱文件；并不刷新工具箱中导入的任意模块。要在 Python 工具箱中重新加载模块，可使用可临时添加的 importlib 模块的 reload 功能。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> yourmodule</span><br><span class="line"><span class="keyword">import</span> importlib</span><br><span class="line">importlib.reload(yourmodule)  <span class="comment"># 强制重新加载模块</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Python-工具箱中的工具定义"><a href="#Python-工具箱中的工具定义" class="headerlink" title="Python 工具箱中的工具定义"></a>Python 工具箱中的工具定义</h2><p>工具将作为类添加到 .pyt 文件。 每个工具类必须至少包含 <code>__init__</code> 和 <code>execute</code> 方法。 或者，可以使用 <code>getParameterInfo</code>、<code>isLicensed</code>、<code>updateParameters</code> 和 <code>updateMessages</code> 方法将控件添加至工具行为。</p>
+<h4 id="用于定义工作工具类的方法"><a href="#用于定义工作工具类的方法" class="headerlink" title="用于定义工作工具类的方法"></a>用于定义工作工具类的方法</h4><table>
+<thead>
+<tr>
+<th>工具方法</th>
+<th>必选或可选</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>_<em>init</em>_</td>
+<td>必需项</td>
+<td>初始化工具类。</td>
+</tr>
+<tr>
+<td>getParameterInfo</td>
+<td>可选</td>
+<td>定义工具的参数。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://pro.arcgis.com/zh-cn/pro-app/3.0/arcpy/geoprocessing_and_python/controlling-license-behavior-in-a-python-toolbox.htm">isLicensed</a></td>
+<td>可选</td>
+<td>返回工具是否获得执行许可。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://pro.arcgis.com/zh-cn/pro-app/3.0/arcpy/geoprocessing_and_python/customizing-tool-behavior-in-a-python-toolbox.htm">updateParameters</a></td>
+<td>可选</td>
+<td>在用户每次在工具对话框中更改参数时调用。 从 updateParameters 返回后，地理处理将调用它的内部验证例程。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://pro.arcgis.com/zh-cn/pro-app/3.0/arcpy/geoprocessing_and_python/customizing-tool-behavior-in-a-python-toolbox.htm">updateMessages</a></td>
+<td>可选</td>
+<td>在从内部验证例程返回后调用。 可以检查根据内部验证创建的消息，并根据需要对其进行更改。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://pro.arcgis.com/zh-cn/pro-app/3.0/arcpy/geoprocessing_and_python/accessing-parameters-within-a-python-toolbox.htm">execute</a></td>
+<td>必需项</td>
+<td>工具的源代码。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://pro.arcgis.com/zh-cn/pro-app/3.0/arcpy/geoprocessing_and_python/post-execution-validation-in-a-pyt.htm">postExecute</a></td>
+<td>可选</td>
+<td>当 execute 方法完成，然后处理输出并将其添加到显示后调用。</td>
+</tr>
+</tbody></table>
+<p>可在工具的 <strong>init</strong> 方法中设置以下属性：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>category</td>
+<td>工具所在的工具集的名称。 可通过工具集组织工具箱内的工具。</td>
+</tr>
+<tr>
+<td>description</td>
+<td>工具的描述。</td>
+</tr>
+<tr>
+<td>label</td>
+<td>标注是工具的显示名称，如<strong>地理处理</strong>窗格中所示。</td>
+</tr>
+</tbody></table>
+<blockquote>
+<h5 id="注意"><a href="#注意" class="headerlink" title="注意:"></a>注意:</h5><p>在命名 Python 工具箱工具类时，Python 语法规则将强制执行大多数地理处理约定。 但是，请避免在工具类名称中使用下划线，因为在 ArcGIS Server 中运行工具时，这些下划线会导致错误。</p>
+</blockquote>
+<h2 id="定义-Python-工具箱中的参数"><a href="#定义-Python-工具箱中的参数" class="headerlink" title="定义 Python 工具箱中的参数"></a>定义 Python 工具箱中的参数</h2><p>Parameter</p>
+<h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>每个工具参数都拥有一个包含可用于工具验证的属性和方法的关联 Parameter 对象。</p>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>虽然很多 Parameter 对象属性为读&#x2F;写属性，但其中大多数属性只能在最初创建或修改对象时进行设置或修改。多个属性（包括 name、displayName、datatype、direction 和 parameterType）可用于建立工具的特征，且在验证方法（例如 updateMessages 和 updateParameters）期间无法修改。</p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Parameter  (&#123;name&#125;, &#123;displayName&#125;, &#123;direction&#125;, &#123;datatype&#125;, &#123;parameterType&#125;, &#123;enabled&#125;, &#123;category&#125;, &#123;symbology&#125;, &#123;multiValue&#125;)</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>数据类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>name</td>
+<td>参数名称。(默认值为 None)</td>
+<td>String</td>
+</tr>
+<tr>
+<td>displayName</td>
+<td><strong>地理处理</strong>窗格中显示的参数标注。(默认值为 None)</td>
+<td>String</td>
+</tr>
+<tr>
+<td>direction</td>
+<td>参数的方向。(默认值为 None)</td>
+<td>String</td>
+</tr>
+<tr>
+<td>datatype</td>
+<td>参数的数据类型。要获取参数数据类型的列表，请参阅<a target="_blank" rel="noopener" href="https://pro.arcgis.com/zh-cn/pro-app/3.0/arcpy/geoprocessing_and_python/defining-parameter-data-types-in-a-python-toolbox.htm">地理处理数据类型</a>。(默认值为 None)</td>
+<td>String</td>
+</tr>
+<tr>
+<td>parameterType</td>
+<td>parameterType 属性可以为 Required、Optional 或 Derived。(默认值为 None)</td>
+<td>String</td>
+</tr>
+<tr>
+<td>enabled</td>
+<td>如果参数不可用，则为 False。(默认值为 None)</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>category</td>
+<td>参数的类别。(默认值为 None)</td>
+<td>String</td>
+</tr>
+<tr>
+<td>symbology</td>
+<td>用于绘制输出的图层文件（.lyrx 或 .lyr）的路径。(默认值为 None)</td>
+<td>String</td>
+</tr>
+<tr>
+<td>multiValue</td>
+<td>如果参数为多值参数，则为 True。(默认值为 None)</td>
+<td>Boolean</td>
+</tr>
+</tbody></table>
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+<th>数据类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>altered(只读)</td>
+<td>如果用户对值做出了修改，则为 True。</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>category(可读写)</td>
+<td>参数的类别。</td>
+<td>String</td>
+</tr>
+<tr>
+<td>charts(可读写)</td>
+<td>添加至输出参数的<a target="_blank" rel="noopener" href="https://pro.arcgis.com/zh-cn/pro-app/3.0/arcpy/charts/what-is-the-charts-module.htm">图表</a>对象列表。</td>
+<td>Object</td>
+</tr>
+<tr>
+<td>columns(可读写)</td>
+<td>值表参数中的列结构。这些列按列表的列表形式进行组织，每个内部列表表示列数据类型、列名称和可选只读值。 如果只读值设置为 ReadOnly，则用户无法修改该列。<code>import arcpy param = arcpy.Parameter() param.datatype = &quot;GPValueTable&quot; param.columns = [[&quot;GPFeatureLayer&quot;, &quot;Features&quot;], [&quot;GPLong&quot;, &quot;Ranks&quot;]]</code></td>
+<td>String</td>
+</tr>
+<tr>
+<td>datatype(可读写)</td>
+<td>参数的数据类型。要获取参数数据类型的列表，请参阅<a target="_blank" rel="noopener" href="https://pro.arcgis.com/zh-cn/pro-app/3.0/arcpy/geoprocessing_and_python/defining-parameter-data-types-in-a-python-toolbox.htm">地理处理数据类型</a>。</td>
+<td>String</td>
+</tr>
+<tr>
+<td>defaultEnvironmentName(可读写)</td>
+<td>用于设置参数的默认值的地理处理环境设置的名称。</td>
+<td>String</td>
+</tr>
+<tr>
+<td>direction(可读写)</td>
+<td>参数的方向。</td>
+<td>String</td>
+</tr>
+<tr>
+<td>displayName(可读写)</td>
+<td><strong>地理处理</strong>窗格中显示的参数标注。</td>
+<td>String</td>
+</tr>
+<tr>
+<td>displayOrder(可读写)</td>
+<td>参数在<strong>地理处理</strong>窗格中的显示顺序。 该顺序可能与从 Python 访问参数的顺序不同。</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>enabled(可读写)</td>
+<td>如果参数不可用，则为 False。</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>filter(只读)</td>
+<td>要应用于参数中值的<a target="_blank" rel="noopener" href="https://pro.arcgis.com/zh-cn/pro-app/3.0/arcpy/classes/filter.htm">过滤器</a>。</td>
+<td>Filter</td>
+</tr>
+<tr>
+<td>filters(可读写)</td>
+<td>与 filter 属性相似，但是用于支持值表参数。<code>class SampleTool(object):    # __init__ left out to simplify example     def getParameterInfo(self):        in_fc = arcpy.Parameter(            name=&#39;in_features&#39;,            displayName=&#39;Input Features&#39;,            datatype=&#39;GPFeatureLayer&#39;,            direction=&#39;Input&#39;,            parameterType=&#39;Required&#39;)         vt = arcpy.Parameter(            name = &#39;summary_fields&#39;,            displayName = &#39;Summary fields&#39;,            datatype = &#39;GPValueTable&#39;,            direction = &#39;Input&#39;,            parameterType = &#39;Optional&#39;)         vt.parameterDependencies = [in_fc.name]        vt.columns = [[&#39;Field&#39;, &#39;Field&#39;], [&#39;GPString&#39;, &#39;Statistic&#39;], [&#39;GPDouble&#39;, &#39;Multiplier&#39;]]        vt.filters[0].list = [&#39;Double&#39;, &#39;Float&#39;, &#39;Short&#39;, &#39;Long&#39;]        vt.filters[1].type = &#39;ValueList&#39;        vt.filters[1].list = [&#39;SUM&#39;, &#39;MIN&#39;, &#39;MAX&#39;, &#39;MEAN&#39;]        vt.filters[2].type = &#39;Range&#39;        vt.filters[2].list = [0,10]</code></td>
+<td>Filter</td>
+</tr>
+<tr>
+<td>hasBeenValidated(只读)</td>
+<td>如果内部验证例程已检查参数，则为 True。</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>message(只读)</td>
+<td>要向用户显示的消息。</td>
+<td>String</td>
+</tr>
+<tr>
+<td>multiValue(可读写)</td>
+<td>如果参数为多值参数，则为 True。</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>name(可读写)</td>
+<td>参数名称。</td>
+<td>String</td>
+</tr>
+<tr>
+<td>parameterDependencies(可读写)</td>
+<td>各依存参数的索引列表。在脚本工具中，使用参数索引列表设置 parameterDependencies；在 Python 工具箱工具中，使用参数名称列表设置 parameterDependencies。</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>parameterType(可读写)</td>
+<td>parameterType 属性可以为 Required、Optional 或 Derived。在验证中，无法动态修改 parameterType 值。 但是，根据其他参数设置，参数可能需要充当必需参数或可选参数。 如果是这样，将参数设置为可选。 然后，在验证 updateMessages 方法中，将 Parameter setIDMessage 方法与消息 ID 530 或 735 搭配使用。 使用消息 ID 530 或 735 时将导致可选参数的行为与必需参数相同。Required—需要参数值才能运行工具。Optional—无需参数值即可运行工具。Derived—工具将返回未作为输入参数提供的输出值。 派生参数始终为输出参数。</td>
+<td>String</td>
+</tr>
+<tr>
+<td>schema(只读)</td>
+<td>输出数据集的<a target="_blank" rel="noopener" href="https://pro.arcgis.com/zh-cn/pro-app/3.0/arcpy/classes/schema.htm">方案</a>。</td>
+<td>Schema</td>
+</tr>
+<tr>
+<td>symbology(可读写)</td>
+<td>用于绘制输出的图层文件（.lyrx 或 .lyr）的路径。</td>
+<td>String</td>
+</tr>
+<tr>
+<td>value(可读写)</td>
+<td>参数的值。</td>
+<td>Object</td>
+</tr>
+<tr>
+<td>valueAsText(只读)</td>
+<td>字符串形式的参数值。</td>
+<td>String</td>
+</tr>
+<tr>
+<td>values(可读写)</td>
+<td>值表参数的值，使用一系列列表进行设置。</td>
+<td>Variant</td>
+</tr>
+</tbody></table>
+<h3 id="方法概述"><a href="#方法概述" class="headerlink" title="方法概述"></a>方法概述</h3><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>clearMessage ()</td>
+<td>清除所有消息文本并将状态设置为信息性的（无错误或警告）。</td>
+</tr>
+<tr>
+<td>hasError ()</td>
+<td>如果参数包含错误，则返回 True。要评估参数是否包含错误，应在工具验证的 updateMessages 方法中调用 hasError。</td>
+</tr>
+<tr>
+<td>hasWarning ()</td>
+<td>如果参数包含警告，则返回 True。</td>
+</tr>
+<tr>
+<td>isInputValueDerived ()</td>
+<td>如果在模型内部验证工具并且输入值是模型中其他工具的输出，则返回 True。</td>
+</tr>
+<tr>
+<td>setErrorMessage (message)</td>
+<td>通过提供的消息将参数设置为存在错误。 如果其中任何参数存在错误，则不会执行工具。</td>
+</tr>
+<tr>
+<td>setIDMessage (message_type, message_ID, {add_argument1}, {add_argument2})</td>
+<td>将参数设置为存在系统消息。</td>
+</tr>
+<tr>
+<td>setWarningMessage (message)</td>
+<td>通过提供的消息将参数设置为存在错误。 与存在错误时不同，工具在有警告消息的情况下也会执行。</td>
+</tr>
+</tbody></table>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><blockquote>
+<p>hasError ()</p>
+</blockquote>
+<p>返回值</p>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Boolean</td>
+<td>如果参数包含错误，则为 True。</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>hasWarning ()</p>
+</blockquote>
+<p>返回值</p>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Boolean</td>
+<td>如果参数包含警告，则为 True。</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>isInputValueDerived ()</p>
+</blockquote>
+<p>返回值</p>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Boolean</td>
+<td>如果在模型内部验证工具并且输入值是模型中其他工具的输出，则为 True。</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>setErrorMessage (message)</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>数据类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>message</td>
+<td>The string to be added as an error message to the geoprocessing tool messages.</td>
+<td>String</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>setIDMessage (message_type, message_ID, {add_argument1}, {add_argument2})</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>数据类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>message_type</td>
+<td>Defines whether the message will be an error or a warning.ERROR—The message will be an error message.WARNING—The message will be a warning message.</td>
+<td>String</td>
+</tr>
+<tr>
+<td>message_ID</td>
+<td>The message ID allows you to reference existing system messages.</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>add_argument1</td>
+<td>Depending on which message ID is used, an argument may be necessary to complete the message. Common examples include dataset or field names. The data type is variable depending on the message.</td>
+<td>Object</td>
+</tr>
+<tr>
+<td>add_argument2</td>
+<td>Depending on which message ID is used, an argument may be necessary to complete the message. Common examples include dataset or field names. The data type is variable depending on the message.</td>
+<td>Object</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>setWarningMessage (message)</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>数据类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>message</td>
+<td>The string to be added as a warning message to the geoprocessing tool messages.</td>
+<td>String</td>
+</tr>
+</tbody></table>
+<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><p>参数示例</p>
+<p>启用或禁用 ToolValidator 类中的参数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">updateParameters</span>(<span class="params">self</span>):</span><br><span class="line">    <span class="comment"># If the option to use a weights file (&quot;Get Spatial Weights From File&quot;) </span></span><br><span class="line">    <span class="comment"># is selected, enable the parameter for specifying the file; </span></span><br><span class="line">    <span class="comment"># otherwise, disable it</span></span><br><span class="line">    <span class="keyword">if</span> self.params[<span class="number">3</span>].value == <span class="string">&quot;Get Spatial Weights From File&quot;</span>:</span><br><span class="line">        self.params[<span class="number">8</span>].enabled = <span class="literal">True</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        self.params[<span class="number">8</span>].enabled = <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+
+<p>参数示例 2</p>
+<p>为 ToolValidator 类中的参数设置默认值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">updateParameters</span>(<span class="params">self</span>):</span><br><span class="line">    <span class="comment"># Set the default distance threshold to 1/100 of the larger of</span></span><br><span class="line">    <span class="comment"># the width or height of the extent of the input features.  Do</span></span><br><span class="line">    <span class="comment"># not set if there is no input dataset yet, or the user has set</span></span><br><span class="line">    <span class="comment"># a specific distance (Altered is true).</span></span><br><span class="line">    <span class="keyword">if</span> self.params[<span class="number">0</span>].value:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.params[<span class="number">6</span>].altered:</span><br><span class="line">            extent = arcpy.Describe(self.params[<span class="number">0</span>].value)</span><br><span class="line">        width = extent.XMax - extent.XMin</span><br><span class="line">        height = extent.YMax - extent.YMin</span><br><span class="line">        <span class="keyword">if</span> width &lt; height:</span><br><span class="line">            self.params[<span class="number">6</span>].value = width / <span class="number">100</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.params[<span class="number">6</span>].value = height / <span class="number">100</span></span><br><span class="line">        <span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+
+<p>参数示例 3</p>
+<p>为 ToolValidator 类中的参数设置自定义错误消息。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">updateMessages</span>(<span class="params">self</span>):</span><br><span class="line">    self.params[<span class="number">6</span>].clearMessage()</span><br><span class="line">    <span class="comment"># Check to see if the threshold distance contains a value of</span></span><br><span class="line">    <span class="comment"># zero and the user has specified a fixed distance band.</span></span><br><span class="line">    <span class="keyword">if</span> self.params[<span class="number">6</span>].value &lt;= <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">if</span> self.params[<span class="number">3</span>].value == <span class="string">&quot;Fixed Distance Band&quot;</span>:</span><br><span class="line">            self.params[<span class="number">6</span>].setErrorMessage(</span><br><span class="line">                <span class="string">&quot;Zero or a negative distance is invalid when &quot;</span></span><br><span class="line">                <span class="string">&quot;using a fixed distance band. Please use a &quot;</span></span><br><span class="line">                <span class="string">&quot;positive value greater than zero.&quot;</span>)</span><br><span class="line">        <span class="keyword">elif</span> self.params[<span class="number">6</span>].value &lt; <span class="number">0</span>:</span><br><span class="line">            self.params[<span class="number">6</span>].setErrorMessage(</span><br><span class="line">                <span class="string">&quot;A positive distance value is required when &quot;</span></span><br><span class="line">                <span class="string">&quot;using a fixed distance band. Please specify &quot;</span></span><br><span class="line">                <span class="string">&quot;a distance.&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="控制-Python-工具箱中的许可行为"><a href="#控制-Python-工具箱中的许可行为" class="headerlink" title="控制 Python 工具箱中的许可行为"></a>控制 Python 工具箱中的许可行为</h2><p>isLicensed 方法是一种可选验证方法，用于检查 Python 工具箱中的工具是否具有执行许可。 如果运行其他地理处理工具（由 Python 工具箱工具使用）所需的相应<a target="_blank" rel="noopener" href="https://pro.arcgis.com/zh-cn/pro-app/3.0/arcpy/geoprocessing_and_python/accessing-licenses-and-extensions-in-python.htm">许可和扩展模块</a>不可用，那么可使用该方法限制工具的运行。</p>
+<p>如果 isLicensed 方法返回 False，则工具无法运行。 如果该方法返回 True 或者未使用该方法，则工具可以运行。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">isLicensed</span>(<span class="params">self</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Allow the tool to run, only if the ArcGIS 3D Analyst extension </span></span><br><span class="line"><span class="string">    is available.&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">if</span> arcpy.CheckExtension(<span class="string">&quot;3D&quot;</span>) != <span class="string">&quot;Available&quot;</span>:</span><br><span class="line">            <span class="keyword">raise</span> Exception</span><br><span class="line">    <span class="keyword">except</span> Exception:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span>  <span class="comment"># The tool cannot be run</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span>  <span class="comment"># The tool can be run</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Python-工具箱消息"><a href="#Python-工具箱消息" class="headerlink" title="Python 工具箱消息"></a>Python 工具箱消息</h2><p>在 Python 工具箱中，可以在 execute 方法中访问 messages 对象以将消息添加回工具。用于写入消息的 5 个方法如下所示：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>addMessage(message)</td>
+<td>信息性消息将添加到该工具的消息中。</td>
+</tr>
+<tr>
+<td>addWarningMessage(message)</td>
+<td>警告消息将添加到该工具的消息中。</td>
+</tr>
+<tr>
+<td>addErrorMessage(message)</td>
+<td>错误消息将添加到该工具的消息中。</td>
+</tr>
+<tr>
+<td>addIDMessage(message_type, message_ID, add_argument1&#x3D;None, add_argument2&#x3D;None)</td>
+<td>可以使用地理处理消息代码添加任意类型的消息。</td>
+</tr>
+<tr>
+<td>addGPMessages()</td>
+<td>来自上次运行的地理处理工具的消息将添加到该工具的消息中。</td>
+</tr>
+</tbody></table>
+<blockquote>
+<h5 id="注："><a href="#注：" class="headerlink" title="注："></a>注：</h5><p>也可使用诸如 <a target="_blank" rel="noopener" href="https://pro.arcgis.com/zh-cn/pro-app/3.0/arcpy/functions/addmessage.htm">AddMessage</a> 等脚本工具函数来添加消息。有关详细信息，请参阅<a target="_blank" rel="noopener" href="https://pro.arcgis.com/zh-cn/pro-app/3.0/arcpy/geoprocessing_and_python/writing-messages-in-script-tools.htm">在脚本工具中写入消息</a>。</p>
+</blockquote>
+<h3 id="添加消息示例"><a href="#添加消息示例" class="headerlink" title="添加消息示例"></a>添加消息示例</h3><p>在以下示例中，系统会评估输入内容，如果不包含输入要素，则会向工具添加错误消息，并会引发 <a target="_blank" rel="noopener" href="https://pro.arcgis.com/zh-cn/pro-app/3.0/arcpy/classes/executeerror.htm">arcpy.ExecuteError</a> 异常以结束工具运行。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">execute</span>(<span class="params">self, parameters, messages</span>):</span><br><span class="line">    <span class="built_in">input</span> = parameters[<span class="number">0</span>].valueAsText</span><br><span class="line">    output = parameters[<span class="number">1</span>].valueAsText</span><br><span class="line">        </span><br><span class="line">    <span class="comment"># If the input has no features, add an error message, and raise</span></span><br><span class="line">    <span class="comment">#  an arcpy.ExecuteError</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">int</span>(arcpy.GetCount_management(<span class="built_in">input</span>)[<span class="number">0</span>]) == <span class="number">0</span>:</span><br><span class="line">        messages.addErrorMessage(<span class="string">&quot;&#123;0&#125; has no features.&quot;</span>.<span class="built_in">format</span>(<span class="built_in">input</span>))</span><br><span class="line">        <span class="keyword">raise</span> arcpy.ExecuteError</span><br><span class="line">            </span><br><span class="line">    <span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Python-工具箱中的后处理验证"><a href="#Python-工具箱中的后处理验证" class="headerlink" title="Python 工具箱中的后处理验证"></a>Python 工具箱中的后处理验证</h2><p>postExecute 方法是一种可选验证方法，将在工具处理完成后运行。 当 Python 工具箱工具的 execute 方法完成并将输出添加到活动地图的<strong>内容</strong>窗格后，将调用该方法。 此方法允许使用 <a target="_blank" rel="noopener" href="https://pro.arcgis.com/zh-cn/pro-app/3.0/arcpy/mapping/introduction-to-arcpy-mp.htm">arcpy.mp</a> 模块来查询并更改输出的显示。</p>
+<p>postExecute 代码将根据活动地图来标识图层，并使用 SimpleRenderer 值将每个点的符号系统更改为机场符号。 代码假设工具的第二个参数为输出点要素类。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">postExecute</span>(<span class="params">self, parameters</span>):</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        project = arcpy.mp.ArcGISProject(<span class="string">&#x27;CURRENT&#x27;</span>)</span><br><span class="line">        active_map = project.activeMap</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> active_map:</span><br><span class="line">            out_layer = active_map.listLayers(os.path.basename(parameters[<span class="number">1</span>].valueAsText))[<span class="number">0</span>]</span><br><span class="line">            </span><br><span class="line">            symbology = out_layer.symbology</span><br><span class="line">            symbology.updateRenderer(<span class="string">&#x27;SimpleRenderer&#x27;</span>)</span><br><span class="line">            symbology.renderer.symbol.applySymbolFromGallery(<span class="string">&#x27;Airport&#x27;</span>)</span><br><span class="line">            symbology.renderer.symbol.size = <span class="number">12</span></span><br><span class="line">            out_layer.symbology = symbology</span><br><span class="line">            </span><br><span class="line">    <span class="keyword">except</span> Exception:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="加密-Python-工具箱"><a href="#加密-Python-工具箱" class="headerlink" title="加密 Python 工具箱"></a>加密 Python 工具箱</h2><p>默认情况下，Python 工具箱 (.pyt) 是一个可在任何文本编辑器或 Python IDE 中编辑的纯文本文件。但是，在某些情况下，可能需要隐藏 Python 工具箱的内容。</p>
+<p>要加密 Python 工具箱，请右键单击该工具箱并单击<strong>加密</strong>。输入并确认密码时，可保留原始 .pyt 文件的备份副本。</p>
+<h5 id="警告："><a href="#警告：" class="headerlink" title="警告："></a>警告：</h5><p>在同一位置对 Python 工具箱执行加密，将覆盖未加密的原始文件。建议您对输入文件进行备份，以免在忘记密码时造成内容丢失。</p>
+<p>要对加密的 Python 工具箱进行解密，请右键单击该工具箱并单击<strong>解密</strong>。</p>
+<p>此外，ArcPy 函数 <a target="_blank" rel="noopener" href="https://pro.arcgis.com/zh-cn/pro-app/3.0/arcpy/functions/encryptpyt.htm">EncryptPYT</a> 和 <a target="_blank" rel="noopener" href="https://pro.arcgis.com/zh-cn/pro-app/3.0/arcpy/functions/decryptpyt.htm">DecryptPYT</a> 也可用于加密或解密 Python 工具箱。</p>
+<h3 id="eg"><a href="#eg" class="headerlink" title="eg:"></a>eg:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> arcpy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Toolbox</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.label = <span class="string">&quot;ARM工具箱&quot;</span></span><br><span class="line">        self.alias = <span class="string">&quot;ARMToolbox&quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># List of tool classes associated with this toolbox</span></span><br><span class="line">        self.tools = [PublishService3D]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PublishService3D</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.label = <span class="string">&quot;发布三维服务&quot;</span></span><br><span class="line">        self.description = <span class="string">&quot;发布三维服务&quot;</span></span><br><span class="line">        self.canRunInBackground = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getParameterInfo</span>(<span class="params">self</span>):</span><br><span class="line">        param0 = arcpy.Parameter(</span><br><span class="line">            displayName=<span class="string">&quot;Server地址&quot;</span>,</span><br><span class="line">            <span class="comment"># message=&quot;GeoScene Server 地址。&quot;,</span></span><br><span class="line">            name=<span class="string">&quot;server_url&quot;</span>,</span><br><span class="line">            datatype=<span class="string">&quot;GPString&quot;</span>,</span><br><span class="line">            parameterType=<span class="string">&quot;Required&quot;</span>,</span><br><span class="line">            direction=<span class="string">&quot;Input&quot;</span>)</span><br><span class="line"></span><br><span class="line">        param1 = arcpy.Parameter(</span><br><span class="line">            displayName=<span class="string">&quot;Server用户名&quot;</span>,</span><br><span class="line">            <span class="comment"># message=&quot;GeoScene Server 用户名。&quot;,</span></span><br><span class="line">            name=<span class="string">&quot;server_username&quot;</span>,</span><br><span class="line">            datatype=<span class="string">&quot;GPString&quot;</span>,</span><br><span class="line">            parameterType=<span class="string">&quot;Required&quot;</span>,</span><br><span class="line">            direction=<span class="string">&quot;Input&quot;</span>)</span><br><span class="line"></span><br><span class="line">        param2 = arcpy.Parameter(</span><br><span class="line">            displayName=<span class="string">&quot;Server密码&quot;</span>,</span><br><span class="line">            <span class="comment"># message=&quot;GeoScene Server 密码。&quot;,</span></span><br><span class="line">            name=<span class="string">&quot;server_password&quot;</span>,</span><br><span class="line">            datatype=<span class="string">&quot;GPStringHidden&quot;</span>,</span><br><span class="line">            parameterType=<span class="string">&quot;Required&quot;</span>,</span><br><span class="line">            direction=<span class="string">&quot;Input&quot;</span>)</span><br><span class="line"></span><br><span class="line">        param3 = arcpy.Parameter(</span><br><span class="line">            enabled = <span class="literal">False</span>,</span><br><span class="line">            displayName=<span class="string">&quot;服务路径&quot;</span>,</span><br><span class="line">            <span class="comment"># message=&quot;GeoScene Server 上的服务存储路径，输入正确的Server地址、用户和密码后，会自动读取可用目录。&quot;,</span></span><br><span class="line">            name=<span class="string">&quot;service_folder&quot;</span>,</span><br><span class="line">            datatype=<span class="string">&quot;GPString&quot;</span>,</span><br><span class="line">            parameterType=<span class="string">&quot;Required&quot;</span>,</span><br><span class="line">            direction=<span class="string">&quot;Input&quot;</span>)</span><br><span class="line"></span><br><span class="line">        param4 = arcpy.Parameter(</span><br><span class="line">            enabled = <span class="literal">False</span>,</span><br><span class="line">            displayName=<span class="string">&quot;服务名称&quot;</span>,</span><br><span class="line">            <span class="comment"># message=&quot;服务名称。&quot;,</span></span><br><span class="line">            name=<span class="string">&quot;service_name&quot;</span>,</span><br><span class="line">            datatype=<span class="string">&quot;GPString&quot;</span>,</span><br><span class="line">            parameterType=<span class="string">&quot;Required&quot;</span>,</span><br><span class="line">            direction=<span class="string">&quot;Input&quot;</span>)</span><br><span class="line"></span><br><span class="line">        param5 = arcpy.Parameter(</span><br><span class="line">            enabled = <span class="literal">False</span>,</span><br><span class="line">            displayName=<span class="string">&quot;SLPK文件&quot;</span>,</span><br><span class="line">            <span class="comment"># description=&quot;三维场景图层包。&quot;,</span></span><br><span class="line">            name=<span class="string">&quot;slpk_file&quot;</span>,</span><br><span class="line">            datatype=<span class="string">&quot;DEFile&quot;</span>,</span><br><span class="line">            parameterType=<span class="string">&quot;Required&quot;</span>,</span><br><span class="line">            direction=<span class="string">&quot;Input&quot;</span>)</span><br><span class="line">        param5.<span class="built_in">filter</span>.<span class="built_in">list</span> = [<span class="string">&quot;slpk&quot;</span>]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> [param0, param1, param2, param3, param4, param5]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isLicensed</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">updateParameters</span>(<span class="params">self, parameters</span>):</span><br><span class="line">        <span class="keyword">if</span> self.checkLoginInfo(parameters):</span><br><span class="line">            <span class="comment"># if parameters[0].altered or parameters[1].altered or parameters[2].altered:</span></span><br><span class="line">            <span class="keyword">if</span> parameters[<span class="number">0</span>].enabled <span class="keyword">and</span> parameters[<span class="number">1</span>].enabled <span class="keyword">and</span> parameters[<span class="number">2</span>].enabled:</span><br><span class="line">                is_login_successful = self.login(parameters)</span><br><span class="line">                <span class="keyword">if</span> is_login_successful:</span><br><span class="line">                    parameters[<span class="number">0</span>].enabled = <span class="literal">False</span></span><br><span class="line">                    parameters[<span class="number">1</span>].enabled = <span class="literal">False</span></span><br><span class="line">                    parameters[<span class="number">2</span>].enabled = <span class="literal">False</span></span><br><span class="line">                    parameters[<span class="number">3</span>].enabled = <span class="literal">True</span></span><br><span class="line">                    parameters[<span class="number">4</span>].enabled = <span class="literal">True</span></span><br><span class="line">                    parameters[<span class="number">5</span>].enabled = <span class="literal">True</span></span><br><span class="line">                    parameters[<span class="number">3</span>].<span class="built_in">filter</span>.<span class="built_in">list</span> = self.getServerFolders(parameters)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">updateMessages</span>(<span class="params">self, parameters</span>):</span><br><span class="line">        <span class="keyword">if</span> self.checkLoginInfo(parameters):</span><br><span class="line">            <span class="comment"># if parameters[0].altered or parameters[1].altered or parameters[2].altered:</span></span><br><span class="line">            <span class="keyword">if</span> parameters[<span class="number">0</span>].enabled <span class="keyword">and</span> parameters[<span class="number">1</span>].enabled <span class="keyword">and</span> parameters[<span class="number">2</span>].enabled:</span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">                    parameters[i].setErrorMessage(<span class="string">&quot;验证失败！请检查&#123;0&#125;！&quot;</span>.<span class="built_in">format</span>(parameters[i].displayName))</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">execute</span>(<span class="params">self, parameters, messages</span>):</span><br><span class="line">        arcpy.SetProgressor(<span class="string">&quot;step&quot;</span>, <span class="string">&quot;测试进程...&quot;</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">            arcpy.SetProgressorLabel(<span class="string">&quot;步骤 &#123;0&#125;...&quot;</span>.<span class="built_in">format</span>(i + <span class="number">1</span>))</span><br><span class="line">            time.sleep(<span class="number">2</span>)</span><br><span class="line">            messages.addMessage(<span class="string">&quot;Message: &#123;0&#125;&quot;</span>.<span class="built_in">format</span>(i + <span class="number">1</span>))</span><br><span class="line">            arcpy.SetProgressorPosition((i + <span class="number">1</span>) * <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>, <span class="number">8</span>):</span><br><span class="line">            arcpy.SetProgressorLabel(<span class="string">&quot;步骤 &#123;0&#125;...&quot;</span>.<span class="built_in">format</span>(i + <span class="number">1</span>))</span><br><span class="line">            time.sleep(<span class="number">2</span>)</span><br><span class="line">            messages.addWarningMessage(<span class="string">&quot;WarningMessage: &#123;0&#125;&quot;</span>.<span class="built_in">format</span>(i + <span class="number">1</span>))</span><br><span class="line">            arcpy.SetProgressorPosition((i + <span class="number">1</span>) * <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">8</span>, <span class="number">10</span>):</span><br><span class="line">            arcpy.SetProgressorLabel(<span class="string">&quot;步骤 &#123;0&#125;...&quot;</span>.<span class="built_in">format</span>(i + <span class="number">1</span>))</span><br><span class="line">            time.sleep(<span class="number">2</span>)</span><br><span class="line">            messages.addErrorMessage(<span class="string">&quot;ErrorMessage: &#123;0&#125;&quot;</span>.<span class="built_in">format</span>(i + <span class="number">1</span>))</span><br><span class="line">            arcpy.SetProgressorPosition((i + <span class="number">1</span>) * <span class="number">10</span>)</span><br><span class="line">        time.sleep(<span class="number">2</span>)</span><br><span class="line">        arcpy.ResetProgressor()</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">postExecute</span>(<span class="params">self, parameters</span>):</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">checkLoginInfo</span>(<span class="params">self, parameters</span>):</span><br><span class="line">        <span class="keyword">return</span> parameters[<span class="number">0</span>].value <span class="keyword">and</span> parameters[<span class="number">2</span>].value <span class="keyword">and</span> parameters[<span class="number">1</span>].value</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">login</span>(<span class="params">self, parameters</span>):</span><br><span class="line">        time.sleep(<span class="number">3</span>)</span><br><span class="line">        <span class="keyword">if</span>(parameters[<span class="number">0</span>].valueAsText == <span class="string">&#x27;a&#x27;</span> <span class="keyword">and</span> parameters[<span class="number">1</span>].valueAsText == <span class="string">&#x27;a&#x27;</span> <span class="keyword">and</span> parameters[<span class="number">2</span>].valueAsText == <span class="string">&#x27;a&#x27;</span>):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getServerFolders</span>(<span class="params">self, parameters</span>):</span><br><span class="line">            <span class="keyword">return</span> [<span class="string">&#x27;folder1&#x27;</span>, <span class="string">&#x27;folder2&#x27;</span>, <span class="string">&#x27;folder3&#x27;</span>, <span class="string">&#x27;folder4&#x27;</span>, <span class="string">&#x27;folder5&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:1361151272@qq.com">shaozhy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://shaoshao.net.cn/2023/11/02/20231102100955282/">https://shaoshao.net.cn/2023/11/02/20231102100955282/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://shaoshao.net.cn" target="_blank">WineMonk</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/discover/tags/Arcpy/">Arcpy</a><a class="post-meta__tags" href="/discover/tags/ArcGIS/">ArcGIS</a><a class="post-meta__tags" href="/discover/tags/%E2%80%98Python%E2%80%99/">‘Python’</a></div><div class="post_share"><div class="social-share" data-image="https://shaoshao.net.cn/images/blog/cover/current/post_02.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://shaoshao.net.cn/images/blog/cover/payqr/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="https://shaoshao.net.cn/images/blog/cover/payqr/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://shaoshao.net.cn/images/blog/cover/payqr/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="https://shaoshao.net.cn/images/blog/cover/payqr/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/11/02/20231102095521905/"><img class="next-cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_01.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Arcpy发布矢量切片服务</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/11/01/20231101183245757/" title="Arcpy导出ArcGIS全部坐标系及目录结构"><img class="cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_20.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-01</div><div class="title">Arcpy导出ArcGIS全部坐标系及目录结构</div></div></a></div><div><a href="/2023/11/02/20231102095521905/" title="Arcpy发布矢量切片服务"><img class="cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_01.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-02</div><div class="title">Arcpy发布矢量切片服务</div></div></a></div><div><a href="/2023/05/22/20230522133426417/" title="Arcpy 调用gp分析工具提示未获得许可"><img class="cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_10.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-22</div><div class="title">Arcpy 调用gp分析工具提示未获得许可</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ArcGIS-%E8%87%AA%E5%AE%9A%E4%B9%89-Python-%E5%B7%A5%E5%85%B7%E7%AE%B1"><span class="toc-number">1.</span> <span class="toc-text">ArcGIS 自定义 Python 工具箱</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Python-%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%A8%A1%E6%9D%BF"><span class="toc-number">1.1.</span> <span class="toc-text">Python 工具箱模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%BE%91-Python-%E5%B7%A5%E5%85%B7%E7%AE%B1"><span class="toc-number">1.2.</span> <span class="toc-text">编辑 Python 工具箱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python-%E5%B7%A5%E5%85%B7%E7%AE%B1%E4%B8%AD%E7%9A%84%E5%B7%A5%E5%85%B7%E5%AE%9A%E4%B9%89"><span class="toc-number">1.3.</span> <span class="toc-text">Python 工具箱中的工具定义</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E4%BA%8E%E5%AE%9A%E4%B9%89%E5%B7%A5%E4%BD%9C%E5%B7%A5%E5%85%B7%E7%B1%BB%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.0.1.</span> <span class="toc-text">用于定义工作工具类的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F"><span class="toc-number">1.3.0.1.1.</span> <span class="toc-text">注意:</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-Python-%E5%B7%A5%E5%85%B7%E7%AE%B1%E4%B8%AD%E7%9A%84%E5%8F%82%E6%95%B0"><span class="toc-number">1.4.</span> <span class="toc-text">定义 Python 工具箱中的参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.4.1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B4%E6%98%8E"><span class="toc-number">1.4.2.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-number">1.4.3.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7"><span class="toc-number">1.4.4.</span> <span class="toc-text">属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E6%A6%82%E8%BF%B0"><span class="toc-number">1.4.5.</span> <span class="toc-text">方法概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.6.</span> <span class="toc-text">方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.4.7.</span> <span class="toc-text">代码示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6-Python-%E5%B7%A5%E5%85%B7%E7%AE%B1%E4%B8%AD%E7%9A%84%E8%AE%B8%E5%8F%AF%E8%A1%8C%E4%B8%BA"><span class="toc-number">1.5.</span> <span class="toc-text">控制 Python 工具箱中的许可行为</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python-%E5%B7%A5%E5%85%B7%E7%AE%B1%E6%B6%88%E6%81%AF"><span class="toc-number">1.6.</span> <span class="toc-text">Python 工具箱消息</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B3%A8%EF%BC%9A"><span class="toc-number">1.6.0.0.1.</span> <span class="toc-text">注：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E6%B6%88%E6%81%AF%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.6.1.</span> <span class="toc-text">添加消息示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python-%E5%B7%A5%E5%85%B7%E7%AE%B1%E4%B8%AD%E7%9A%84%E5%90%8E%E5%A4%84%E7%90%86%E9%AA%8C%E8%AF%81"><span class="toc-number">1.7.</span> <span class="toc-text">Python 工具箱中的后处理验证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E5%AF%86-Python-%E5%B7%A5%E5%85%B7%E7%AE%B1"><span class="toc-number">1.8.</span> <span class="toc-text">加密 Python 工具箱</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AD%A6%E5%91%8A%EF%BC%9A"><span class="toc-number">1.8.0.0.1.</span> <span class="toc-text">警告：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#eg"><span class="toc-number">1.8.1.</span> <span class="toc-text">eg:</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://shaoshao.net.cn/images/blog/cover/current/post_02.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By shaozhy</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><img class="icp-icon" src="/img/icp.png"><span>冀ICP备2023009991号-1</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: 'd990e8cbbd1dabc9c98e',
+      clientSecret: '59676d5926f4df676ec1ba6b36395bf90a0aeb54',
+      repo: 'WineMonk.github.io',
+      owner: 'WineMonk',
+      admin: ['WineMonk'],
+      id: '7447e84b52a1451c865a5d4ae370beab',
+      updateCountCallback: commentCount
+    },{"proxy":"https://vercel.prohibitorum.top/github_access_token"}))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js" data-mobile="false" data-text="茶飘香,酒罢去,聚朋友,再回楼" data-fontsize="15px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
