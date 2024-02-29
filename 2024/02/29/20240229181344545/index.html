@@ -1,0 +1,232 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>WPF国际化 | WineMonk</title><meta name="keywords" content="WPF,国际化"><meta name="author" content="shaozhy,1361151272@qq.com"><meta name="copyright" content="shaozhy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="WPF国际化环境：VisualStudio2022 ResXManager 1.84.6269.0  实现方法step1：安装VisualStudio扩展工具 - ResXManager step2：创建资源文件  step3：设置访问级别 step4：打开 step5：设置&#x2F;添加语言  step6：添加语言管理类1234567891011121314151617181920212223">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WPF国际化">
+<meta property="og:url" content="https://shaoshao.net.cn/2024/02/29/20240229181344545/index.html">
+<meta property="og:site_name" content="WineMonk">
+<meta property="og:description" content="WPF国际化环境：VisualStudio2022 ResXManager 1.84.6269.0  实现方法step1：安装VisualStudio扩展工具 - ResXManager step2：创建资源文件  step3：设置访问级别 step4：打开 step5：设置&#x2F;添加语言  step6：添加语言管理类1234567891011121314151617181920212223">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://shaoshao.net.cn/images/blog/cover/current/post_09.jpg">
+<meta property="article:published_time" content="2024-02-29T10:13:46.000Z">
+<meta property="article:modified_time" content="2024-02-29T10:46:24.660Z">
+<meta property="article:author" content="shaozhy">
+<meta property="article:tag" content="WPF">
+<meta property="article:tag" content="国际化">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://shaoshao.net.cn/images/blog/cover/current/post_09.jpg"><link rel="shortcut icon" href="/cover/head_portrait.jpg"><link rel="canonical" href="https://shaoshao.net.cn/2024/02/29/20240229181344545/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'WPF国际化',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-02-29 18:46:24'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.1.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://shaoshao.net.cn/images/blog/cover/headportrait/shsh_cn.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/discover/archives/"><div class="headline">文章</div><div class="length-num">174</div></a></div><div class="data-item"><a href="/discover/tags/"><div class="headline">标签</div><div class="length-num">111</div></a></div><div class="data-item"><a href="/discover/categories/"><div class="headline">分类</div><div class="length-num">80</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 发现</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/discover/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/discover/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/discover/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/discover/codingStandards/"><i class="fa-fw fas fa-code"></i><span> 军规</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/photo/"><i class="fa-fw fas fa-camera"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/guestbook/"><i class="fa-fw fa fa-commenting"></i><span> 留言</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://shaoshao.net.cn/images/blog/cover/current/post_09.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">WineMonk</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 发现</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/discover/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/discover/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/discover/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/discover/codingStandards/"><i class="fa-fw fas fa-code"></i><span> 军规</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/photo/"><i class="fa-fw fas fa-camera"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/guestbook/"><i class="fa-fw fa fa-commenting"></i><span> 留言</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">WPF国际化</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-02-29T10:13:46.000Z" title="发表于 2024-02-29 18:13:46">2024-02-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-02-29T10:46:24.660Z" title="更新于 2024-02-29 18:46:24">2024-02-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/discover/categories/CSharp%E7%9B%B8%E5%85%B3/">CSharp相关</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/discover/categories/CSharp%E7%9B%B8%E5%85%B3/WPF/">WPF</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">776</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="WPF国际化"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="WPF国际化"><a href="#WPF国际化" class="headerlink" title="WPF国际化"></a>WPF国际化</h1><h2 id="环境："><a href="#环境：" class="headerlink" title="环境："></a>环境：</h2><p>VisualStudio2022</p>
+<p>ResXManager 1.84.6269.0</p>
+<p><img src="https://raw.githubusercontent.com/WineMonk/images/master/blog/post/202402291833982.gif" alt="gjh"></p>
+<h2 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法"></a>实现方法</h2><h3 id="step1：安装VisualStudio扩展工具-ResXManager"><a href="#step1：安装VisualStudio扩展工具-ResXManager" class="headerlink" title="step1：安装VisualStudio扩展工具 - ResXManager"></a>step1：安装VisualStudio扩展工具 - ResXManager</h3><p><img src="https://raw.githubusercontent.com/WineMonk/images/master/blog/post/202402291833980.png" alt="image-20240229182826309"></p>
+<h3 id="step2：创建资源文件"><a href="#step2：创建资源文件" class="headerlink" title="step2：创建资源文件"></a>step2：创建资源文件</h3><p><img src="C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20240229183005000.png" alt="image-20240229183005000"></p>
+<p><img src="https://raw.githubusercontent.com/WineMonk/images/master/blog/post/202402291833957.png" alt="image-20240229183052069"></p>
+<h3 id="step3：设置访问级别"><a href="#step3：设置访问级别" class="headerlink" title="step3：设置访问级别"></a>step3：设置访问级别</h3><p><img src="https://raw.githubusercontent.com/WineMonk/images/master/blog/post/202402291834467.png" alt="image-20240229183439424"></p>
+<h3 id="step4：打开"><a href="#step4：打开" class="headerlink" title="step4：打开"></a>step4：打开</h3><p><img src="C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20240229183231047.png" alt="image-20240229183231047"></p>
+<h3 id="step5：设置-x2F-添加语言"><a href="#step5：设置-x2F-添加语言" class="headerlink" title="step5：设置&#x2F;添加语言"></a>step5：设置&#x2F;添加语言</h3><p><img src="https://raw.githubusercontent.com/WineMonk/images/master/blog/post/202402291835301.png" alt="image-20240229183541252"></p>
+<p><img src="https://raw.githubusercontent.com/WineMonk/images/master/blog/post/202402291836436.png" alt="image-20240229183647389"></p>
+<h3 id="step6：添加语言管理类"><a href="#step6：添加语言管理类" class="headerlink" title="step6：添加语言管理类"></a>step6：添加语言管理类</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">LanguageManager</span> : <span class="title">INotifyPropertyChanged</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 资源</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> ResourceManager _resourceManager;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 懒加载</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">readonly</span> Lazy&lt;LanguageManager&gt; _lazy = <span class="keyword">new</span> Lazy&lt;LanguageManager&gt;(() =&gt; <span class="keyword">new</span> LanguageManager());</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> LanguageManager Instance =&gt; _lazy.Value;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">event</span> PropertyChangedEventHandler PropertyChanged;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LanguageManager</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//获取此命名空间下Resources的Lang的资源，Lang可以修改</span></span><br><span class="line">        _resourceManager = <span class="keyword">new</span> ResourceManager(<span class="string">&quot;WpfAppZBC.Resources.lang&quot;</span>, <span class="keyword">typeof</span>(LanguageManager).Assembly);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 索引器的写法，传入字符串的下标</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;name&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;exception cref=&quot;ArgumentNullException&quot;&gt;</span><span class="doctag">&lt;/exception&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> <span class="keyword">this</span>[<span class="built_in">string</span> name]</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">get</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (name == <span class="literal">null</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> ArgumentNullException(<span class="keyword">nameof</span>(name));</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> _resourceManager.GetString(name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ChangeLanguage</span>(<span class="params">CultureInfo cultureInfo</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        CultureInfo.CurrentCulture = cultureInfo;</span><br><span class="line">        CultureInfo.CurrentUICulture = cultureInfo;</span><br><span class="line">        PropertyChanged?.Invoke(<span class="keyword">this</span>, <span class="keyword">new</span> PropertyChangedEventArgs(<span class="string">&quot;item[]&quot;</span>));  <span class="comment">//字符串集合，对应资源的值</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="step7：在xaml中引用资源"><a href="#step7：在xaml中引用资源" class="headerlink" title="step7：在xaml中引用资源"></a>step7：在xaml中引用资源</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">&lt;Window</span><br><span class="line">    x:Class=&quot;WpfAppZBC.MainWindow&quot;</span><br><span class="line">    xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;</span><br><span class="line">    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;</span><br><span class="line">    xmlns:d=&quot;http://schemas.microsoft.com/expression/blend/2008&quot;</span><br><span class="line">    xmlns:local=&quot;clr-namespace:WpfAppZBC&quot;</span><br><span class="line">    xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot;</span><br><span class="line">    Title=&quot;&#123;Binding [mainWindow], Source=&#123;x:Static local:LanguageManager.Instance&#125;&#125;&quot;</span><br><span class="line">    Width=&quot;800&quot;</span><br><span class="line">    Height=&quot;450&quot;</span><br><span class="line">    mc:Ignorable=&quot;d&quot;&gt;</span><br><span class="line">    &lt;Grid&gt;</span><br><span class="line">        &lt;Grid.RowDefinitions&gt;</span><br><span class="line">            &lt;RowDefinition Height=&quot;auto&quot; /&gt;</span><br><span class="line">            &lt;RowDefinition /&gt;</span><br><span class="line">        &lt;/Grid.RowDefinitions&gt;</span><br><span class="line">        &lt;Menu&gt;</span><br><span class="line">            &lt;MenuItem Header=&quot;&#123;Binding [file], Source=&#123;x:Static local:LanguageManager.Instance&#125;&#125;&quot;&gt;</span><br><span class="line">                &lt;MenuItem Header=&quot;&#123;Binding [open], Source=&#123;x:Static local:LanguageManager.Instance&#125;&#125;&quot; /&gt;</span><br><span class="line">                &lt;MenuItem Header=&quot;&#123;Binding [save], Source=&#123;x:Static local:LanguageManager.Instance&#125;&#125;&quot; /&gt;</span><br><span class="line">                &lt;MenuItem Header=&quot;&#123;Binding [saveAs], Source=&#123;x:Static local:LanguageManager.Instance&#125;&#125;&quot; /&gt;</span><br><span class="line">                &lt;MenuItem Header=&quot;&#123;Binding [exit], Source=&#123;x:Static local:LanguageManager.Instance&#125;&#125;&quot; /&gt;</span><br><span class="line">            &lt;/MenuItem&gt;</span><br><span class="line">            &lt;MenuItem Header=&quot;&#123;Binding [edit], Source=&#123;x:Static local:LanguageManager.Instance&#125;&#125;&quot;&gt;</span><br><span class="line">                &lt;MenuItem Header=&quot;&#123;Binding [cut], Source=&#123;x:Static local:LanguageManager.Instance&#125;&#125;&quot; /&gt;</span><br><span class="line">                &lt;MenuItem Header=&quot;&#123;Binding [copy], Source=&#123;x:Static local:LanguageManager.Instance&#125;&#125;&quot; /&gt;</span><br><span class="line">                &lt;MenuItem Header=&quot;&#123;Binding [paste], Source=&#123;x:Static local:LanguageManager.Instance&#125;&#125;&quot; /&gt;</span><br><span class="line">                &lt;MenuItem Header=&quot;&#123;Binding [delete], Source=&#123;x:Static local:LanguageManager.Instance&#125;&#125;&quot; /&gt;</span><br><span class="line">            &lt;/MenuItem&gt;</span><br><span class="line">            &lt;MenuItem Header=&quot;&#123;Binding [system], Source=&#123;x:Static local:LanguageManager.Instance&#125;&#125;&quot;&gt;</span><br><span class="line">                &lt;MenuItem Header=&quot;&#123;Binding [internationalization], Source=&#123;x:Static local:LanguageManager.Instance&#125;&#125;&quot;&gt;</span><br><span class="line">                    &lt;MenuItem</span><br><span class="line">                        x:Name=&quot;menuItemZHCN&quot;</span><br><span class="line">                        Click=&quot;menuItemZHCN_Click&quot;</span><br><span class="line">                        Header=&quot;中文简体&quot; /&gt;</span><br><span class="line">                    &lt;MenuItem</span><br><span class="line">                        x:Name=&quot;menuItemZHHANT&quot;</span><br><span class="line">                        Click=&quot;menuItemZHHANT_Click&quot;</span><br><span class="line">                        Header=&quot;中文繁体&quot; /&gt;</span><br><span class="line">                    &lt;MenuItem</span><br><span class="line">                        x:Name=&quot;menuItemEN&quot;</span><br><span class="line">                        Click=&quot;menuItemEN_Click&quot;</span><br><span class="line">                        Header=&quot;English&quot; /&gt;</span><br><span class="line">                &lt;/MenuItem&gt;</span><br><span class="line">            &lt;/MenuItem&gt;</span><br><span class="line">        &lt;/Menu&gt;</span><br><span class="line">        &lt;TextBlock</span><br><span class="line">            Grid.Row=&quot;1&quot;</span><br><span class="line">            HorizontalAlignment=&quot;Center&quot;</span><br><span class="line">            VerticalAlignment=&quot;Center&quot;</span><br><span class="line">            FontSize=&quot;65&quot;</span><br><span class="line">            Text=&quot;&#123;Binding [contentText], Source=&#123;x:Static local:LanguageManager.Instance&#125;&#125;&quot; /&gt;</span><br><span class="line">    &lt;/Grid&gt;</span><br><span class="line">&lt;/Window&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="step8：语言切换"><a href="#step8：语言切换" class="headerlink" title="step8：语言切换"></a>step8：语言切换</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">partial</span> <span class="keyword">class</span> <span class="title">MainWindow</span> : <span class="title">Window</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MainWindow</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        InitializeComponent();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">menuItemZHCN_Click</span>(<span class="params"><span class="built_in">object</span> sender, RoutedEventArgs e</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        LanguageManager.Instance.ChangeLanguage(<span class="keyword">new</span> CultureInfo(<span class="string">&quot;zh-CN&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">menuItemZHHANT_Click</span>(<span class="params"><span class="built_in">object</span> sender, RoutedEventArgs e</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        LanguageManager.Instance.ChangeLanguage(<span class="keyword">new</span> CultureInfo(<span class="string">&quot;zh-Hant&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">menuItemEN_Click</span>(<span class="params"><span class="built_in">object</span> sender, RoutedEventArgs e</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        LanguageManager.Instance.ChangeLanguage(<span class="keyword">new</span> CultureInfo(<span class="string">&quot;en&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="源码仓库"><a href="#源码仓库" class="headerlink" title="源码仓库"></a>源码仓库</h2><p><a target="_blank" rel="noopener" href="https://github.com/WineMonk/ResXManagerStudy">WineMonk&#x2F;ResXManagerStudy: WPF国际化 (github.com)</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:1361151272@qq.com">shaozhy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://shaoshao.net.cn/2024/02/29/20240229181344545/">https://shaoshao.net.cn/2024/02/29/20240229181344545/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://shaoshao.net.cn" target="_blank">WineMonk</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/discover/tags/WPF/">WPF</a><a class="post-meta__tags" href="/discover/tags/%E5%9B%BD%E9%99%85%E5%8C%96/">国际化</a></div><div class="post_share"><div class="social-share" data-image="https://shaoshao.net.cn/images/blog/cover/current/post_09.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://shaoshao.net.cn/images/blog/cover/payqr/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="https://shaoshao.net.cn/images/blog/cover/payqr/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://shaoshao.net.cn/images/blog/cover/payqr/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="https://shaoshao.net.cn/images/blog/cover/payqr/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2024/02/29/20240229163750954/"><img class="next-cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_08.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Socket 套接字</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/01/06/20230106155206000/" title="WPF数据模板"><img class="cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_10.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-06</div><div class="title">WPF数据模板</div></div></a></div><div><a href="/2023/02/09/20230209153927000/" title="WPF获取UI控件线程"><img class="cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_20.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-09</div><div class="title">WPF获取UI控件线程</div></div></a></div><div><a href="/2023/04/14/20230414091241324/" title="WPF全局未处理异常捕获"><img class="cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_09.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-14</div><div class="title">WPF全局未处理异常捕获</div></div></a></div><div><a href="/2023/08/18/20230818142117587/" title="ZhyForm：WPF表单组件"><img class="cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_12.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-18</div><div class="title">ZhyForm：WPF表单组件</div></div></a></div><div><a href="/2023/09/01/20230901144253688/" title="Zhy.Components.Wpf：WPF组件库"><img class="cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_14.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-01</div><div class="title">Zhy.Components.Wpf：WPF组件库</div></div></a></div><div><a href="/2023/08/25/20230825160112095/" title="ZhyForm：WPF表单自定义用户控件"><img class="cover" src="https://shaoshao.net.cn/images/blog/cover/current/post_13.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-25</div><div class="title">ZhyForm：WPF表单自定义用户控件</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#WPF%E5%9B%BD%E9%99%85%E5%8C%96"><span class="toc-number">1.</span> <span class="toc-text">WPF国际化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">环境：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">实现方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#step1%EF%BC%9A%E5%AE%89%E8%A3%85VisualStudio%E6%89%A9%E5%B1%95%E5%B7%A5%E5%85%B7-ResXManager"><span class="toc-number">1.2.1.</span> <span class="toc-text">step1：安装VisualStudio扩展工具 - ResXManager</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#step2%EF%BC%9A%E5%88%9B%E5%BB%BA%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6"><span class="toc-number">1.2.2.</span> <span class="toc-text">step2：创建资源文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#step3%EF%BC%9A%E8%AE%BE%E7%BD%AE%E8%AE%BF%E9%97%AE%E7%BA%A7%E5%88%AB"><span class="toc-number">1.2.3.</span> <span class="toc-text">step3：设置访问级别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#step4%EF%BC%9A%E6%89%93%E5%BC%80"><span class="toc-number">1.2.4.</span> <span class="toc-text">step4：打开</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#step5%EF%BC%9A%E8%AE%BE%E7%BD%AE-x2F-%E6%B7%BB%E5%8A%A0%E8%AF%AD%E8%A8%80"><span class="toc-number">1.2.5.</span> <span class="toc-text">step5：设置&#x2F;添加语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#step6%EF%BC%9A%E6%B7%BB%E5%8A%A0%E8%AF%AD%E8%A8%80%E7%AE%A1%E7%90%86%E7%B1%BB"><span class="toc-number">1.2.6.</span> <span class="toc-text">step6：添加语言管理类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#step7%EF%BC%9A%E5%9C%A8xaml%E4%B8%AD%E5%BC%95%E7%94%A8%E8%B5%84%E6%BA%90"><span class="toc-number">1.2.7.</span> <span class="toc-text">step7：在xaml中引用资源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#step8%EF%BC%9A%E8%AF%AD%E8%A8%80%E5%88%87%E6%8D%A2"><span class="toc-number">1.2.8.</span> <span class="toc-text">step8：语言切换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E4%BB%93%E5%BA%93"><span class="toc-number">1.3.</span> <span class="toc-text">源码仓库</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://shaoshao.net.cn/images/blog/cover/current/post_09.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By shaozhy</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><img class="icp-icon" src="/img/icp.png"><span>冀ICP备2023009991号-1</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: 'd990e8cbbd1dabc9c98e',
+      clientSecret: '59676d5926f4df676ec1ba6b36395bf90a0aeb54',
+      repo: 'WineMonk.github.io',
+      owner: 'WineMonk',
+      admin: ['WineMonk'],
+      id: 'b0c9340e073950d313c2552b4c8484b6',
+      updateCountCallback: commentCount
+    },{"proxy":"https://vercel.prohibitorum.top/github_access_token"}))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js" data-mobile="false" data-text="茶飘香,酒罢去,聚朋友,再回楼" data-fontsize="15px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
